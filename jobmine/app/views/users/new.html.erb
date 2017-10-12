@@ -1,0 +1,12 @@
+<h1>Sign Up</h1>
+
+<%= form_for @user, url: {action: 'create'} do |t|%>
+
+    <%= t.label :email %>
+    <%= t.text_field :email %>
+
+    <%= t.label :password %>
+    <%= t.text_field :password%>
+    <%= t.submit 'Create' %>
+
+<%end%>
