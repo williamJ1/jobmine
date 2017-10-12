@@ -1,0 +1,23 @@
+<h1>This is the create action under profiles controller</h1>
+
+
+<%= form_with scope: :profiles, url: profiles_path, local: true do |form| %>
+    <p>
+      <%= form.label :address %><br>
+      <%= form.text_field :address %>
+    </p>
+
+    <p>
+      <%= form.label :phone_num %><br>
+      <%= form.text_field :phone_num %>
+    </p>
+
+    <p>
+      <%= form.label :gender %><br>
+      <%= form.text_area :gender %>
+    </p>
+
+    <p>
+      <%= form.submit %>
+    </p>
+<% end %>
