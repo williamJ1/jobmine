@@ -1,5 +1,6 @@
-<h1>This is the create action under profiles controller</h1>
+<h1>Please sign up here!</h1>
 
+<%= flash[:notice]%>
 
 <%= form_with scope: :profiles, url: profiles_path, local: true do |form| %>
     <p>
@@ -21,3 +22,4 @@
       <%= form.submit %>
     </p>
 <% end %>
+

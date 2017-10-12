@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.save()
-    render json: @user
+    #render json: @user
+    flash[:notice] = "username/passwd saved! Please provide more info"
+    redirect_to '/profiles/new'
   end
 
   private

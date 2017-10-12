@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
 
   #this actions is used to save the form submitted to db
   def create
+    #render plain: params[:profiles].inspect
     @profile = Profile.new(profile_params)
     @profile.save()
     render json: @profile
