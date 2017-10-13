@@ -1,0 +1,22 @@
+<h1>Log in</h1>
+
+<p>
+  <%= flash[:warning] %>
+</p>
+
+<%=form_for :login, url: login_path do |t|%>
+  <p>
+    <%= t.label :email, text: 'Email' %>
+    <%= t.text_field :email %>
+  </p>
+
+    <p>
+      <%= t.label :password, text: '' %>
+      <%= t.password_field :password %>
+    </p>
+
+    <p>
+      <%= t.submit value: 'Log in' %>
+    </p>
+
+<%end%>

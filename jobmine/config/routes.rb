@@ -11,6 +11,13 @@ Rails.application.routes.draw do
   # TODO: setting profile create action as default home page for now, change to formal front page later
   #root 'profiles#create'
 
+  root to: 'welcome#home'
+
+  get '/login', to: 'login#new'
+  post '/login', to: 'login#create'
+
+  get '/signup', to: 'users#new'
+
   resources :users
   resources :profiles
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
