@@ -12,7 +12,8 @@ class LoginController < ApplicationController
     end
 
     if @u.try(:authenticate, params[:login][:password])
-      render json: @u
+      session[:current_user_id] = @u.id
+      redirect_to new_profile_path
       return
     else
       flash[:warning] = 'Wrong password'

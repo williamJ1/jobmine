@@ -1,5 +1,8 @@
 <h1>This is the create action under profiles controller</h1>
-
+<p>
+  current userid:
+  <%= session[:current_user_id]%>
+</p>
 
 <%= form_with scope: :profiles, url: profiles_path, local: true do |form| %>
     <p>
