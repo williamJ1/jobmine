@@ -1,7 +1,26 @@
 class ProfilesController < ApplicationController
-  #this is the page to display form to submit profile
+  def check_profile
+    #TODO: get user id from session
+    @current_profile = Profile.find_by(user_id: 3)
+    if @current_profile == nil
+      flash[:warning] = 'no profiles found'
+      redirect_to new_profile_path
+      return
+    else
+      redirect_to show_profile_path
+      #flash[:warning] = 'lalala'
+    end
+  end
+
+
   def new
 
+  end
+
+  def show
+    #TODO: get user id from session
+    @user_profile = Profile.find_by(user_id: 1)
+     render json: @user_profile
   end
 
   #this actions is used to save the form submitted to db
