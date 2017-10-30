@@ -7,12 +7,18 @@ Rails.application.routes.draw do
   # get 'profiles/read'
   #
   # get 'profiles/update'
-  #
-  # get 'profiles/delete'
-  # TODO: setting profile create action as default home page for now, change to formal front page later
-  #root 'profiles#create'
+
+  root to: 'welcome#home'
 
   resources :users
+  get '/login', to: 'login#new'
+  post '/login', to: 'login#create'
+
+  get '/signup', to: 'users#new'
+
+
   resources :profiles
+  get '/check_profile', to: 'profiles#check_profile'
+  get '/show_profile', to: 'profiles#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

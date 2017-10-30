@@ -1,7 +1,12 @@
-<h1>This is the create action under profiles controller</h1>
+
+<h1>Please provide more info here!</h1>
+<p>
+  <%= flash[:warning] %>
+</p>>
 
 
 <%= form_with scope: :profiles, url: profiles_path, local: true do |form| %>
+
     <p>
       <%= form.label :address %><br>
       <%= form.text_field :address %>
@@ -21,3 +26,4 @@
       <%= form.submit %>
     </p>
 <% end %>
+
