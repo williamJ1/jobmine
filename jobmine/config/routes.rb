@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :jobs
   # get 'profiles/create'
   #
   # get 'profiles/save'
