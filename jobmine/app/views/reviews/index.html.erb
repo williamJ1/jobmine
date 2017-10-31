@@ -1,0 +1,23 @@
+<h1>Listing Reviews</h1>
+
+<%= link_to 'New Review', new_review_path %>
+
+<table>
+	<tr>
+		<th>Rating</th>
+		<th>Body</th>
+		<th colspan = "2"></th>
+	</tr>
+
+	<% @reviews.each do |review| %>
+		<tr>
+			<td><%= review.rating %></td>
+			<td><%= review.body %></td>
+			<td><%= link_to 'Show', review_path(review) %></td>
+			<td><%= link_to 'Edit', edit_review_path(review) %></td>
+			<td><%= link_to 'Destroy', review_path(review), method: :delete, data: { confirm: 'The review will be deleted!'} %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to 'Home', root_path %>
