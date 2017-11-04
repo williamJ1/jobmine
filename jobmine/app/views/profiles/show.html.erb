@@ -1,0 +1,27 @@
+<h1>Here is your profile</h1>
+
+<p>
+  <%= flash[:notice] %>
+</p>>
+
+<p>
+  <b>Address:</b><br>
+  <%= @user_profile.address %><br>
+</p>
+
+<p>
+  <b>Phone number:</b><br>
+  <%= @user_profile.phone_num %><br>
+</p>
+
+<p>
+  <b>Gender:</b><br>
+  <%= @user_profile.gender %><br>
+</p>
+
+<p>
+  <b>Here is your current user type:</b><br>
+  <%= @user_profile.user_type %><br>
+</p>
+
+<!-- TODO: add review and rating later -->

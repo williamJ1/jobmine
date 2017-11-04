@@ -1,11 +1,17 @@
 
 <h1>Please provide more info here!</h1>
 <p>
-  <%= flash[:warning] %>
-</p>>
+    <%= flash[:warning] %>
+    <%= flash[:alert] %>
+</p>
+
+<p>
+    <%= flash[:error] %>
+</p>
+
+<%= form_with scope: :profiles, url: profiles_path do |form| %>
 
 
-<%= form_with scope: :profiles, url: profiles_path, local: true do |form| %>
 
     <p>
       <%= form.label :address %><br>
@@ -19,7 +25,12 @@
 
     <p>
       <%= form.label :gender %><br>
-      <%= form.text_area :gender %>
+      <%= form.select :gender, [['male','male'],['female','female']] %>
+    </p>
+
+    <p>
+      <%= form.label :user_type %><br>
+      <%= form.select :user_type, [['teenager','teen'],['employer','employer']] %>
     </p>
 
     <p>

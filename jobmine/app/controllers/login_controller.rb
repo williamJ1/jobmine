@@ -22,7 +22,5 @@ class LoginController < ApplicationController
       redirect_to login_path
     end
 
-    @profile = Profile.find_by()
-
   end
 end
