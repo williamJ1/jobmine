@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
     @cur_user_id = session[:current_user_id]
     @current_profile = Profile.find_by(user_id: @cur_user_id)
     if @current_profile == nil
-      flash[:warning] = 'no profiles found'
+      flash[:warning] = 'no profiles found, please create new profile'
       redirect_to new_profile_path
       return
     else
@@ -13,22 +13,27 @@ class ProfilesController < ApplicationController
   end
 
   def new
-
+    @profile = Profile.new()
   end
 
   def show
     @cur_user_id = session[:current_user_id]
     @user_profile = Profile.find_by(user_id: @cur_user_id)
     #TODO: add review and rating once review table is implemented
-     #render json: @user_profile
   end
 
-  #this actions is used to save the form submitted to db
   def create
     @cur_user_id = session[:current_user_id]
     @profile = Profile.new(profile_params)
-    @profile.save()
-    redirect_to show_profile_path
+    if @profile.save()
+      flash[:notice] = "Sign up successful"
+      redirect_to show_profile_path
+    else
+      flash[:alert] = "some thing went wrong with information : ("
+      flash[:error] = @profile.errors.full_messages.join(";    ")
+      redirect_to new_profile_path
+    end
+
   end
 
   private

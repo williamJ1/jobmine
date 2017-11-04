@@ -1,11 +1,17 @@
 
 <h1>Please provide more info here!</h1>
 <p>
-  <%= flash[:warning] %>
-</p>>
+    <%= flash[:warning] %>
+    <%= flash[:alert] %>
+</p>
 
+<p>
+    <%= flash[:error] %>
+</p>
 
 <%= form_with scope: :profiles, url: profiles_path do |form| %>
+
+
 
     <p>
       <%= form.label :address %><br>
