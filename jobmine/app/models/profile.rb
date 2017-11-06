@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
   belongs_to :user
+  #has_many :contract
   validates :address, presence: { message: "please provide address"}
   validates :phone_num, presence: {message: "please provide phone num"}
   #validates :email, presence: {message: "please provide email address"}, on: :create
