@@ -44,3 +44,13 @@ bower.json
 .byebug_history
 jobmine/.idea
 .DS_Store
+
+.idea/misc.xml
+
+.idea/jobmine.iml
+
+.idea/modules.xml
+
+.idea/vcs.xml
+
+.idea/workspace.xml
