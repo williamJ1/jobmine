@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   get '/show_profile', to: 'profiles#show'
 
   resources :reviews
+  resources :payments
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
