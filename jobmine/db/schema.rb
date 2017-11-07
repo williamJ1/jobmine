@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105193352) do
+ActiveRecord::Schema.define(version: 20171107033438) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 20171105193352) do
     t.text "description"
     t.datetime "begin_date_time"
     t.datetime "end_date_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "card_num"
+    t.string "card_holder_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
