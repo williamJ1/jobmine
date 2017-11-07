@@ -29,7 +29,7 @@ class PaymentsController < ApplicationController
 	def update
                 @payment = Payment.find(params[:id])
 
-                if @payment.update(review_params)
+                if @payment.update(payment_params)
                         redirect_to @payment
                 else
                         render 'edit'

@@ -1,0 +1,30 @@
+<%= form_with model: @payment, local: true do |form| %>
+	
+	<% if @payment.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@payment.errors.count, "error") %> prohibited this article from being saved:
+			</h2>
+			<ul>
+				<%= @payment.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+
+	<p>
+		<%= form.label :card_holder %><br>
+		<%= form.number_field :card_holder, in: 0.0..5.0, step: 0.5 %>
+	</p>
+
+	<p>
+		<%= form.label :card_num %><br>
+		<%= form.number_field :card_holder, in: 0.0..5.0, step: 0.5 %>
+	</p>
+
+	<p>
+		<%= form.submit %>
+	</p>
+<% end %>

@@ -20,11 +20,11 @@
         <td><%= job.name %></td>
         <td><%= job.created_by_user %></td>
         <td><%= job.description %></td>
-        <td><%= job.begin_date_time %></td>
-        <td><%= job.end_date_time %></td>
+        <td><%= job.begin_date_time.strftime("%Y")+'/'+job.begin_date_time.strftime("%m")+'/'+job.begin_date_time.strftime("%d") %></td>
+        <td><%= job.end_date_time.strftime("%Y")+'/'+job.end_date_time.strftime("%m")+'/'+job.end_date_time.strftime("%d") %></td>
         <td><%= link_to 'Show', job %></td>
         <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Job', new_job_path %>
+<%= link_to 'Post new job', new_job_path %>
