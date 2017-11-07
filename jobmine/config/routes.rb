@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'teen_job_detail/show'
+
   resources :jobs
   # get 'profiles/create'
   #
@@ -20,6 +22,9 @@ Rails.application.routes.draw do
   resources :profiles
   get '/check_profile', to: 'profiles#check_profile'
   get '/show_profile', to: 'profiles#show'
+
+  resources :teen_job_details
+  #get '/show_teen_job_detail', to: 'teen_job_detail#show'
 
   resources :reviews
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

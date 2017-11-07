@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
       redirect_to new_profile_path
       return
     else
-      redirect_to show_profile_path
+      redirect_to show_profile_path(id: @cur_user_id)
     end
   end
 
@@ -17,7 +17,8 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @cur_user_id = session[:current_user_id]
+    #@cur_user_id = session[:current_user_id]
+    @cur_user_id = Profile.find(params[:id])
     @user_profile = Profile.find_by(user_id: @cur_user_id)
     #TODO: add review and rating once review table is implemented
   end
@@ -27,7 +28,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
     if @profile.save()
       flash[:notice] = "Sign up successful"
-      redirect_to show_profile_path
+      redirect_to show_profile_path(id: @cur_user_id)
     else
       flash[:alert] = "some thing went wrong with information : ("
       flash[:error] = @profile.errors.full_messages.join(";    ")

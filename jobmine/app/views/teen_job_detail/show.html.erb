@@ -1,0 +1,19 @@
+<h1>Here is detail related to the job</h1>
+
+
+<p>
+  <b>Employer name</b>
+  <%= link_to "#{@employer_user.email}", show_profile_path(:id => @employer_user.id) %><br>
+
+  <b> Job name:</b><br>
+  <%= @job_detail.name %><br>
+
+  <b>Job description:</b><br>
+  <%= @job_detail.description %><br>
+
+  <b>begin time:</b><br>
+  <%= @job_detail.begin_date_time %><br>
+
+  <b>end time:</b><br>
+  <%= @job_detail.begin_date_time %><br>
+</p>
