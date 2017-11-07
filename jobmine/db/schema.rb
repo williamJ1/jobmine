@@ -10,14 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104181017) do
+ActiveRecord::Schema.define(version: 20171107155821) do
+
+  create_table "contracts", force: :cascade do |t|
+    t.integer "accept_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "jobs", force: :cascade do |t|
     t.string "name"
-    t.integer "created_by_user"
     t.text "description"
     t.datetime "begin_date_time"
     t.datetime "end_date_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "location"
+    t.float "hour_rate"
+    t.integer "profile_id"
+    t.index ["profile_id"], name: "index_jobs_on_profile_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "profile_id"
+    t.integer "card_num"
+    t.string "card_holder_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,6 +55,8 @@ ActiveRecord::Schema.define(version: 20171104181017) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "profile_id"
+    t.index ["profile_id"], name: "index_reviews_on_profile_id"
   end
 
   create_table "users", force: :cascade do |t|

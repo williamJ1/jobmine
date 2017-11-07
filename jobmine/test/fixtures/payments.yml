@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  profile_id: 
+  card_num: 
+  card_holder_name: MyString
+
+two:
+  id: 
+  profile_id: 
+  card_num: 
+  card_holder_name: MyString

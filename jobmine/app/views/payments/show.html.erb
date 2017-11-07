@@ -1,0 +1,11 @@
+<p>
+	<strong>Card Holder Name:</strong>
+	<%= @payment.card_holder_name %>
+</p>
+
+<p>
+	<strong>Card Num:</strong>
+	<%= @review.card_num %>
+</p>
+
+<%= link_to 'Edit', edit_payment_path(@payment) %> | <%= link_to 'Back', payments_path %>
