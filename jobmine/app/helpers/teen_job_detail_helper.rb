@@ -1,0 +1,2 @@
+module TeenJobDetailHelper
+end
