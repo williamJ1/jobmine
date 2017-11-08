@@ -3,7 +3,7 @@
 
 <p>
   <b>Employer name</b>
-  <%= link_to "#{@employer_user.email}", show_profile_path(:id => @employer_user.id) %><br>
+  <%= button_to "#{@employer_user.email}", show_profile_path(:id => @employer_user.id) %><br>
 
   <b> Job name:</b><br>
   <%= @job_detail.name %><br>
@@ -16,4 +16,9 @@
 
   <b>end time:</b><br>
   <%= @job_detail.begin_date_time %><br>
+
+  <%= button_to "Apply", create_contract_path(:my_contract => {:job_id => @job_detail.id, :teen_profile_id => @teen_profile.id, :accept_status => 0 }) %><br>
+
 </p>
+
+
