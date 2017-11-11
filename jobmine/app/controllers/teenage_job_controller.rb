@@ -1,0 +1,2 @@
+class TeenageJobController < ApplicationController
+end
