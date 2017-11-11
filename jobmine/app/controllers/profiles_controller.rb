@@ -21,6 +21,7 @@ class ProfilesController < ApplicationController
     @cur_user_id = Profile.find(params[:id])
     @user_profile = Profile.find_by(user_id: @cur_user_id)
     #TODO: add review and rating once review table is implemented
+    #redirect_to new_job_path
   end
 
   def create

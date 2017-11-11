@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111190838) do
+ActiveRecord::Schema.define(version: 20171111224655) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(version: 20171111190838) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "profile_id"
     t.integer "card_num"
     t.string "card_holder_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "profile_id"
+    t.index ["profile_id"], name: "index_payments_on_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|

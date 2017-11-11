@@ -1,3 +1,5 @@
+<h1>Saved Card</h1>
+
 <p>
 	<strong>Card Holder Name:</strong>
 	<%= @payment.card_holder_name %>
@@ -5,7 +7,7 @@
 
 <p>
 	<strong>Card Num:</strong>
-	<%= @review.card_num %>
+	<%= @payment.card_num %>
 </p>
 
-<%= link_to 'Edit', edit_payment_path(@payment) %> | <%= link_to 'Back', payments_path %>
+<%= link_to 'Edit', edit_payment_path(@payment) %> | <%= link_to 'Back', jobs_path %>

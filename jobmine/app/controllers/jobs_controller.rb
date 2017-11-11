@@ -5,6 +5,7 @@ class JobsController < ApplicationController
   # GET /jobs.json
   def index
     @jobs = Job.all
+    @payments=Payment.all
   end
 
   # GET /jobs/1
@@ -24,14 +25,25 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-    @job = Job.new(job_params)
 
+    @cur_user_id = session[:current_user_id]
+    @employer_profile = User.find_by(id: @cur_user_id).profile
+
+    @job = Job.new
+    @job.name =　params.permit(:name)
+    @job.description = params.require(:job).permit(:description)
+    @job.begin_date_time = params.require(:job).permit(:begin_date_time)
+    @job.end_date_time = params.require(:job).permit(:end_date_time)
+    @job.location = params.require(:job).permit(:location)
+    @job.hour_rate = params.require(:job).permit(:hour_rate)
+    @job.profile_id = @employer_profile
+   
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
         format.json { render :show, status: :created, location: @job }
       else
-        format.html { render :new }
+       format.html { render :new }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +81,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:name, :created_by_user, :description, :begin_date_time, :end_date_time)
+      params.require(:job).permit(:name, :description, :begin_date_time, :end_date_time, :location, :hour_rate)
     end
 end
