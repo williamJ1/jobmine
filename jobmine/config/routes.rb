@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'shared/about'
+
+  get 'shared/terms_of_service'
+
+  get 'shared/privacy_policy'
+
+  get 'shared/site_map'
+
+  get 'shared/contact_us'
+
+  get 'shared/faq'
+
   get 'teen_job_detail/show'
 
   resources :jobs
@@ -15,6 +27,7 @@ Rails.application.routes.draw do
   resources :users
   get '/login', to: 'login#new'
   post '/login', to: 'login#create'
+  get '/logout', to: 'login#logout'
 
   get '/signup', to: 'users#new'
 
@@ -28,6 +41,9 @@ Rails.application.routes.draw do
 
   resources :reviews
   resources :payments
+
+  #shared routes
+  resources :shared
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/teenage_jobs/', to: 'teenage#show_jobs'
 end

@@ -1,0 +1,8 @@
+<!--<p align="right">This is header</p>-->
+<% if @user = User.find_by(id: session[:current_user_id])%>
+    <p align="right">Hello <%= @email = @user.email%> !</p>
+    <%= button_to "Log out", logout_path %></br>
+<% else%>
+    <p align="right">You are not logged in yet!</p></br>
+<% end%>
+

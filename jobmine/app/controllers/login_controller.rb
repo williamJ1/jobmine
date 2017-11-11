@@ -3,6 +3,10 @@ class LoginController < ApplicationController
 
   end
 
+  def logout
+
+  end
+
   def create
     @u = User.find_by(email: params[:login][:email])
     if @u == nil
