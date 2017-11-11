@@ -8,6 +8,8 @@ class TeenageJobController < ApplicationController
     @cur_user_id = session[:current_user_id]
     @teen_profile = User.find_by(id: @cur_user_id).profile
 
+
+
     #user_profile = Profile.find_by(user_id: @cur_user_id)
   end
 end
