@@ -51,5 +51,5 @@ Rails.application.routes.draw do
   resources :password_reset,     only: [:new, :create, :edit, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get '/teenage_jobs/', to: 'teenage#show_jobs'
+  get '/teenage_jobs/', to: 'teenage_job#show_jobs'
 end

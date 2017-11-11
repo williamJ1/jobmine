@@ -17,11 +17,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :created_by_user %>
-    <%= form.number_field :created_by_user, id: :job_created_by_user %>
-  </div>
-
-  <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description, id: :job_description %>
   </div>
@@ -31,9 +26,19 @@
     <%= form.text_field :begin_date_time, id: :job_begin_date_time %>
   </div>
 
-  <div class="field">
+ <div class="field">
     <%= form.label :end_date_time %>
     <%= form.text_field :end_date_time, id: :job_end_date_time %>
+  </div>
+
+ <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, id: :job_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hour_rate %>
+    <%= form.number_field :hour_rate, id: :job_hour_rate %>
   </div>
 
   <div class="actions">

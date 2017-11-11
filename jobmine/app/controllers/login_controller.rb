@@ -4,7 +4,9 @@ class LoginController < ApplicationController
   end
 
   def logout
-
+    session.clear
+    flash[:info] = 'You have logged out!'
+    redirect_to root_path
   end
 
   def create
