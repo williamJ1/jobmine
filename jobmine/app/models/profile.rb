@@ -1,6 +1,6 @@
 class Profile < ApplicationRecord
   belongs_to :user
-  #has_many :contract
+  has_many :contracts
   #has_one :payment
   has_many :jobs
   has_many :reviews
