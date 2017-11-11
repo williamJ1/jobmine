@@ -1,4 +1,4 @@
 class Job < ApplicationRecord
-	#has_many :contract
+	has_many :contracts
   belongs_to :profile
 end
