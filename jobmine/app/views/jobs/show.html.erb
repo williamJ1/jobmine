@@ -1,13 +1,8 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Title:</strong>
   <%= @job.name %>
-</p>
-
-<p>
-  <strong>Created by user:</strong>
-  <%= @job.created_by_user %>
 </p>
 
 <p>
@@ -17,12 +12,14 @@
 
 <p>
   <strong>Begin date time:</strong>
-  <%= @job.begin_date_time %>
+   <td><%= @job.begin_date_time.strftime("%Y")+'/'+@job.begin_date_time.strftime("%m")+'/'+@job.begin_date_time.strftime("%d") %></td>
+
 </p>
 
 <p>
   <strong>End date time:</strong>
-  <%= @job.end_date_time %>
+  <td><%= @job.end_date_time.strftime("%Y")+'/'+@job.end_date_time.strftime("%m")+'/'+@job.end_date_time.strftime("%d") %></td>
+
 </p>
 
 <%= link_to 'Edit', edit_job_path(@job) %> |

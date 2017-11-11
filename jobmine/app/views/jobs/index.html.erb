@@ -2,15 +2,17 @@
 
 <h1>Jobs</h1>
 
+<th><%= link_to 'Post new job', new_job_path %></th>
+<br><br>
+
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Created by user</th>
+      <th>Job title</th>
       <th>Description</th>
-      <th>Begin date time</th>
-      <th>End date time</th>
-      <th colspan="3"></th>
+      <th>Begin </th>
+      <th>End </th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -18,7 +20,6 @@
     <% @jobs.each do |job| %>
       <tr>
         <td><%= job.name %></td>
-        <td><%= job.created_by_user %></td>
         <td><%= job.description %></td>
         <td><%= job.begin_date_time.strftime("%Y")+'/'+job.begin_date_time.strftime("%m")+'/'+job.begin_date_time.strftime("%d") %></td>
         <td><%= job.end_date_time.strftime("%Y")+'/'+job.end_date_time.strftime("%m")+'/'+job.end_date_time.strftime("%d") %></td>
@@ -32,4 +33,3 @@
 
 <br>
 
-<%= link_to 'Post new job', new_job_path %>
