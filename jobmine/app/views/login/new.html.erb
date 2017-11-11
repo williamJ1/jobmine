@@ -1,6 +1,7 @@
 <h1>Log in</h1>
 
 <p>
+  <%=flash[:info] %>
   <%= flash[:warning] %>
 </p>
 
@@ -18,5 +19,7 @@
     <p>
       <%= t.submit value: 'Log in' %>
     </p>
+
+    <%= link_to "(forgot password)", new_password_reset_path %>
 
 <%end%>
