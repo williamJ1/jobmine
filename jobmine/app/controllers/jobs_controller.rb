@@ -25,19 +25,17 @@ class JobsController < ApplicationController
   # POST /jobs
   # POST /jobs.json
   def create
-
     @cur_user_id = session[:current_user_id]
-    @employer_profile = User.find_by(id: @cur_user_id).profile
+    @user_obj = User.find_by(id: @cur_user_id)
+    @user_profile = @user_obj.profile
 
-    @job = Job.new
-    @job.name =　params.permit(:name)
-    @job.description = params.require(:job).permit(:description)
-    @job.begin_date_time = params.require(:job).permit(:begin_date_time)
-    @job.end_date_time = params.require(:job).permit(:end_date_time)
-    @job.location = params.require(:job).permit(:location)
-    @job.hour_rate = params.require(:job).permit(:hour_rate)
-    @job.profile_id = @employer_profile
-   
+    if @user_profile.user_type == 'teen'
+      render plain: "you can't create job because you are teenager "
+      return
+    end
+
+    @job = Job.new(job_params)
+    @job.profile = @user_profile
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }

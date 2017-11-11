@@ -17,7 +17,7 @@ class TeenageJobController < ApplicationController
         @cloased_peojects.push(job_obj)
       end
     end
-    
+
     my_onging_contracts = Contract.where(profile_id: @user_profile.id, accept_status: 2)
     my_onging_contracts.each do |constract_obj|
       @my_on_goging_projects.push(constract_obj.job)
