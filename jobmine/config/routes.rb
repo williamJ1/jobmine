@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get 'password_reset/new'
+
+  get 'password_reset/edit'
+
   get 'shared/about'
 
   get 'shared/terms_of_service'
@@ -12,6 +17,7 @@ Rails.application.routes.draw do
   get 'shared/faq'
 
   get 'teen_job_detail/show'
+
 
   resources :jobs
   # get 'profiles/create'
@@ -42,8 +48,8 @@ Rails.application.routes.draw do
   resources :reviews
   resources :payments
 
-  #shared routes
-  resources :shared
+  resources :password_reset,     only: [:new, :create, :edit, :update]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/teenage_jobs/', to: 'teenage_job#show_jobs'
 end
