@@ -16,16 +16,23 @@ ActiveRecord::Schema.define(version: 20171107154423) do
     t.integer "accept_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "profile_id"
+    t.integer "job_id"
+    t.index ["job_id"], name: "index_contracts_on_job_id"
+    t.index ["profile_id"], name: "index_contracts_on_profile_id"
   end
 
   create_table "jobs", force: :cascade do |t|
     t.string "name"
-    t.integer "created_by_user"
     t.text "description"
     t.datetime "begin_date_time"
     t.datetime "end_date_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location"
+    t.float "hour_rate"
+    t.integer "profile_id"
+    t.index ["profile_id"], name: "index_jobs_on_profile_id"
   end
 
   create_table "payments", force: :cascade do |t|
