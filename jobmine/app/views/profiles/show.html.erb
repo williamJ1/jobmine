@@ -1,19 +1,33 @@
-<h1>Here is your profile</h1>
+<h1>Here is the profile</h1>
 
 <p>
-  <%= flash[:notice] %>
-  <b></b><br>
-  <b>Address:</b><br>
-  <%= @user_profile.address %><br>
+  <% if @full_access%>
+      <%= flash[:notice] %>
+      <b>Address:</b><br>
+      <%= @show_user_profile.address %><br>
 
-  <b>Phone number:</b><br>
-  <%= @user_profile.phone_num %><br>
+      <b>Phone number:</b><br>
+      <%= @show_user_profile.phone_num %><br>
 
-  <b>Gender:</b><br>
-  <%= @user_profile.gender %><br>
+      <b>Gender:</b><br>
+      <%= @show_user_profile.gender %><br>
 
-  <b>Here is your current user type:</b><br>
-  <%= @user_profile.user_type %><br>
+      <b>Your user type:</b><br>
+      <%= @show_user_profile.user_type %><br>
+
+  <% else%>
+      <%= flash[:notice] %>
+      <b>Address:</b><br>
+      <%= @show_user_profile.address %><br>
+
+      <b>Phone number:</b><br>
+      <%= @show_user_profile.phone_num %><br>
+
+      <b>Gender:</b><br>
+      <%= @show_user_profile.gender %><br>
+
+  <% end%>
+
 </p>
 
 <!-- TODO: add review and rating later -->

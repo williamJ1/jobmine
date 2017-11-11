@@ -17,9 +17,16 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    #@cur_user_id = session[:current_user_id]
-    @cur_user_id = Profile.find(params[:id])
-    @user_profile = Profile.find_by(user_id: @cur_user_id)
+    @show_user_id = params[:id]
+    @show_user_profile = Profile.find_by(user_id: @show_user_id)
+    @show_user_type = @show_user_profile.user_type
+    @cur_user_type = Profile.find_by(user_id: session[:current_user_id]).user_type
+    #check if user has full access to profile
+    if @show_user_type == @cur_user_type
+      @full_access = true
+    else
+      @full_access = false
+    end
     #TODO: add review and rating once review table is implemented
   end
 
@@ -31,7 +38,7 @@ class ProfilesController < ApplicationController
       redirect_to show_profile_path(id: @cur_user_id)
     else
       flash[:alert] = "some thing went wrong with information : ("
-      flash[:error] = @profile.errors.full_messages.join(";    ")
+      flash[:error] = @profile.errors.full_messages.join(";")
       redirect_to new_profile_path
     end
 
