@@ -14,19 +14,49 @@
   </thead>
 
   <tbody>
-    <% @open_projects.each do |job| %>
+    <% @open_and_not_applied_jobs.each do |job| %>
       <tr>
         <td><%= job.name %></td>
         <td><%= job.description %></td>
         <td><%= job.location %></td>
         <td><%= job.hour_rate %></td>
-        <td><%= link_to 'Show', job %></td>
+        <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+
+<h2>Waiting for approve</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <!--<th>Created by user</th>-->
+    <th>Description</th>
+    <th>Location</th>
+    <th>Hour Rate</th>
+    <!--<th>End date time</th>-->
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @applied_but_waiting_jobs.each do |job| %>
+      <tr>
+        <td><%= job.name %></td>
+        <td><%= job.description %></td>
+        <td><%= job.location %></td>
+        <td><%= job.hour_rate %></td>
+        <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
 <h2>My Onging Jobs (my apply(contract) has been approved)</h2>
 <table>
   <thead>
@@ -48,7 +78,7 @@
         <td><%= job.description %></td>
         <td><%= job.location %></td>
         <td><%= job.hour_rate %></td>
-        <td><%= link_to 'Show', job %></td>
+        <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
       </tr>
   <% end %>
   </tbody>
