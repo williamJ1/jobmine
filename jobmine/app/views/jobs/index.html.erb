@@ -51,7 +51,7 @@
             <td><%= job.description %></td>
             <td><%= job.location %></td>
             <td><%= job.hour_rate %></td>
-            <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
+            <td><%= link_to 'Track my time', show_timeslot_path(:contract_id => job.id) %></td>
           </tr>
       <% end %>
       </tbody>
