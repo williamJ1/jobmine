@@ -52,4 +52,5 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/teenage_jobs/', to: 'teenage_job#show_jobs'
+  get '/employer_index/', to: 'jobs#employer_index'
 end

@@ -8,6 +8,29 @@ class JobsController < ApplicationController
     @payments=Payment.all
   end
 
+  def employer_index
+    cur_user_id = session[:current_user_id]
+    user_obj = User.find_by(id: cur_user_id)
+    user_profile = user_obj.profile
+    @open_jobs = []
+    @ongoing_jobs = []
+
+    jobs_created_by_me = user_profile.jobs
+
+    # emplyer has their open jobs. jobs which has no contract or has contracts but all status = 0
+    jobs_created_by_me.each do |job_obj|
+      if job_obj.contracts.size == 0
+        @open_jobs.push(job_obj)
+      elsif job_obj.contracts.first.accept_status == 0
+        @open_jobs.push(job_obj)
+      else
+        @ongoing_jobs.push(job_obj)
+      end
+    end
+    # employer has their ongoing project. project has any contract = 1 or contract =2
+
+    # emplyer has their cloased project.
+  end
   # GET /jobs/1
   # GET /jobs/1.json
   def show
