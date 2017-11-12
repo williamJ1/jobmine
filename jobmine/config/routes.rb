@@ -51,5 +51,7 @@ Rails.application.routes.draw do
   resources :password_reset,     only: [:new, :create, :edit, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/contract/:contract_id/timelost', to: 'timeslot#display', as: 'show_timeslot'
+  post '/contract/:contract_id/timelost', to: 'timeslot#add', as: 'add_timeslot'
 
 end
