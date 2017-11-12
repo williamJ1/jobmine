@@ -137,4 +137,13 @@ class JobsController < ApplicationController
     def job_params
       params.require(:job).permit(:name, :description, :begin_date_time, :end_date_time, :location, :hour_rate)
     end
+
+    def find_contract_id_by_job(job_id)
+      cur_user_id = session[:current_user_id]
+      user_obj = User.find_by(id: cur_user_id)
+      user_profile = user_obj.profile
+      contract = Contract.where(profile_id: user_profile.id, job_id: job_id)
+      return contract.first.id
+    end
+    helper_method :find_contract_id_by_job
 end
