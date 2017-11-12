@@ -4,33 +4,58 @@ class JobsController < ApplicationController
   # GET /jobs
   # GET /jobs.json
   def index
-    @jobs = Job.all
-    @payments=Payment.all
-  end
-
-  def employer_index
     cur_user_id = session[:current_user_id]
     user_obj = User.find_by(id: cur_user_id)
     user_profile = user_obj.profile
-    @open_jobs = []
-    @ongoing_jobs = []
-
-    jobs_created_by_me = user_profile.jobs
-
-    # emplyer has their open jobs. jobs which has no contract or has contracts but all status = 0
-    jobs_created_by_me.each do |job_obj|
-      if job_obj.contracts.size == 0
-        @open_jobs.push(job_obj)
-      elsif job_obj.contracts.first.accept_status == 0
-        @open_jobs.push(job_obj)
-      else
-        @ongoing_jobs.push(job_obj)
+    @user_profile = user_profile
+    if user_profile.user_type == 'teen'
+      # open job are jobs has not
+      open_projects = []
+      cloased_peojects = []
+      @my_on_goging_projects = []
+      Job.all.each do |job_obj|
+        if job_obj.contracts.size == 0
+          open_projects.push(job_obj)
+        elsif job_obj.contracts.first.accept_status == 0
+          open_projects.push(job_obj)
+        else
+          cloased_peojects.push(job_obj)
+        end
       end
-    end
-    # employer has their ongoing project. project has any contract = 1 or contract =2
+      @applied_but_waiting_jobs = []
+      @open_and_not_applied_jobs = []
+      open_projects.each do |open_job|
+        if Contract.where(job_id: open_job.id, profile_id: user_profile.id).exists?
+          @applied_but_waiting_jobs.push(open_job)
+        else
+          @open_and_not_applied_jobs.push(open_job)
+        end
+      end
 
-    # emplyer has their cloased project.
+      my_onging_contracts = Contract.where(profile_id: user_profile.id, accept_status: 2)
+      my_onging_contracts.each do |constract_obj|
+        @my_on_goging_projects.push(constract_obj.job)
+      end
+      return
+    end
+    if user_profile.user_type == 'employer' # the follwing part are for emplyer
+      @open_jobs = []
+      @ongoing_jobs = []
+      jobs_created_by_me = user_profile.jobs
+      jobs_created_by_me.each do |job_obj|
+        if job_obj.contracts.size == 0
+          @open_jobs.push(job_obj)
+        elsif job_obj.contracts.first.accept_status == 0
+          @open_jobs.push(job_obj)
+        else
+          @ongoing_jobs.push(job_obj)
+        end
+      end
+      return
+    end
   end
+
+
   # GET /jobs/1
   # GET /jobs/1.json
   def show
