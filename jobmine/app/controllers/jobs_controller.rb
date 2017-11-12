@@ -55,7 +55,6 @@ class JobsController < ApplicationController
     end
   end
 
-
   # GET /jobs/1
   # GET /jobs/1.json
   def show
@@ -63,6 +62,15 @@ class JobsController < ApplicationController
 
   # GET /jobs/new
   def new
+    @cur_user_id = session[:current_user_id]
+    @user_obj = User.find_by(id: @cur_user_id)
+    @user_profile = @user_obj.profile
+
+    if @user_profile.user_type == 'teen'
+      render plain: "you can't create job because you are teenager "
+      return
+    end
+
     @job = Job.new
   end
 

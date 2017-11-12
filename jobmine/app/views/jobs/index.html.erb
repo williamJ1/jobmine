@@ -88,6 +88,10 @@
     <br>
 <% else %>
     <h1>Employer Home Page</h1>
+
+    <h4><%= link_to 'Post new job', new_job_path %></h4>
+    <br><br>
+
     <h2>Open Jobs (jobs Created by me and wait for me to approve)</h2>
     <table>
       <thead>
@@ -111,6 +115,7 @@
             <td><%= job.location %></td>
             <td><%= job.hour_rate %></td>
             <td><%= job.contracts.size %></td>
+            <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
           </tr>
       <% end %>
