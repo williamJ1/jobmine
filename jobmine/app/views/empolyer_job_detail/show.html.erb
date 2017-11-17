@@ -3,16 +3,16 @@
 <div>
 	<p>
 		<b>Job name:</b><br>
-		<%= @job_detail.name %>
+		<%= @job_detail.name %><br>
 
 		<b>Job description:</b><br>
-		<%= @job_detail.description %>
+		<%= @job_detail.description %><br>
 
 		<b>Begin time:</b><br>
-		<%= @job_detail.begin_date_time %>
+		<%= @job_detail.begin_date_time %><br>
 
 		<b>End time:</b><br>
-		<%= @job_detail.end_date_time %>
+		<%= @job_detail.end_date_time %><br>
 
 	</p>
 </div>
@@ -23,9 +23,11 @@
 	<% else %>
 		<h2>Applied Teenagers:</h2>
 		<p>
-			<b>(Click teenager email to see profile)</b>
+			<b>(Click teenager email to see profile)</b><br>
 			<% @applied_teens.each do |teen| %>
 				<%= link_to "#{teen.user.email}",
-					show_profile_path(:id => @teen.id) %>
+					show_profile_path(:id => teen.id) %><br>
 			<% end %>
+		</p>
+	<% end %>
 </div>
