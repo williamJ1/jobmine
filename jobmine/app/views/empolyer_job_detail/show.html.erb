@@ -1,0 +1,31 @@
+<h1>Your Job Detail</h1>
+
+<div>
+	<p>
+		<b>Job name:</b><br>
+		<%= @job_detail.name %>
+
+		<b>Job description:</b><br>
+		<%= @job_detail.description %>
+
+		<b>Begin time:</b><br>
+		<%= @job_detail.begin_date_time %>
+
+		<b>End time:</b><br>
+		<%= @job_detail.end_date_time %>
+
+	</p>
+</div>
+
+<div>
+	<% if @is_empty_contract == true %>
+		<h2>No teenager applied yet!</h2>
+	<% else %>
+		<h2>Applied Teenagers:</h2>
+		<p>
+			<b>(Click teenager email to see profile)</b>
+			<% @applied_teens.each do |teen| %>
+				<%= link_to "#{teen.user.email}",
+					show_profile_path(:id => @teen.id) %>
+			<% end %>
+</div>
