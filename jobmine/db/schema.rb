@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117050956) do
+ActiveRecord::Schema.define(version: 20171117051356) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20171117050956) do
     t.datetime "updated_at", null: false
     t.integer "profile_id"
     t.string "reviewer"
+    t.integer "contract_id"
+    t.index ["contract_id"], name: "index_reviews_on_contract_id"
     t.index ["profile_id"], name: "index_reviews_on_profile_id"
   end
 
