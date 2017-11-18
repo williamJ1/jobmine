@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'contract/create'
+  #post 'contract/create'
 
   get 'password_reset/new'
 
@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'teen_job_detail/show'
 
   get 'employer_job_detail/show'
+
+  post '/create_contract', to: 'contract#create'
 
   resources :jobs
   # get 'profiles/create'

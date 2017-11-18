@@ -1,8 +1,8 @@
 <h1>Here is detail related to the job</h1>
 
-<p>
-  <b>click employer email to see profile:</b></br>
-  <%= link_to "#{@employer_user.email}", show_profile_path(:id => @job_detail.profile.id) %></br>
+<div>
+  <b>click employer email to see profile:</b><br>
+  <%= link_to "#{@employer_user.email}", show_profile_path(:id => @job_detail.profile.id) %><br>
 
   <b> Job name:</b><br>
   <%= @job_detail.name %><br>
@@ -18,13 +18,10 @@
 
   <% if @can_apply %>
     <p>You can apply</p>
-    <% if false %>
-      <% button_to "Apply", contract_create_path(:my_contract => {:job_id => @job_detail.id, :teen_profile_id => @teen_profile.id, :accept_status => 0 }) %>
-    <% end %>
-  <% else%>
+      <%= button_to "Apply", create_contract_path, params: {job_id: @job_detail.id, profile_id: @teen_profile.id, accept_status: 0} %>
+<% else%>
       <p>You have already applied for this job</p>
   <% end%>
-
-</p>
+</div>
 
 
