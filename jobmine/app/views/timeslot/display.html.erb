@@ -40,7 +40,7 @@
 <%= form_for :timeslot, url: add_timeslot_path do |form| %>
     <p>
       <%= form.label :date_time_begin %>
-      <%= form.text_field :date_time_begin %>
+      <%= form.text_field :date_time_begin, class:'datepicker' %>
     </p>
     <p>
       <%= form.label :time_length %>
