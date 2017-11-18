@@ -1,4 +1,4 @@
-class EmpolyerJobDetailController < ApplicationController
+class EmployerJobDetailController < ApplicationController
 	def show
     @job_id = params[:id]
 

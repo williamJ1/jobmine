@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'teen_job_detail/show'
 
-  get 'empolyer_job_detail/show'
+  get 'employer_job_detail/show'
 
   resources :jobs
   # get 'profiles/create'
