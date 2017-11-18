@@ -8,7 +8,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script>
-        $( function() {
+        document.addEventListener("turbolinks:load", function(){
             $( ".datepicker" ).datepicker({ dateFormat: 'yy/mm/dd' });
         } );
     </script>
