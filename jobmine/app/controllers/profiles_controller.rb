@@ -8,7 +8,8 @@ class ProfilesController < ApplicationController
       redirect_to new_profile_path
       return
     else
-      redirect_to show_profile_path(id: @cur_user_id)
+      # redirect_to show_profile_path(id: @cur_user_id)
+      redirect_to jobs_path
     end
   end
 
@@ -28,6 +29,7 @@ class ProfilesController < ApplicationController
       @full_access = false
     end
     #TODO: add review and rating once review table is implemented
+    #redirect_to new_job_path
   end
 
   def create

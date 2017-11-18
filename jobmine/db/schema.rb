@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111190838) do
+ActiveRecord::Schema.define(version: 20171117051356) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(version: 20171111190838) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "profile_id"
     t.integer "card_num"
     t.string "card_holder_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "profile_id"
+    t.index ["profile_id"], name: "index_payments_on_profile_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -60,7 +61,21 @@ ActiveRecord::Schema.define(version: 20171111190838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "profile_id"
+    t.string "reviewer"
+    t.integer "contract_id"
+    t.index ["contract_id"], name: "index_reviews_on_contract_id"
     t.index ["profile_id"], name: "index_reviews_on_profile_id"
+  end
+
+  create_table "timeslots", force: :cascade do |t|
+    t.datetime "date_time_begin"
+    t.integer "time_length"
+    t.boolean "is_approved"
+    t.boolean "is_paid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "contract_id"
+    t.index ["contract_id"], name: "index_timeslots_on_contract_id"
   end
 
   create_table "users", force: :cascade do |t|

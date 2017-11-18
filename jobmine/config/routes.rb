@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   get 'teen_job_detail/show'
 
+  get 'employer_job_detail/show'
 
   resources :jobs
   # get 'profiles/create'
@@ -53,5 +54,7 @@ Rails.application.routes.draw do
   resources :password_reset,     only: [:new, :create, :edit, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get '/teenage_jobs/', to: 'teenage_job#show_jobs'
+  get '/contract/:contract_id/timelost', to: 'timeslot#display', as: 'show_timeslot'
+  post '/contract/:contract_id/timelost', to: 'timeslot#add', as: 'add_timeslot'
+
 end

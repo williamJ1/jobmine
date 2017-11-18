@@ -1,0 +1,55 @@
+<h1>
+  Timesheet for job: <%=@job.name%>
+</h1>
+
+<p>
+  job description:
+  <br>
+  <%=@job.description%>
+</p>
+
+
+<table>
+  <thead>
+  <tr>
+    <th>Time begin</th>
+    <!--<th>Created by user</th>-->
+    <th>Length</th>
+    <th>Approved?</th>
+    <th>Paid?</th>
+    <!--<th>End date time</th>-->
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @timeslots.each do |time| %>
+      <tr>
+        <td><%= time.date_time_begin %></td>
+        <td><%= time.time_length %></td>
+        <td><%= time.is_approved %></td>
+        <td><%= time.is_paid %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h2>
+  add more time
+</h2>
+<%= form_for :timeslot, url: add_timeslot_path do |form| %>
+    <p>
+      <%= form.label :date_time_begin %>
+      <%= form.text_field :date_time_begin %>
+    </p>
+    <p>
+      <%= form.label :time_length %>
+      <%= form.text_field :time_length %>
+    </p>
+    <p>
+      <%= form.submit 'Add Time'%>
+    </p>
+<% end %>
+
+
+
