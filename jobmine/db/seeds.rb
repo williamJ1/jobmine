@@ -20,7 +20,7 @@ teen_profile = Profile.create(address: 'teen addr', phone_num: 123456789,
 emp_user = User.create(email: 'emp@e.com', password: '1234', password_confirmation: '1234')
 #employer profile
 emp_profile = Profile.create(address: 'emp addr', phone_num: 123456789,
-                            gender: 'male', user_id: teen_user.id, user_type: 'employer')
+                            gender: 'male', user_id: emp_user.id, user_type: 'employer')
 
 
 
