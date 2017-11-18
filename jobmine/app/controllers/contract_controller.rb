@@ -18,7 +18,7 @@ class ContractController < ApplicationController
     else 
       @contract_need_to_accept.accept_status = 2
       if @contract_need_to_accept.save
-        @contracts_need_to_reject = Contract.where(job_id: params[:job_id]).all
+        @contracts_need_to_reject = Contract.where(job_id: params[:job_id], accept_status: 0).all
         @contracts_need_to_reject.accept_status = 1
         if @contracts_need_to_reject.save
           flash[:notice] = "Accept successful"
