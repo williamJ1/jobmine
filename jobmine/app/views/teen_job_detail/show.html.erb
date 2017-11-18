@@ -19,7 +19,7 @@
   <% if @can_apply %>
     <p>You can apply</p>
     <% if false %>
-      <% button_to "Apply", create_contract_path(:my_contract => {:job_id => @job_detail.id, :teen_profile_id => @teen_profile.id, :accept_status => 0 }) %>
+      <% button_to "Apply", contract_create_path(:my_contract => {:job_id => @job_detail.id, :teen_profile_id => @teen_profile.id, :accept_status => 0 }) %>
     <% end %>
   <% else%>
       <p>You have already applied for this job</p>

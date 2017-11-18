@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'contract/create'
+
   get 'password_reset/new'
 
   get 'password_reset/edit'
