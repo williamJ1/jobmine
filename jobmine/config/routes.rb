@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  #post 'contract/create'
-
   get 'password_reset/new'
 
   get 'password_reset/edit'
@@ -23,6 +21,7 @@ Rails.application.routes.draw do
   get 'employer_job_detail/show'
 
   post '/create_contract', to: 'contract#create'
+  put '/update_contract', to: 'contract#update'
 
   resources :jobs
   # get 'profiles/create'
