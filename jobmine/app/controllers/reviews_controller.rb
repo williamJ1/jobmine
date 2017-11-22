@@ -5,8 +5,8 @@ class ReviewsController < ApplicationController
 	end
 
 	def show
-		@profile = get_profile(params[:profile_id])
 		@review = Review.find(params[:id])
+		@profile = get_profile(@review.profile_id)
 	end
 
 	def new
@@ -50,8 +50,8 @@ class ReviewsController < ApplicationController
 	end
 
 	def destroy
-		@profile = get_profile(params[:profile_id])
 		@review = Review.find(params[:id])
+		@profile = get_profile(@review.profile_id)
 		@review.destroy
 
 		redirect_to profile_reviews_path(@profile)
@@ -59,7 +59,7 @@ class ReviewsController < ApplicationController
 
 	private 
 		def get_profile(profile_id)
-			return Profile.find_by(profile_id)
+			return Profile.find(profile_id)
 		end
 		def review_params
 			params.require(:review).permit(:rating, 
