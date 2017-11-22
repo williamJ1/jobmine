@@ -1,10 +1,9 @@
 <h1>Listing Reviews</h1>
 
-<%= link_to 'New Review', new_review_path %>
-
 <table>
 	<tr>
 		<th>Rating</th>
+		<th>Reviewer</th>
 		<th>Body</th>
 		<th colspan = "2"></th>
 	</tr>
@@ -12,6 +11,7 @@
 	<% @reviews.each do |review| %>
 		<tr>
 			<td><%= review.rating %></td>
+			<td><%= review.reviewer %></td>
 			<td><%= review.body %></td>
 			<td><%= link_to 'Show', review_path(review) %></td>
 			<td><%= link_to 'Edit', edit_review_path(review) %></td>
@@ -20,4 +20,4 @@
 	<% end %>
 </table>
 
-<%= link_to 'Home', root_path %>
+<%= link_to 'Back', profile_path(@profile) %>
