@@ -80,4 +80,6 @@ review5 = Review.create(rating: 3, body: 'review5', profile_id: emp_profile.id, 
 review6 = Review.create(rating: 2.5, body: 'review6', profile_id: emp_profile_1.id, reviewer: 'teen2@t.com', contract_id: contract4.id)
 review7 = Review.create(rating: 2, body: 'review7', profile_id: teen_profile_1.id, reviewer: 'emp1@e.com', contract_id: contract2.id)
 review8 = Review.create(rating: 1.5, body: 'review8', profile_id: teen_profile_2.id, reviewer: 'emp1@e.com', contract_id: contract4.id)
+review9 = Review.create(rating: 1, body: 'review9', profile_id: emp_profile.id, reviewer: 'teen@t.com', contract_id: contract3.id)
+review10 = Review.create(rating: 4.5, body: 'review10', profile_id: emp_profile.id, reviewer: 'teen@t.com', contract_id: contract3.id)
 

@@ -15,6 +15,9 @@
       <b>Your user type:</b><br>
       <%= @show_user_profile.user_type %><br>
 
+      <b>Your average rating is:</b><br>
+      <%= @average_rating %><br>
+
   <% else%>
       <%= flash[:notice] %>
       <b>Address:</b><br>
@@ -26,8 +29,33 @@
       <b>Gender:</b><br>
       <%= @show_user_profile.gender %><br>
 
-  <% end%>
+      <b>Your average rating is:</b><br>
+      <%= @average_rating %><br>
 
+  <% end%>
 </p>
+
+<table>
+  <tr>
+    <th>Rating</th>
+    <th>Reviewer</th>
+    <th>Body</th>
+    <th>Reviewed at</th>
+    <th colspan = "2"></th>
+  </tr>
+
+  <% @reviews.order(id: :desc).limit(3).each do |review| %>
+    <tr>
+      <td><%= review.rating %></td>
+      <td><%= review.reviewer %></td>
+      <td><%= review.body %></td>
+      <td><%= review.created_at %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% if @more_review %>
+  <p><%= link_to 'More', profile_reviews_path(@show_user_profile.id) %></p>
+<% end %>
 
 <!-- TODO: add review and rating later -->
