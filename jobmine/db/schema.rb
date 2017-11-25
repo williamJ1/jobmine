@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 20171125172419) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
-    #0-waiting 1-reject 2-accept 3-closed
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "profile_id"
@@ -75,7 +74,6 @@ ActiveRecord::Schema.define(version: 20171125172419) do
     t.datetime "updated_at", null: false
     t.integer "contract_id"
     t.integer "approve_status"
-    #0-pending 1-approve 2-reject
     t.datetime "paid_time"
     t.index ["contract_id"], name: "index_timeslots_on_contract_id"
   end
