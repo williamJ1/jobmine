@@ -21,8 +21,10 @@
           </li>
         </ul>
     <% end %>
-    <%= submit_tag 'Approve', name: 'Approve' %>
-    <%= submit_tag 'Reject', name: 'Reject' %>
+    <% if !@pending_timeslots.blank?() %>
+          <%= submit_tag 'Approve', name: 'Approve' %>
+          <%= submit_tag 'Reject', name: 'Reject' %>
+    <% end%>
 <% end %>
 
 <p>Already approved time slots:</p>
