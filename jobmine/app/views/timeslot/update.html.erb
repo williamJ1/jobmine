@@ -21,24 +21,9 @@
           </li>
         </ul>
     <% end %>
-    <%= submit_tag 'Approve' %>
+    <%= submit_tag 'Approve', name: 'Approve' %>
+    <%= submit_tag 'Reject', name: 'Reject' %>
 <% end %>
-
-<p>Pending time slots:</p>
-<%= form_tag(reject_timeslot_path, method: :put) do%>
-    <% for time in @pending_timeslots%>
-        <ul>
-          <li>
-            <%= check_box_tag 'timeslot_id[]', time.id %>
-            <%= time.date_time_begin %>
-            <%= time.time_length %>
-          </li>
-        </ul>
-    <% end %>
-    <%= submit_tag 'Reject' %>
-<% end %>
-
-
 
 <p>Already approved time slots:</p>
 <table>
