@@ -3,6 +3,7 @@ class TimeslotController < ApplicationController
     contract = Contract.find_by(id: params[:contract_id])
     @job = contract.job
     @timeslots = contract.timeslots
+
   end
 
   def add
@@ -18,6 +19,14 @@ class TimeslotController < ApplicationController
     @pending_timeslots = @timeslots.where(approve_status: 0).all
     @approved_timeslots = @timeslots.where(approve_status: 1).all
     @rejected_timeslots = @timeslots.where(approve_status: 2).all
+  end
+
+  def redo
+    timeslot_p = params[:timeslot]
+    timeslot = Timeslot.find_by(id: timeslot_p[:timeslot_id])
+    
+    timeslot.update(date_time_begin: timeslot_p[:date_time_begin],
+                    time_length: timeslot_p[:time_length], approve_status: 0, paid_time: nil)
   end
 
   def approve

@@ -4,7 +4,7 @@ class AddApproveStatusAndPaidTimeToTimeslot < ActiveRecord::Migration[5.1]
     add_column :timeslots, :paid_time, :datetime
     #aproveStatus
     #0 = waiting
-    #1 = rejected
-    #2 = approved
+    #2 = rejected
+    #1 = approved
   end
 end

@@ -11,6 +11,8 @@ Job.destroy_all
 Profile.destroy_all
 User.destroy_all
 Review.destroy_all
+Timeslot.destroy_all
+
 
 teen_user = User.create(email: 'teen@t.com', password: '123', password_confirmation: '123')
 #teen profile
@@ -65,10 +67,10 @@ contract3 = Contract.create(accept_status: 0, profile_id: teen_profile_1.id, job
 contract4 = Contract.create(accept_status: 0, profile_id: teen_profile_2.id, job_id: job1.id)
 
 #timeslot
-timeslot1 = Timeslot.create(date_time_begin: start, time_length: 2, approve_status: 0, paid_time: 0, contract_id: contract2.id)
-timeslot2 = Timeslot.create(date_time_begin: start, time_length: 1, approve_status: 1, paid_time: 0, contract_id: contract2.id)
-timeslot3 = Timeslot.create(date_time_begin: start, time_length: 3, approve_status: 2, paid_time: 0, contract_id: contract2.id)
-
+paid_time = DateTime.new(2017,12,8,0,0,0)
+timeslot1 = Timeslot.create(date_time_begin: start, time_length: 2, approve_status: 0, paid_time: nil, contract_id: contract2.id)
+timeslot2 = Timeslot.create(date_time_begin: start, time_length: 1, approve_status: 1, paid_time: paid_time, contract_id: contract2.id)
+timeslot3 = Timeslot.create(date_time_begin: start, time_length: 1, approve_status: 2, paid_time: nil, contract_id: contract2.id)
 
 
 #reviews
@@ -80,6 +82,4 @@ review5 = Review.create(rating: 3, body: 'review5', profile_id: emp_profile.id, 
 review6 = Review.create(rating: 2.5, body: 'review6', profile_id: emp_profile_1.id, reviewer: 'teen2@t.com', contract_id: contract4.id)
 review7 = Review.create(rating: 2, body: 'review7', profile_id: teen_profile_1.id, reviewer: 'emp1@e.com', contract_id: contract2.id)
 review8 = Review.create(rating: 1.5, body: 'review8', profile_id: teen_profile_2.id, reviewer: 'emp1@e.com', contract_id: contract4.id)
-review9 = Review.create(rating: 1, body: 'review9', profile_id: emp_profile.id, reviewer: 'teen@t.com', contract_id: contract3.id)
-review10 = Review.create(rating: 4.5, body: 'review10', profile_id: emp_profile.id, reviewer: 'teen@t.com', contract_id: contract3.id)
 
