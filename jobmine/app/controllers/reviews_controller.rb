@@ -1,10 +1,12 @@
 class ReviewsController < ApplicationController
 	def index
+		@current_profile_id = get_current_profile_id
 		@profile = get_profile(params[:profile_id])
 		@reviews = @profile.reviews.all
 	end
 
 	def show
+		@current_profile_id = get_current_profile_id
 		@review = Review.find(params[:id])
 		@profile = get_profile(@review.profile_id)
 	end
@@ -13,7 +15,8 @@ class ReviewsController < ApplicationController
 		$contract_id = params[:contract_id]
 		@profile = get_profile(params[:profile_id])
 		@cur_user_email = User.find(session[:current_user_id]).email
-#		@contract = Contract.find_by(params[:contract_id])
+		$cur_profile_id = Profile.find_by(user_id: 
+			session[:current_user_id]).id
 		@review = @profile.reviews.new
 	end
 
@@ -61,9 +64,15 @@ class ReviewsController < ApplicationController
 		def get_profile(profile_id)
 			return Profile.find(profile_id)
 		end
+		def get_current_profile_id
+			return Profile.find_by(
+			user_id: session[:current_user_id]).id
+		end
 		def review_params
 			params.require(:review).permit(:rating, 
-				:body, :reviewer).merge(:contract_id => $contract_id)
+				:body, :reviewer).merge(
+				:contract_id => $contract_id).merge(
+				:reviewer_id => $cur_profile_id)
 		end
-		helper_method :get_profile
+		helper_method :get_profile, :get_current_profile_id
 end
