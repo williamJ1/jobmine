@@ -27,6 +27,7 @@ class TimeslotController < ApplicationController
     
     timeslot.update(date_time_begin: timeslot_p[:date_time_begin],
                     time_length: timeslot_p[:time_length], approve_status: 0, paid_time: nil)
+    redirect_to show_timeslot_path
   end
 
   def approve
