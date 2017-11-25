@@ -61,10 +61,8 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-   <p ><b><%= link_to 'log in', login_path %>*****<%= link_to 'sign up', signup_path %> </b></p>
-
-
-   </ul>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span><%= link_to 'log in', login_path %></a></li>
+      </ul>
     </div>
   </div>
 </nav>
@@ -91,27 +89,9 @@
 </div>
 
 <footer class="container-fluid text-center">
-
+  <p>about</p>
 </footer>
 
 </body>
 </html>
 
-
-<p>
-  <%= link_to 'test employer job details', employer_job_detail_show_path(:id => 1) %>
-</p>
-
-<%# if false %>
-
-
-    <%# Testing review %>
-    <p>
-        <%= link_to 'Give Review', new_profile_review_path(:profile_id => 1, :contract_id => 2) %>
-    </p>
-
-    <p>
-        <%= link_to 'Review index', profile_reviews_path(:profile_id => 1) %>
-    </p>
-
-<%# end %>
