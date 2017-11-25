@@ -1,0 +1,70 @@
+<%= flash[:notice] %>
+
+<h1>
+  Timesheet for job: <%=@job.name%>
+</h1>
+
+<p>
+  Current job description:
+  <br>
+  <%=@job.description%>
+</p>
+
+<p>Pending time slots:</p>
+<%= form_tag(approve_timeslot_path, method: :put) do%>
+    <% for time in @pending_timeslots%>
+        <ul>
+          <li>
+            <%= check_box_tag 'timeslot_id[]', time.id %>
+            <%= time.date_time_begin %>
+            <%= time.time_length %>
+          </li>
+        </ul>
+    <% end %>
+    <%= submit_tag 'Approve' %>
+<% end %>
+
+<p>Pending time slots:</p>
+<%= form_tag(reject_timeslot_path, method: :put) do%>
+    <% for time in @pending_timeslots%>
+        <ul>
+          <li>
+            <%= check_box_tag 'timeslot_id[]', time.id %>
+            <%= time.date_time_begin %>
+            <%= time.time_length %>
+          </li>
+        </ul>
+    <% end %>
+    <%= submit_tag 'Reject' %>
+<% end %>
+
+
+
+<p>Already approved time slots:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Time begin</th>
+    <!--<th>Created by user</th>-->
+    <th>Length</th>
+    <th>Approved?</th>
+    <th>Paid?</th>
+    <!--<th>End date time</th>-->
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @approved_timeslots.each do |time| %>
+      <tr>
+        <td><%= time.date_time_begin %></td>
+        <td><%= time.time_length %></td>
+        <td><%= time.is_approved %></td>
+        <td><%= time.is_paid %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<%= button_to "Close contract", close_contract_path, params: {contract_id: params[:contract_id]}%>

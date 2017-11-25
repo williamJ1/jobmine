@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   post '/create_contract', to: 'contract#create'
 
+  post '/close_contract', to: 'contract#close'
+
   resources :jobs
   # get 'profiles/create'
   #
@@ -53,10 +55,17 @@ Rails.application.routes.draw do
   resources :reviews
   resources :payments
 
-  resources :password_reset,     only: [:new, :create, :edit, :update]
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get '/contract/:contract_id/timelost', to: 'timeslot#display', as: 'show_timeslot'
-  post '/contract/:contract_id/timelost', to: 'timeslot#add', as: 'add_timeslot'
+  get '/contract/:contract_id/timeslot', to: 'timeslot#display', as: 'show_timeslot'
+  post '/contract/:contract_id/timeslot', to: 'timeslot#add', as: 'add_timeslot'
+  get '/contract/:contract_id/update_timeslot', to: 'timeslot#update', as: 'update_timeslot'
+  put '/contract/:contract_id/approve_timeslot', to: 'timeslot#approve', as: 'approve_timeslot'
+  put '/contract/:contract_id/reject_timeslot', to: 'timeslot#reject', as: 'reject_timeslot'
+
+
+  resources :password_reset
+
+
+
 
 end
