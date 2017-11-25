@@ -40,3 +40,9 @@ job3 = Job.create(name: 'job3', description: 'job3', begin_date_time: start, end
 contract1 = Contract.create(accept_status: 0, profile_id: teen_profile.id, job_id: job1.id)
 contract2 = Contract.create(accept_status: 2, profile_id: teen_profile.id, job_id: job2.id)
 
+#timeslot
+timeslot1 = Timeslot.create(date_time_begin: start, time_length: 2, is_approved: false, is_paid: false, contract_id: contract2.id)
+timeslot2 = Timeslot.create(date_time_begin: start, time_length: 1, is_approved: true, is_paid: false, contract_id: contract2.id)
+
+
+
