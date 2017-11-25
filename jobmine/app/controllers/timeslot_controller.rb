@@ -15,18 +15,19 @@ class TimeslotController < ApplicationController
     contract = Contract.find_by(id: params[:contract_id])
     @job = contract.job
     @timeslots = contract.timeslots
-    @approved_timeslots = @timeslots.where(is_approved: true).all
-    @pending_timeslots = @timeslots.where(is_approved: false).all
+    @pending_timeslots = @timeslots.where(approve_status: 0).all
+    @approved_timeslots = @timeslots.where(approve_status: 1).all
+    @rejected_timeslots = @timeslots.where(approve_status: 2).all
   end
 
   def approve
-    Timeslot.where(id: params[:timeslot_id]).update_all(is_approved: true)
+    Timeslot.where(id: params[:timeslot_id]).update_all(approve_status: 1)
     #redirect_to controller: 'timeslot', action: 'update', contract_id: params[:contract_id]
     redirect_to update_timeslot_path
   end
 
   def reject
-    Timeslot.where(id: params[:timeslot_id]).update_all(is_approved: true)
+    Timeslot.where(id: params[:timeslot_id]).update_all(approve_status: 2)
     #redirect_to controller: 'timeslot', action: 'update', contract_id: params[:contract_id]
     redirect_to update_timeslot_path
   end

@@ -12,12 +12,13 @@ class ContractController < ApplicationController
 
   def close
     #check if there are pending timeslots related to this contract
-    @pending_timeslots = Contract.find_by(id: params[:contract_id]).timeslots.where(is_approved: false).all
+    @pending_timeslots = Contract.find_by(id: params[:contract_id]).timeslots.where(approve_Status: 0).all
     if (!@pending_timeslots.blank?())
       flash[:notice] = "There are pending timeslots related to this contract, can not close!!"
       redirect_to controller: 'timeslot', action: 'update', contract_id: params[:contract_id]
     else
       #TODO: add code here to close contract
+      Contract.find_by(id: params[:contract_id]).update(accept_status: 3)
       flash[:notice] = "Closed successful"
       #TODO: add code to redirect to employer home page if the current contract is closed
       redirect_to controller: 'timeslot', action: 'update', contract_id: params[:contract_id]
