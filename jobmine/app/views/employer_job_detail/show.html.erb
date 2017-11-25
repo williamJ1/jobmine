@@ -25,8 +25,8 @@
 		<p>
 			<b>(Click teenager email to see profile)</b><br>
 			<% @applied_teens.each do |teen| %>
-				<%= link_to "#{teen.user.email}",
-					show_profile_path(:id => teen.id) %><br>
+				<%= link_to "#{teen.user.email}",show_profile_path(:id => teen.id) %>
+				<%= button_to "Accept", update_contract_path, :method=> :put, params: {job_id: @job_detail.id, profile_id: teen.id} %><br>
 			<% end %>
 		</p>
 	<% end %>

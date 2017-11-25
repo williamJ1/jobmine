@@ -17,13 +17,16 @@
   <%= link_to 'test employer job details', employer_job_detail_show_path(:id => 1) %>
 </p>
 
-<% if false %>
+<%# if false %>
 
 
     <%# Testing review %>
     <p>
-        <%= link_to 'Give Review', controller: 'reviews' %>
+        <%= link_to 'Give Review', new_profile_review_path(:profile_id => 1, :contract_id => 2) %>
     </p>
 
+    <p>
+        <%= link_to 'Review index', profile_reviews_path(:profile_id => 1) %>
+    </p>
 
-<% end %>
+<%# end %>

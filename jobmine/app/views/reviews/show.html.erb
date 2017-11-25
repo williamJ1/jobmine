@@ -4,8 +4,18 @@
 </p>
 
 <p>
+	<strong>Reviewer:</strong>
+	<%= @review.reviewer %>
+</p>
+
+<p>
+	<strong>Contract:</strong>
+	<%= @review.contract_id %>
+</p>
+
+<p>
 	<strong>Body:</strong>
 	<%= @review.body %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> | <%= link_to 'Back', reviews_path %>
+<%= link_to 'Edit', edit_review_path(@review) %> | <%= link_to 'Back', profile_reviews_path(@profile) %>
