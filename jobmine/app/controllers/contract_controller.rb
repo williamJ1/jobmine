@@ -21,7 +21,8 @@ class ContractController < ApplicationController
       Contract.find_by(id: params[:contract_id]).update(accept_status: 3)
       flash[:notice] = "Closed successful"
       #TODO: add code to redirect to employer home page if the current contract is closed
-      redirect_to controller: 'timeslot', action: 'update', contract_id: params[:contract_id]
+      #redirect_to controller: 'timeslot', action: 'update', contract_id: params[:contract_id]
+      redirect_to jobs_path
     end
   end
 

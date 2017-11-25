@@ -21,9 +21,13 @@ class TimeslotController < ApplicationController
   end
 
   def approve
-    Timeslot.where(id: params[:timeslot_id]).update_all(approve_status: 1)
-    #redirect_to controller: 'timeslot', action: 'update', contract_id: params[:contract_id]
-    redirect_to update_timeslot_path
+    if params[:Approve]
+      Timeslot.where(id: params[:timeslot_id]).update_all(approve_status: 1, paid_time: Time.now)
+      redirect_to update_timeslot_path
+    else
+      Timeslot.where(id: params[:timeslot_id]).update_all(approve_status: 2)
+      redirect_to update_timeslot_path
+    end
   end
 
   def reject
