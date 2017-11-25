@@ -65,8 +65,10 @@ contract3 = Contract.create(accept_status: 0, profile_id: teen_profile_1.id, job
 contract4 = Contract.create(accept_status: 0, profile_id: teen_profile_2.id, job_id: job1.id)
 
 #timeslot
-timeslot1 = Timeslot.create(date_time_begin: start, time_length: 2, is_approved: false, is_paid: false, contract_id: contract2.id)
-timeslot2 = Timeslot.create(date_time_begin: start, time_length: 1, is_approved: true, is_paid: false, contract_id: contract2.id)
+timeslot1 = Timeslot.create(date_time_begin: start, time_length: 2, approve_status: 0, paid_time: 0, contract_id: contract2.id)
+timeslot2 = Timeslot.create(date_time_begin: start, time_length: 1, approve_status: 1, paid_time: 0, contract_id: contract2.id)
+timeslot3 = Timeslot.create(date_time_begin: start, time_length: 3, approve_status: 2, paid_time: 0, contract_id: contract2.id)
+
 
 
 #reviews
