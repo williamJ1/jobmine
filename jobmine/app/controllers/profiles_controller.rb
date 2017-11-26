@@ -22,6 +22,14 @@ class ProfilesController < ApplicationController
     @show_user_profile = Profile.find_by(user_id: @show_user_id)
     @show_user_type = @show_user_profile.user_type
     @cur_user_type = Profile.find_by(user_id: session[:current_user_id]).user_type
+    @reviews = @show_user_profile.reviews.all
+    @average_rating = average_rating(@show_user_profile.id)
+
+    if @reviews.size < 3
+      @more_review = false
+    else
+      @more_review = true
+    end
     #check if user has full access to profile
     if @show_user_type == @cur_user_type
       @full_access = true
@@ -58,5 +66,14 @@ class ProfilesController < ApplicationController
     params.require(:profiles).permit(:address, :phone_num, :gender, :user_type).merge(:user_id => session[ :current_user_id])
   end
 
+  def average_rating(profile_id)
+    profile = Profile.find_by(id: profile_id)
+    @rating = 0
+    profile.reviews.each do |review|
+      @rating = @rating + review.rating
+    end
+    @total = profile.reviews.size
+    return '%.2f' % ((@rating.to_f) / (@total.to_f))
+  end
 
 end

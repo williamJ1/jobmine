@@ -9,13 +9,12 @@
 </p>
 
 <p>
-	<strong>Contract:</strong>
-	<%= @review.contract_id %>
-</p>
-
-<p>
 	<strong>Body:</strong>
 	<%= @review.body %>
 </p>
 
-<%= link_to 'Edit', edit_review_path(@review) %> | <%= link_to 'Back', profile_reviews_path(@profile) %>
+<% if @current_profile_id == @review.reviewer_id %>
+	<%= link_to 'Edit', edit_review_path(@review) %> | <%= link_to 'Back', profile_reviews_path(@profile) %>
+<% else %>
+	<%= link_to 'Back', profile_reviews_path(@profile) %>
+<% end %>

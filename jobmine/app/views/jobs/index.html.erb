@@ -99,13 +99,41 @@
       </thead>
 
       <tbody>
-      <% @my_on_goging_projects.each do |job| %>
+      <% @my_on_goging_jobs.each do |job| %>
           <tr>
             <td><%= job.name %></td>
             <td><%= job.description %></td>
             <td><%= job.location %></td>
             <td><%= job.hour_rate %></td>
             <td><%= link_to 'Track my time', show_timeslot_path(:contract_id => find_contract_id_by_job(job.id)) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+
+    <h2>My Finished Jobs </h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Title</th>
+        <!--<th>Created by user</th>-->
+        <th>Description</th>
+        <th>Location</th>
+        <th>Hour Rate</th>
+        <!--<th>End date time</th>-->
+        <th colspan="1"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @my_finished_jobs.each do |job| %>
+          <tr>
+            <td><%= job.name %></td>
+            <td><%= job.description %></td>
+            <td><%= job.location %></td>
+            <td><%= job.hour_rate %></td>
+            <td><%= link_to 'Add review', new_profile_review_path(:profile_id => job.profile_id, :contract_id => find_contract_id_by_job(job.id)) %></td>
           </tr>
       <% end %>
       </tbody>
@@ -176,6 +204,37 @@
       </tbody>
     </table>
     <br>
+
+    <br>
+
+    <h2>My Finished Jobs (jobs posted by me and finished)</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Title</th>
+        <!--<th>Created by user</th>-->
+        <th>Description</th>
+        <th>Location</th>
+        <th>Hour Rate</th>
+        <!--<th>End date time</th>-->
+        <th colspan="1"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @finsihed_jobs.each do |job| %>
+          <tr>
+            <td><%= job.name %></td>
+            <td><%= job.description %></td>
+            <td><%= job.location %></td>
+            <td><%= job.hour_rate %></td>
+            <td><%= link_to 'Add review', new_profile_review_path(:profile_id => find_teen_profile_id_by_closed_job(job.id), :contract_id => find_contract_id_by_closed_job(job.id)) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+
 <% end %>
 <% if false %>
 <h1>Jobs</h1>

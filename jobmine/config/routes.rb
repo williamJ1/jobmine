@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   get '/contract/:contract_id/update_timeslot', to: 'timeslot#update', as: 'update_timeslot'
   put '/contract/:contract_id/approve_timeslot', to: 'timeslot#approve', as: 'approve_timeslot'
   put '/contract/:contract_id/reject_timeslot', to: 'timeslot#reject', as: 'reject_timeslot'
+  put '/contract/:contract_id/redo_timeslot/', to: 'timeslot#redo', as: 'redo_timeslot'
 
 
   resources :password_reset
