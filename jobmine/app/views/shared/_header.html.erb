@@ -1,19 +1,33 @@
-<div class="panel panel-default">
-<% if @user = User.find_by(id: session[:current_user_id])%>
+<div class="header clearfix">
 
-      <p class="lead" align="right"> Hello <%= @email = @user.email%> !</p>
-      <div class="lead" align="right">
-        <%= link_to "Log out", logout_path, method: :get %>
-        <%= link_to "Home page", jobs_path, method: :get %>
-        <%= link_to "Profile", show_profile_path(id: session[:current_user_id]) %>
-      </div>
+    <% if @user = User.find_by(id: session[:current_user_id])%>
+      <nav>
+        <ul class="nav nav-pills float-right">
 
-<% else%>
-    <% if flash[:info] %>
-        <p class="lead">You have successfully logged out!</p>
+          <li class="nav-item">
+            <%= link_to "Log out", logout_path, method: :get, class:"nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Home page", jobs_path, method: :get, class:"nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Profile", show_profile_path(id: session[:current_user_id]), class:"nav-link"%>
+          </li>
+        </ul>
+      </nav>
+      <h3 class="text-muted"> JobMine </h3>
+      <p class="float-right">
+        Hello <%= @email = @user.email%> !
+      </p>
     <% else%>
-        <p class = "lead">You are not logged in yet!</p>
-    <%end%>
+        <% if flash[:info] %>
+            <p class="float-right">You have successfully logged out!</p>
+        <% else%>
+            <p class="float-right">You are not logged in yet!</p>
+        <%end%>
 
-<% end%>
+    <% end%>
+
+
 </div>
+
