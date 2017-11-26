@@ -10,7 +10,7 @@
   <%=@job.description%>
 </p>
 
-<p>Pending time slots:</p>
+<h2>Pending time slots:</h2>
 <%= form_tag(approve_timeslot_path, method: :put) do%>
     <% for time in @pending_timeslots%>
         <ul>
@@ -27,7 +27,7 @@
     <% end%>
 <% end %>
 
-<p>Already approved time slots:</p>
+<h2>Already approved time slots:</h2>
 <table>
   <thead>
   <tr>
@@ -49,7 +49,7 @@
   </tbody>
 </table>
 
-<p>Already rejected time slots:</p>
+<h2>Already rejected time slots:</h2>
 <table>
   <thead>
   <tr>

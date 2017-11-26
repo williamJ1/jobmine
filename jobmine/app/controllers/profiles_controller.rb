@@ -28,6 +28,10 @@ class ProfilesController < ApplicationController
     else
       @full_access = false
     end
+    @hash = Gmaps4rails.build_markers(@show_user_profile) do |user, marker|
+        marker.lat user.latitude
+        marker.lng user.longitude
+    end
     #TODO: add review and rating once review table is implemented
     #redirect_to new_job_path
   end

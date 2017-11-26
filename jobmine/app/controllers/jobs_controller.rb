@@ -32,6 +32,13 @@ class JobsController < ApplicationController
         end
       end
 
+      @hash = Gmaps4rails.build_markers(@open_and_not_applied_jobs) do |job, marker|
+        marker.lat job.latitude
+        marker.lng job.longitude
+        marker.infowindow job.name + ":" + job.description
+        #marker.infowindow job.description
+      end
+
       my_onging_contracts = Contract.where(profile_id: user_profile.id, accept_status: 2)
       my_onging_contracts.each do |constract_obj|
         @my_on_goging_projects.push(constract_obj.job)
