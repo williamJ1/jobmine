@@ -1,9 +1,18 @@
 <!--<p align="right">This is header</p>-->
 <% if @user = User.find_by(id: session[:current_user_id])%>
     <p align="right">Hello <%= @email = @user.email%> !</p>
-    <%= link_to "Log out", logout_path, method: :get %></br>
-    <%= link_to "my home page", jobs_path, method: :get %></br>
-    <%= link_to "my profile", show_profile_path(id: session[:current_user_id])  %></br>
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <%= link_to "Log out", logout_path, method: :get, class:"nav-link active" %></br>
+      </li>
+      <li class="nav-item">
+        <%= link_to "my home page", jobs_path, method: :get, class:"nav-link active" %></br>
+      </li>
+      <li class="nav-item">
+        <%= link_to "my profile", show_profile_path(id: session[:current_user_id]), class:"nav-link active"  %></br>
+    </ul>
+
+
 
 <% else%>
     <% if flash[:info] %>
