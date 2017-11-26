@@ -15,8 +15,8 @@
   </head>
 
   <body>
-    <%= render "shared/header" %>
-    <%= yield %>
-    <%= render "shared/footer" %>
+    <div style="background-color: #ffffe6;"><%= render "shared/header" %></div>
+    <div style="background-color: #ffffe6;"><%= yield %></div>
+    <div class="sticky-bottom" style="background-color: #ffffe6;"><%= render "shared/footer" %></div>
   </body>
 </html>

@@ -1,23 +1,19 @@
-<!--<p align="right">This is header</p>-->
+<div class="panel panel-default">
 <% if @user = User.find_by(id: session[:current_user_id])%>
-    <p align="right">Hello <%= @email = @user.email%> !</p>
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <%= link_to "Log out", logout_path, method: :get, class:"nav-link active" %></br>
-      </li>
-      <li class="nav-item">
-        <%= link_to "my home page", jobs_path, method: :get, class:"nav-link active" %></br>
-      </li>
-      <li class="nav-item">
-        <%= link_to "my profile", show_profile_path(id: session[:current_user_id]), class:"nav-link active"  %></br>
-    </ul>
 
-
+      <p class="lead" align="right"> Hello <%= @email = @user.email%> !</p>
+      <div class="lead" align="right">
+        <%= link_to "Log out", logout_path, method: :get %>
+        <%= link_to "Home page", jobs_path, method: :get %>
+        <%= link_to "Profile", show_profile_path(id: session[:current_user_id]) %>
+      </div>
 
 <% else%>
     <% if flash[:info] %>
-        <p align="right">You have successfully logged out!</p></br>
+        <p class="lead">You have successfully logged out!</p>
     <% else%>
-        <p align="right">You are not logged in yet!</p></br>
+        <p class = "lead">You are not logged in yet!</p>
     <%end%>
+
 <% end%>
+</div>

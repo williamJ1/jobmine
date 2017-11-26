@@ -1,75 +1,82 @@
-<%= flash[:notice] %>
 
-<h1>
-  Timesheet for job: <%=@job.name%>
-</h1>
+<span class="badge badge-pill badge-danger "><%= flash[:notice] %></span>
 
-<p>
-  Current job description:
-  <br>
-  <%=@job.description%>
-</p>
+<h2 class="text-warning col-md-4 offset-md-4" align="middle">
+  Timesheet for job:    <%=@job.name%>
+</h2>
 
-<h2>Pending time slots:</h2>
-<%= form_tag(approve_timeslot_path, method: :put) do%>
-    <% for time in @pending_timeslots%>
-        <ul>
-          <li>
-            <%= check_box_tag 'timeslot_id[]', time.id %>
-            <%= time.date_time_begin %>
-            <%= time.time_length %>
-          </li>
-        </ul>
+</br>
+
+<h2 class="text-warning col-md-4 offset-md-4" align="middle">
+  Current job description: </br>
+  <small class="text-muted"><%=@job.description%></small>
+</h2>
+
+
+
+
+<div class="p-3 mb-2 bg-secondary text-white col-md-6 offset-md-3" align="middle">
+  <h3 class="text-warning"> Pending time slots: </h3>
+  <%= form_tag(approve_timeslot_path, method: :put) do%>
+      <% for time in @pending_timeslots%>
+          <ul class="list-group">
+            <li class="list-group-item p-3 mb-2 bg-secondary">
+              <%= check_box_tag 'timeslot_id[]', time.id %>
+              <%= time.date_time_begin %>
+              <%= time.time_length %>
+            </li>
+          </ul>
+      <% end %>
+      <% if !@pending_timeslots.blank?() %>
+            <%= submit_tag 'Pay', name: 'Approve' %>
+            <%= submit_tag 'Reject', name: 'Reject' %>
+      <% end%>
+  <% end %>
+</div>
+
+
+
+<div class="p-3 mb-2 bg-secondary text-white col-md-6 offset-md-3" align="middle">
+  <h3 class="text-warning">Paid time slots:</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Time begin</th>
+      <th scope="col">Length</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @approved_timeslots.each do |time| %>
+        <tr>
+          <td><%= time.date_time_begin %></td>
+          <td><%= time.time_length %></td>
+        </tr>
     <% end %>
-    <% if !@pending_timeslots.blank?() %>
-          <%= submit_tag 'Approve', name: 'Approve' %>
-          <%= submit_tag 'Reject', name: 'Reject' %>
-    <% end%>
-<% end %>
-
-<h2>Already approved time slots:</h2>
-<table>
-  <thead>
-  <tr>
-    <th>Time begin</th>
-    <!--<th>Created by user</th>-->
-    <th>Length</th>
-    <!--<th>End date time</th>-->
-    <th colspan="1"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @approved_timeslots.each do |time| %>
-      <tr>
-        <td><%= time.date_time_begin %></td>
-        <td><%= time.time_length %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<h2>Already rejected time slots:</h2>
-<table>
-  <thead>
-  <tr>
-    <th>Time begin</th>
-    <!--<th>Created by user</th>-->
-    <th>Length</th>
-    <!--<th>End date time</th>-->
-    <th colspan="1"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @rejected_timeslots.each do |time| %>
-      <tr>
-        <td><%= time.date_time_begin %></td>
-        <td><%= time.time_length %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
 
-<%= button_to "Close contract", close_contract_path, params: {contract_id: params[:contract_id]}%>
+<div class="p-3 mb-2 bg-secondary text-white col-md-6 offset-md-3" align="middle">
+  <h3 class="text-warning"> Rejected time slots:</h3>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Time begin</th>
+      <th scope="col">Length</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @rejected_timeslots.each do |time| %>
+        <tr>
+          <td><%= time.date_time_begin %></td>
+          <td><%= time.time_length %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+<button type="button" class="btn btn-warning col-md-6 offset-md-3" align="middle"><%= button_to "Close contract", close_contract_path, params: {contract_id: params[:contract_id]}%></button>
