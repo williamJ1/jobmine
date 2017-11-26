@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20171125215948) do
 
-
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
     t.datetime "created_at", null: false
@@ -55,6 +54,8 @@ ActiveRecord::Schema.define(version: 20171125215948) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "user_type"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

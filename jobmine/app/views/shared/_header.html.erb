@@ -1,8 +1,10 @@
 <!--<p align="right">This is header</p>-->
 <% if @user = User.find_by(id: session[:current_user_id])%>
     <p align="right">Hello <%= @email = @user.email%> !</p>
-    <%= button_to "Log out", logout_path, method: :get %>
-    <%= button_to "home page", root_path, method: :get %>
+    <%= link_to "Log out", logout_path, method: :get %></br>
+    <%= link_to "my home page", jobs_path, method: :get %></br>
+    <%= link_to "my profile", show_profile_path(id: session[:current_user_id])  %></br>
+
 <% else%>
     <% if flash[:info] %>
         <p align="right">You have successfully logged out!</p></br>
