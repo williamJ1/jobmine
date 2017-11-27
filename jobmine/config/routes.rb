@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get 'employer_job_detail/show'
 
+  get 'transaction_summary/show'
+
   post '/create_contract', to: 'contract#create'
   put '/update_contract', :to => 'contract#update',
                           :as => :update_contract

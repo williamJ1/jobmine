@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171125204730) do
+ActiveRecord::Schema.define(version: 20171125172419) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
@@ -52,8 +52,6 @@ ActiveRecord::Schema.define(version: 20171125204730) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.string "user_type"
-    t.float "latitude"
-    t.float "longitude"
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 

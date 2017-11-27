@@ -68,9 +68,13 @@ contract4 = Contract.create(accept_status: 0, profile_id: teen_profile_2.id, job
 
 #timeslot
 paid_time = DateTime.new(2017,12,8,0,0,0)
+paid_time1 = DateTime.new(2017,12,8,2,0,0)
+paid_time2 = DateTime.new(2017,12,3,0,0,0)
 timeslot1 = Timeslot.create(date_time_begin: start, time_length: 2, approve_status: 0, paid_time: nil, contract_id: contract2.id)
 timeslot2 = Timeslot.create(date_time_begin: start, time_length: 1, approve_status: 1, paid_time: paid_time, contract_id: contract2.id)
 timeslot3 = Timeslot.create(date_time_begin: start, time_length: 1, approve_status: 2, paid_time: nil, contract_id: contract2.id)
+timeslot4 = Timeslot.create(date_time_begin: start, time_length: 2, approve_status: 1, paid_time: paid_time1, contract_id: contract2.id)
+timeslot4 = Timeslot.create(date_time_begin: start, time_length: 1, approve_status: 1, paid_time: paid_time2, contract_id: contract2.id)
 
 
 #reviews

@@ -1,0 +1,33 @@
+<h1>Transaction Summary</h1>
+<h2>Paid History</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Transaction Time</th>
+    <th>Job</th>
+    <th>Time slot</th>
+    <% if @user_profile.user_type=='teen' %>
+       <th>Credit</th>
+    <% else %>
+       <th>Debit</th>
+    <% end %>
+    <th colspan="1"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @paid_transaction.empty? %>
+  <h3>No job has been paid so far</h3>
+  <% else %>
+	  <% @paid_transaction.each do |timeslot| %>
+	      <tr>
+	        <td><%= timeslot.paid_time %></td>
+	        <td><%= timeslot.contract.job.name %></td>
+	        <td><%= timeslot.date_time_begin %></td>
+	        <td><%= timeslot.time_length * timeslot.contract.job.hour_rate %></td>
+	      </tr>
+	  <% end %>
+  <% end %>
+  </tbody>
+</table>
+
