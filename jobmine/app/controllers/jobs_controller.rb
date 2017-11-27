@@ -8,23 +8,30 @@ class JobsController < ApplicationController
     user_obj = User.find_by(id: cur_user_id)
     user_profile = user_obj.profile
     @user_profile = user_profile
+
     if user_profile.user_type == 'teen'
-      # open job are jobs has not
-      open_projects = []
-      cloased_peojects = []
-      @my_on_goging_projects = []
+      # 4 different type of jobs for teen.
+      # 1. jobs I can apply, job not has any contract or if has something, status must all be 0
+      # 2. jobs I applied but waiting for approved
+      # 3. onging jobs, jobs which I has a status = 1
+      # 4. my closed jobs, jobs which I has a status = 3
+      @open_and_not_applied_jobs = []
+      @applied_but_waiting_jobs = []
+      @my_on_goging_jobs = []
+      @my_finished_jobs = []
+      open_jobs = []
+      cannot_apply_jobs = []
       Job.all.each do |job_obj|
         if job_obj.contracts.size == 0
-          open_projects.push(job_obj)
+          open_jobs.push(job_obj)
         elsif job_obj.contracts.first.accept_status == 0
-          open_projects.push(job_obj)
+          open_jobs.push(job_obj)
         else
-          cloased_peojects.push(job_obj)
+          cannot_apply_jobs.push(job_obj)
         end
       end
-      @applied_but_waiting_jobs = []
-      @open_and_not_applied_jobs = []
-      open_projects.each do |open_job|
+
+      open_jobs.each do |open_job|
         if Contract.where(job_id: open_job.id, profile_id: user_profile.id).exists?
           @applied_but_waiting_jobs.push(open_job)
         else
@@ -32,15 +39,29 @@ class JobsController < ApplicationController
         end
       end
 
+      @hash = Gmaps4rails.build_markers(@open_and_not_applied_jobs) do |job, marker|
+        marker.lat job.latitude
+        marker.lng job.longitude
+        marker.infowindow job.name + ":" + job.description
+        #marker.infowindow job.description
+      end
+
       my_onging_contracts = Contract.where(profile_id: user_profile.id, accept_status: 2)
       my_onging_contracts.each do |constract_obj|
-        @my_on_goging_projects.push(constract_obj.job)
+        @my_on_goging_jobs.push(constract_obj.job)
       end
+
+      my_finished_contracts = Contract.where(profile_id: user_profile.id, accept_status: 3)
+      my_finished_contracts.each do |constract_obj|
+        @my_finished_jobs.push(constract_obj.job)
+      end
+
       return
     end
     if user_profile.user_type == 'employer' # the follwing part are for emplyer
       @open_jobs = []
       @ongoing_jobs = []
+      @finsihed_jobs = []
       jobs_created_by_me = user_profile.jobs
       jobs_created_by_me.each do |job_obj|
         if job_obj.contracts.size == 0
@@ -48,7 +69,12 @@ class JobsController < ApplicationController
         elsif job_obj.contracts.first.accept_status == 0
           @open_jobs.push(job_obj)
         else
-          @ongoing_jobs.push(job_obj)
+          # if the job has a contract status = 3, then finished , else it is a onging job
+          if Contract.exists?(job: job_obj, accept_status: 3)
+            @finsihed_jobs.push(job_obj)
+          else
+            @ongoing_jobs.push(job_obj)
+          end
         end
       end
       return
@@ -145,5 +171,15 @@ class JobsController < ApplicationController
       contract = Contract.where(profile_id: user_profile.id, job_id: job_id)
       return contract.first.id
     end
-    helper_method :find_contract_id_by_job
+
+    def find_teen_profile_id_by_closed_job(job_id)
+      contract = Contract.find_by(job_id: job_id, accept_status: 3)
+      return contract.profile_id
+    end
+
+    def find_contract_id_by_closed_job(job_id)
+      contract = Contract.find_by(job_id: job_id, accept_status: 3)
+      return contract.id
+    end
+    helper_method :find_contract_id_by_job, :find_teen_profile_id_by_closed_job, :find_contract_id_by_closed_job
 end

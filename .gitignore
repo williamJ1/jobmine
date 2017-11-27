@@ -55,3 +55,4 @@ jobmine/.idea
 
 .idea/workspace.xml
 jobmine/public/assets
+jobmine/Gemfile.lock

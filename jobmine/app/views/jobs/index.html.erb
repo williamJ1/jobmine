@@ -1,3 +1,9 @@
+<!-- google map gem -->
+<script src="//maps.google.com/maps/api/js?key=AIzaSyAJ0uVPgvJxE6RGOeeucwwfcFNUtwR6_74"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+<script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
+<!-- google map gem -->
+
 <p id="notice"><%= notice %></p>
 <% if @user_profile.user_type=='teen' %>
     <h1>Teenage Home Page</h1>
@@ -29,6 +35,25 @@
     </table>
 
     <br>
+
+    <!-- google map gem -->
+    <div style='width: 800px;'>
+      <div id="map" style='width: 800px; height: 400px;'></div>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener("turbolinks:load", function(){
+            handler = Gmaps.build('Google');
+            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+                markers = handler.addMarkers(<%=raw @hash.to_json %>);
+                handler.bounds.extendWith(markers);
+                handler.fitMapToBounds();
+            });
+        } );
+    </script>
+    <!-- google map gem -->
+
+
 
     <h2>Waiting for approve</h2>
     <table>
@@ -74,13 +99,41 @@
       </thead>
 
       <tbody>
-      <% @my_on_goging_projects.each do |job| %>
+      <% @my_on_goging_jobs.each do |job| %>
           <tr>
             <td><%= job.name %></td>
             <td><%= job.description %></td>
             <td><%= job.location %></td>
             <td><%= job.hour_rate %></td>
             <td><%= link_to 'Track my time', show_timeslot_path(:contract_id => find_contract_id_by_job(job.id)) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+
+    <h2>My Finished Jobs </h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Title</th>
+        <!--<th>Created by user</th>-->
+        <th>Description</th>
+        <th>Location</th>
+        <th>Hour Rate</th>
+        <!--<th>End date time</th>-->
+        <th colspan="1"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @my_finished_jobs.each do |job| %>
+          <tr>
+            <td><%= job.name %></td>
+            <td><%= job.description %></td>
+            <td><%= job.location %></td>
+            <td><%= job.hour_rate %></td>
+            <td><%= link_to 'Add review', new_profile_review_path(:profile_id => job.profile_id, :contract_id => find_contract_id_by_job(job.id)) %></td>
           </tr>
       <% end %>
       </tbody>
@@ -151,6 +204,37 @@
       </tbody>
     </table>
     <br>
+
+    <br>
+
+    <h2>My Finished Jobs (jobs posted by me and finished)</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Title</th>
+        <!--<th>Created by user</th>-->
+        <th>Description</th>
+        <th>Location</th>
+        <th>Hour Rate</th>
+        <!--<th>End date time</th>-->
+        <th colspan="1"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @finsihed_jobs.each do |job| %>
+          <tr>
+            <td><%= job.name %></td>
+            <td><%= job.description %></td>
+            <td><%= job.location %></td>
+            <td><%= job.hour_rate %></td>
+            <td><%= link_to 'Add review', new_profile_review_path(:profile_id => find_teen_profile_id_by_closed_job(job.id), :contract_id => find_contract_id_by_closed_job(job.id)) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <br>
+
 <% end %>
 <h4><%= link_to 'Transaction History', transaction_summary_show_path(:id =>@user_profile.id ) %></h4>
 <br>
