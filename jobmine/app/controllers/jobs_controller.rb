@@ -172,6 +172,11 @@ class JobsController < ApplicationController
       return contract.first.id
     end
 
+    def find_contract_id_by_ongoing_job(job_id)
+      contract = Contract.find_by(job_id: job_id, accept_status: 2)
+      return contract.id
+    end
+
     def find_teen_profile_id_by_closed_job(job_id)
       contract = Contract.find_by(job_id: job_id, accept_status: 3)
       return contract.profile_id
@@ -181,5 +186,5 @@ class JobsController < ApplicationController
       contract = Contract.find_by(job_id: job_id, accept_status: 3)
       return contract.id
     end
-    helper_method :find_contract_id_by_job, :find_teen_profile_id_by_closed_job, :find_contract_id_by_closed_job
+    helper_method :find_contract_id_by_job, :find_contract_id_by_ongoing_job, :find_teen_profile_id_by_closed_job, :find_contract_id_by_closed_job
 end

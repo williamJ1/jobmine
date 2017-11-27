@@ -198,7 +198,7 @@
             <td><%= job.description %></td>
             <td><%= job.location %></td>
             <td><%= job.hour_rate %></td>
-            <td><%= link_to 'Check timeslot', update_timeslot_path(:contract_id => job.id) %></td>
+            <td><%= link_to 'Check timeslot', update_timeslot_path(:contract_id => find_contract_id_by_ongoing_job(job.id)) %></td>
           </tr>
       <% end %>
       </tbody>

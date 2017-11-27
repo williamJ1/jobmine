@@ -49,7 +49,7 @@ class TimeslotController < ApplicationController
   def timeslot_params
     contract = Contract.find_by(id: params[:contract_id])
     params.require(:timeslot).permit(:date_time_begin, :time_length).
-        merge(:contract_id => contract.id, :is_approved => FALSE, :is_paid => FALSE)
+        merge(:contract_id => contract.id, :approve_status => 0, :paid_time => nil, :created_at => Time.now)
   end
 
 end
