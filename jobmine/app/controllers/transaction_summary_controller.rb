@@ -1,10 +1,10 @@
 class TransactionSummaryController < ApplicationController
   def show
-  	@cur_profile_id = params[:id]
-    @user_profile = Profile.find_by(id: @cur_profile_id)
+  	@cur_user_id = params[:id]
+    @user_profile = Profile.find_by(user_id: @cur_user_id)
     @paid_transaction = []
     if @user_profile.user_type == 'teen'
-    	Contract.where(profile_id: @cur_profile_id, accept_status: 2).all.each do |each_contract|
+    	Contract.where(profile_id: @user_profile.id, accept_status: 2).all.each do |each_contract|
     		each_contract.timeslots.all.each do |each_timeslot|
     			if each_timeslot.paid_time.present?
     		        @paid_transaction.push(each_timeslot)
