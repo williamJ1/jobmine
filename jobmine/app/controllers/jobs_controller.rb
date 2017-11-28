@@ -172,6 +172,7 @@ class JobsController < ApplicationController
       return contract.first.id
     end
 
+    #find the accepted contract for job_id(ongoing job only)
     def find_contract_id_by_ongoing_job(job_id)
       contract = Contract.find_by(job_id: job_id, accept_status: 2)
       return contract.id

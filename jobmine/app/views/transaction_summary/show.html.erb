@@ -1,33 +1,119 @@
 <h2>Transaction History</h2>
 <br>
-<table>
+
+<% if @paid_transaction.empty? %>
+  <p><em>No job has been paid so far</em></p>
+<% else %>
+
+<h3>By Time</h3>
+
+<table style="width:80%">
   <thead>
   <tr>
     <th>Transaction Time</th>
     <th>Job</th>
-    <th>Time slot</th>
+    <th>Time Slot</th>
     <% if @user_profile.user_type=='teen' %>
-       <th>Credit</th>
+       <th>Earned</th>
     <% else %>
-       <th>Debit</th>
+       <th>Paid</th>
     <% end %>
     <th colspan="1"></th>
   </tr>
   </thead>
 
   <tbody>
-  <% if @paid_transaction.empty? %>
-  <h3>No job has been paid so far</h3>
-  <% else %>
-	  <% @paid_transaction.each do |timeslot| %>
-	      <tr>
-	        <td><%= timeslot.paid_time %></td>
-	        <td><%= timeslot.contract.job.name %></td>
-	        <td><%= timeslot.date_time_begin %></td>
-	        <td><%= timeslot.time_length * timeslot.contract.job.hour_rate %></td>
-	      </tr>
-	  <% end %>
+
+  <% @paid_transaction.each do |timeslot| %>
+      <tr>
+        <td><%= timeslot.paid_time %></td>
+        <td><%= timeslot.contract.job.name %></td>
+        <td><%= timeslot.date_time_begin %></td>
+        <td><%= timeslot.time_length * timeslot.contract.job.hour_rate %></td>
+      </tr>
   <% end %>
+
   </tbody>
 </table>
+
+<br>
+
+<h3>By Job</h3>
+
+<% if @ongoing_jobs.present? %>
+  <h4>Current Jobs</h4>
+
+  <table style="width:80%">
+    <thead>
+      <tr>
+        <th>Job</th>
+        <% if @user_profile.user_type=='teen' %>
+           <th>Total Earned</th>
+        <% else %>
+           <th>Total Paid</th>
+        <% end %>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% @ongoing_jobs.each do |job_obj| %>
+        <tr>
+          <td><%= job_obj.name %></td>
+          <% if total_money_for_job(job_obj.id) == 0 %>
+            <td>Not Paid Yet</td>
+          <% else %>
+            <td><%= total_money_for_job(job_obj.id) %></td>
+          <% end %> 
+        </tr>
+      <% end %>
+
+    </tbody>
+
+  </table>
+<% end %>
+
+
+<% if @finished_jobs.present? %>
+  <h4>Previous Jobs</h4>
+
+  <table style="width:80%">
+    <thead>
+      <tr>
+        <th>Job</th>
+        <% if @user_profile.user_type=='teen' %>
+           <th>Total Earned</th>
+        <% else %>
+           <th>Total Paid</th>
+        <% end %>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% @finished_jobs.each do |job_obj| %>
+        <tr>
+          <td><%= job_obj.name %></td>
+          <% if total_money_for_job(job_obj.id) == 0 %>
+            <td>Not Paid Yet</td>
+          <% else %>
+            <td><%= total_money_for_job(job_obj.id) %></td>
+          <% end %> 
+        </tr>
+      <% end %>
+
+    </tbody>
+
+  </table>
+<% end %>
+
+<% end %>
+
+
+
+
+
+
 

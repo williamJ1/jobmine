@@ -27,6 +27,7 @@ class ContractController < ApplicationController
   end
 
   def update
+    #find the contract to accept(only one)
     @contract_need_to_accept = Contract.find_by(job_id: params[:job_id], profile_id: params[:profile_id])
     if @contract_need_to_accept == nil
       flash[:error] = 'No contract exist for this job_id and profile_id, please check' 
@@ -34,6 +35,7 @@ class ContractController < ApplicationController
     else 
       @contract_need_to_accept.accept_status = 2
       if @contract_need_to_accept.save
+        #find other contracts for the same job_id need to reject(many)
         @contracts_need_to_reject = Contract.where(job_id: params[:job_id], accept_status: 0).all
         @contracts_need_to_reject.each do |cont|
           cont.accept_status = 1
