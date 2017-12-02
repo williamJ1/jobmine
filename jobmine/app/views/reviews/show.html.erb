@@ -4,6 +4,11 @@
 </p>
 
 <p>
+	<strong>Title:</strong>
+	<%= @review.title %>
+</p>
+
+<p>
 	<strong>Reviewer:</strong>
 	<%= @review.reviewer %>
 </p>
@@ -14,7 +19,7 @@
 </p>
 
 <% if @current_profile_id == @review.reviewer_id %>
-	<%= link_to 'Edit', edit_review_path(@review) %> | <%= link_to 'Back', profile_reviews_path(@profile) %>
+	<%= link_to 'Edit', edit_review_path(@review, :contract_id => @review.contract_id) %> | <%= link_to 'Back', profile_reviews_path(@profile) %>
 <% else %>
 	<%= link_to 'Back', profile_reviews_path(@profile) %>
 <% end %>

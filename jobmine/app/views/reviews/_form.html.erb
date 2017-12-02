@@ -13,10 +13,16 @@
 		</div>
 	<% end %>
 
+	<%= form.hidden_field :contract_id, value: @contract_id %>
 
 	<p>
 		<%= form.label :rating %><br>
 		<%= form.number_field :rating, in: 0.0..5.0, step: 0.5 %>
+	</p>
+
+	<p>
+		<%= form.label :title %><br>
+		<%= form.text_field :title %>
 	</p>
 
 	<p>

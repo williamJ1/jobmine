@@ -23,7 +23,13 @@ class ProfilesController < ApplicationController
     @show_user_type = @show_user_profile.user_type
     @cur_user_type = Profile.find_by(user_id: session[:current_user_id]).user_type
     @reviews = @show_user_profile.reviews.all
-    @average_rating = average_rating(@show_user_profile.id)
+    #@average_rating = average_rating(@show_user_profile.id)
+
+    if @reviews.size == 0
+      @has_review = false
+    else
+      @has_review = true
+    end
 
     if @reviews.size < 3
       @more_review = false

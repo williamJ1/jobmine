@@ -12,11 +12,11 @@
 		<tr>
 			<td><%= review.rating %></td>
 			<td><%= review.reviewer %></td>
-			<td><%= review.body %></td>
-			<td><%= link_to 'Show', review_path(review) %></td>
+			<td><%= review.title %></td>
+			<td><%= link_to 'Detail', review_path(review) %></td>
 			<% if @current_profile_id == review.reviewer_id %>
-				<td><%= link_to 'Edit', edit_review_path(review) %></td>
-				<td><%= link_to 'Destroy', review_path(review), method: :delete, data: { confirm: 'The review will be deleted!'} %></td>
+				<td><%= link_to 'Update', edit_review_path(review) %></td>
+				<td><%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'The review will be deleted!'} %></td>
 			<% end %>
 		</tr>
 	<% end %>

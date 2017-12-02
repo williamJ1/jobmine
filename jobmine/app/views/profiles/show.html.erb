@@ -4,38 +4,27 @@
 <h1>Here is the profile</h1>
 
 <p>
-  <% if @full_access%>
-      <%= flash[:notice] %>
-      <b>Address:</b><br>
-      <%= @show_user_profile.address %><br>
+  <%= flash[:notice] %>
+  <b>Address:</b><br>
+  <%= @show_user_profile.address %><br>
 
-      <b>Phone number:</b><br>
-      <%= @show_user_profile.phone_num %><br>
+  <b>Phone number:</b><br>
+  <%= @show_user_profile.phone_num %><br>
 
-      <b>Gender:</b><br>
-      <%= @show_user_profile.gender %><br>
+  <b>Gender:</b><br>
+  <%= @show_user_profile.gender %><br>
 
-      <b>Your user type:</b><br>
-      <%= @show_user_profile.user_type %><br>
+  <% if @full_access %>
+    <b>Your user type:</b><br>
+    <%= @show_user_profile.user_type %><br>
+  <% end %>
 
-      <b>Your average rating is:</b><br>
-      <%= @average_rating %><br>
-
-  <% else%>
-      <%= flash[:notice] %>
-      <b>Address:</b><br>
-      <%= @show_user_profile.address %><br>
-
-      <b>Phone number:</b><br>
-      <%= @show_user_profile.phone_num %><br>
-
-      <b>Gender:</b><br>
-      <%= @show_user_profile.gender %><br>
-
-      <b>Your average rating is:</b><br>
-      <%= @average_rating %><br>
-
-  <% end%>
+  <b>Your average rating:</b><br>
+  <% if @has_review %>
+    <%= @show_user_profile.average_rating.round(2) %><br>
+  <% else %>
+    <%= "No review yet!" %><br>
+  <% end %>
 </p>
 
 <div style='width: 800px;'>
@@ -57,7 +46,7 @@
   <tr>
     <th>Rating</th>
     <th>Reviewer</th>
-    <th>Body</th>
+    <th>Title</th>
     <th>Reviewed at</th>
     <th colspan = "2"></th>
   </tr>
@@ -66,8 +55,9 @@
     <tr>
       <td><%= review.rating %></td>
       <td><%= review.reviewer %></td>
-      <td><%= review.body %></td>
+      <td><%= review.title %></td>
       <td><%= review.created_at %></td>
+      <td><%= link_to 'Detail', review_path(review) %></td>
     </tr>
   <% end %>
 </table>

@@ -15,19 +15,19 @@ class ReviewsController < ApplicationController
 		$contract_id = params[:contract_id]
 		@profile = get_profile(params[:profile_id])
 		@cur_user_email = User.find(session[:current_user_id]).email
-		$cur_profile_id = Profile.find_by(user_id: 
-			session[:current_user_id]).id
 		@review = @profile.reviews.new
 	end
 
 	def edit
 		@cur_user_email = User.find(session[:current_user_id]).email
 		@review = Review.find(params[:id])
+		@contract_id = params[:contract_id]
 	end
 
 	def create
+		#contract_id = params[:contract_id]
 		@profile = get_profile(params[:profile_id])
-		@review = @profile.reviews.create(review_params)
+		@review = @profile.reviews.create(review_params.merge(:contract_id => $contract_id))
 
 		if @review.save
 			redirect_to @review
@@ -44,7 +44,7 @@ class ReviewsController < ApplicationController
 	def update
 		@review = Review.find(params[:id])
 
-		if @review.update(review_params)
+		if @review.update(review_params.merge(:contract_id => @review.contract_id))
 			redirect_to @review
 		else
 			render 'edit'
@@ -70,9 +70,8 @@ class ReviewsController < ApplicationController
 		end
 		def review_params
 			params.require(:review).permit(:rating, 
-				:body, :reviewer).merge(
-				:contract_id => $contract_id).merge(
-				:reviewer_id => $cur_profile_id)
+				:title, :body, :reviewer).merge(
+				:reviewer_id => get_current_profile_id)
 		end
 		helper_method :get_profile, :get_current_profile_id
 end

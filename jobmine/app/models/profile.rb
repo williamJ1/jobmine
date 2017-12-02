@@ -10,4 +10,15 @@ class Profile < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
+  def update_average_rating(profile_id)
+    profile = Profile.find_by(id: profile_id)
+    @value = 0
+    profile.reviews.each do |review|
+      @value = @value + review.rating
+    end
+    @total = profile.reviews.size
+
+    profile.update_attributes(average_rating: (@value.to_f) / (@total.to_f))
+  end
+
 end
