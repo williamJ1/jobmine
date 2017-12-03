@@ -13,6 +13,8 @@ class Review < ApplicationRecord
 
 	def update_profile_rating
 		profile = Profile.find_by(id: self.profile_id)
-		profile.update_average_rating(self.profile_id)
+		if profile != nil
+			profile.update_average_rating(self.profile_id)
+		end
 	end
 end

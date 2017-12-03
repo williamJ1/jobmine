@@ -8,9 +8,9 @@
 #teen user
 Contract.destroy_all
 Job.destroy_all
+Review.destroy_all
 Profile.destroy_all
 User.destroy_all
-Review.destroy_all
 Timeslot.destroy_all
 
 
