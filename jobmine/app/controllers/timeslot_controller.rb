@@ -31,9 +31,11 @@ class TimeslotController < ApplicationController
   end
 
   def approve
+    @timeslot = Timeslot.find_by(id: params[:timeslot_id])
     if params[:Approve]
       Timeslot.where(id: params[:timeslot_id]).update_all(approve_status: 1, paid_time: Time.now)
-      redirect_to update_timeslot_path
+      #redirect_to update_timeslot_path
+      redirect_to @timeslot.paypal_url(params[:timeslot_id], update_timeslot_path)
     else
       Timeslot.where(id: params[:timeslot_id]).update_all(approve_status: 2)
       redirect_to update_timeslot_path
