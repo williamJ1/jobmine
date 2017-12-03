@@ -11,7 +11,7 @@
   </div>
   <div id="logo" class="light-version">
         <span>
-            Homer Theme
+            JobMine
         </span>
   </div>
   <nav role="navigation">
@@ -57,9 +57,6 @@
                 <li class="nav-item">
                   <%= link_to "Transactions", transaction_summary_show_path(id: session[:current_user_id]), class:"nav-link"%>
                 </li>
-            <p class="float-right">
-              Hello <%= @email = @user.email%> !
-            </p>
         <% else%>
             <% if flash[:info] %>
                 <div class="navbar-text">You have successfully logged out!</div>
