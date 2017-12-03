@@ -1,36 +1,76 @@
-<div class="header clearfix">
 
-    <% if @user = User.find_by(id: session[:current_user_id])%>
-      <nav>
-        <ul class="nav nav-pills float-right">
+<!-- Simple splash screen-->
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>Homer - Responsive Admin Theme</h1><p>Special Admin Theme for small and medium webapp with very clean and aesthetic style and feel. </p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
 
-          <li class="nav-item">
-            <%= link_to "Log out", logout_path, method: :get, class:"nav-link"%>
+<!-- Header -->
+<div id="header">
+  <div class="color-line">
+  </div>
+  <div id="logo" class="light-version">
+        <span>
+            Homer Theme
+        </span>
+  </div>
+  <nav role="navigation">
+    <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+    <div class="small-logo">
+      <span class="text-primary">Job Mine</span>
+    </div>
+    <form role="search" class="navbar-form-custom" method="post" action="#">
+      <div class="form-group">
+        <input type="text" placeholder="Search something special" class="form-control" name="search">
+      </div>
+    </form>
+    <div class="mobile-menu">
+      <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+        <i class="fa fa-chevron-down"></i>
+      </button>
+      <div class="collapse mobile-navbar" id="mobile-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a class="" href="login.html">Login</a>
           </li>
-          <li class="nav-item">
-            <%= link_to "Home page", jobs_path, method: :get, class:"nav-link"%>
+          <li>
+            <a class="" href="login.html">Logout</a>
           </li>
-          <li class="nav-item">
-            <%= link_to "Profile", show_profile_path(id: session[:current_user_id]), class:"nav-link"%>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Transactions", transaction_summary_show_path(id: session[:current_user_id]), class:"nav-link"%>
+          <li>
+            <a class="" href="profile.html">Profile</a>
           </li>
         </ul>
-      </nav>
-      <h3 class="text-muted"> JobMine </h3>
-      <p class="float-right">
-        Hello <%= @email = @user.email%> !
-      </p>
-    <% else%>
-        <% if flash[:info] %>
-            <p class="float-right">You have successfully logged out!</p>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <ul class="nav navbar-nav no-borders">
+        <% if @user = User.find_by(id: session[:current_user_id])%>
+                <li class="nav-item">
+                  <%= link_to "Log out", logout_path, method: :get, class:"nav-link"%>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Home page", jobs_path, method: :get, class:"nav-link"%>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Profile", show_profile_path(id: session[:current_user_id]), class:"nav-link"%>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "Transactions", transaction_summary_show_path(id: session[:current_user_id]), class:"nav-link"%>
+                </li>
+            <p class="float-right">
+              Hello <%= @email = @user.email%> !
+            </p>
         <% else%>
-            <p class="float-right">You are not logged in yet!</p>
-        <%end%>
+            <% if flash[:info] %>
+                <div class="navbar-text">You have successfully logged out!</div>
+            <% else%>
+                <div class="navbar-text">You are not logged in yet!</div>
+            <%end%>
 
-    <% end%>
-
-
+        <% end%>
+      </ul>
+    </div>
+  </nav>
 </div>
+
 
