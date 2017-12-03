@@ -4,5 +4,6 @@ class Job < ApplicationRecord
 
   geocoded_by :location
   after_validation :geocode
+  before_save :geocode
 
 end

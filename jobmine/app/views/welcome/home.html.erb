@@ -2,6 +2,7 @@
 
 <p>Current signed employers: <%= Profile.where(user_type: 'employer').size %></p>
 <p>Current signed teenagers: <%= Profile.where(user_type: 'teen').size %></p>
+<p>Number of jobs posted: <%= Job.all.size%></p>
 
 <p>
   <%= link_to 'sign up', signup_path %>
