@@ -75,7 +75,7 @@ GEM
     execjs (2.7.0)
     ffi (1.9.18)
     ffi (1.9.18-x86-mingw32)
-    geocoder (1.4.4)
+    geocoder (1.4.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     gmaps4rails (2.1.2)
