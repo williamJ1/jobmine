@@ -228,7 +228,11 @@
             <td><%= job.description %></td>
             <td><%= job.location %></td>
             <td><%= job.hour_rate %></td>
-            <td><%= link_to 'Add review', new_profile_review_path(:profile_id => find_teen_profile_id_by_closed_job(job.id), :contract_id => find_contract_id_by_closed_job(job.id)) %></td>
+            <% if Review.where(contract_id: (Contract.find_by(job_id: job.id, accept_status: 3)).id).empty? %>
+              <td><%= link_to 'Add review', new_profile_review_path(:profile_id => find_teen_profile_id_by_closed_job(job.id), :contract_id => find_contract_id_by_closed_job(job.id)) %></td>
+            <% else %>
+              <td>Reviewed</td>
+            <% end %>
           </tr>
       <% end %>
       </tbody>
