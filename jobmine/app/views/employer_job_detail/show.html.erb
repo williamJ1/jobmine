@@ -24,10 +24,24 @@
 		<h2>Applied Teenagers:</h2>
 		<p>
 			<b>(Click teenager email to see profile)</b><br>
-			<% @applied_teens.each do |teen| %>
-				<%= link_to "#{teen.user.email}",show_profile_path(:id => teen.id) %>
-				<%= button_to "Accept", update_contract_path, :method=> :put, params: {job_id: @job_detail.id, profile_id: teen.id} %><br>
-			<% end %>
+
+			<table>
+				<tr>
+					<th>Teenagers</th>
+					<th>Average Rating</th>
+					<th>Accept?</th>
+					<th colspan = "2"></th>
+				</tr>
+
+				<% @applied_teens.each do |teen| %>
+					<tr>
+						<td><%= link_to "#{teen.user.email}",show_profile_path(:id => teen.id) %></td>
+						<td><%= teen.average_rating.round(2) %></td>
+						<td><%= button_to "Accept", update_contract_path, :method=> :put, params: {job_id: @job_detail.id, profile_id: teen.id} %></td>
+					</tr>
+				<% end %>
+			</table>
+
 		</p>
 	<% end %>
 </div>

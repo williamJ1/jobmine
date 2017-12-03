@@ -42,27 +42,29 @@
     } );
 </script>
 
-<table>
-  <tr>
-    <th>Rating</th>
-    <th>Reviewer</th>
-    <th>Title</th>
-    <th>Reviewed at</th>
-    <th colspan = "2"></th>
+<table class="table table-hover table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Rating</th>
+      <th scope="col">Reviewer</th>
+      <th scope="col">Title</th>
+      <th scope="col">Reviewed at</th>
+      <th scope="col">Check Detail</th>
   </tr>
-
+  </thead>
   <% @reviews.order(id: :desc).limit(3).each do |review| %>
     <tr>
       <td><%= review.rating %></td>
       <td><%= review.reviewer %></td>
       <td><%= review.title %></td>
-      <td><%= review.created_at %></td>
+      <td><%= review.created_at.strftime '%Y-%m-%d %H:%M:%S' %></td>
       <td><%= link_to 'Detail', review_path(review) %></td>
     </tr>
   <% end %>
 </table>
 
 <% if @more_review %>
+  <p>...</p>
   <p><%= link_to 'More', profile_reviews_path(@show_user_profile.id) %></p>
 <% end %>
 

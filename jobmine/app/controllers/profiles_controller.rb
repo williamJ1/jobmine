@@ -72,14 +72,4 @@ class ProfilesController < ApplicationController
     params.require(:profiles).permit(:address, :phone_num, :gender, :user_type).merge(:user_id => session[ :current_user_id])
   end
 
-  def average_rating(profile_id)
-    profile = Profile.find_by(id: profile_id)
-    @rating = 0
-    profile.reviews.each do |review|
-      @rating = @rating + review.rating
-    end
-    @total = profile.reviews.size
-    return '%.2f' % ((@rating.to_f) / (@total.to_f))
-  end
-
 end

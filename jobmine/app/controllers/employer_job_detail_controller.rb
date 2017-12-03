@@ -3,7 +3,6 @@ class EmployerJobDetailController < ApplicationController
     @job_id = params[:id]
 
     @job_detail = Job.find_by(id: @job_id)
-    #@cur_user_id = session[:current_user_id]
 
     @is_empty_contract = true
     @applied_teens = []
@@ -15,6 +14,7 @@ class EmployerJobDetailController < ApplicationController
           flash[:alert] = "some thing went wrong"
         end
         @applied_teens.push(contract_obj.profile)
+        @applied_teens.sort_by{ |teen| teen.average_rating }.reverse
       end
       @is_empty_contract = false
     else
