@@ -36,7 +36,11 @@
 				<% @applied_teens.each do |teen| %>
 					<tr>
 						<td><%= link_to "#{teen.user.email}",show_profile_path(:id => teen.id) %></td>
-						<td><%= teen.average_rating.round(2) %></td>
+						<td><%= teen.average_rating.round(2) %> 
+							<% if teen.rating_star > 0 %>
+								<span class="badge badge-pill badge-success"><%= "High rated" %></span>
+							<% end %>
+						</td>
 						<td><%= button_to "Accept", update_contract_path, :method=> :put, params: {job_id: @job_detail.id, profile_id: teen.id} %></td>
 					</tr>
 				<% end %>
