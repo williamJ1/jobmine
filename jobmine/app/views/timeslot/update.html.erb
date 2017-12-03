@@ -22,7 +22,7 @@
           <ul class="list-group">
             <li class="list-group-item p-3 mb-2 bg-secondary">
               <%= check_box_tag 'timeslot_id[]', time.id %>
-              <%= time.date_time_begin %>
+              <%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %>
               <%= time.time_length %>
             </li>
           </ul>
@@ -48,7 +48,7 @@
     <tbody>
       <% @approved_timeslots.each do |time| %>
         <tr>
-          <td><%= time.date_time_begin %></td>
+          <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
           <td><%= time.time_length %></td>
         </tr>
     <% end %>
@@ -69,7 +69,7 @@
     <tbody>
     <% @rejected_timeslots.each do |time| %>
         <tr>
-          <td><%= time.date_time_begin %></td>
+          <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
           <td><%= time.time_length %></td>
         </tr>
     <% end %>

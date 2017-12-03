@@ -25,7 +25,7 @@
   <tbody>
   <% @timeslots.find_all{|ts| ts.approve_status == 0}.each  do |time| %>
       <tr>
-        <td><%= time.date_time_begin %></td>
+        <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
         <td><%= time.time_length %></td>
         <td>Pending</td>
         <td>Not yet reviewed</td>
@@ -51,7 +51,7 @@
   <tbody>
   <% @timeslots.find_all{|ts| ts.approve_status == 1}.each  do |time| %>
       <tr>
-        <td><%= time.date_time_begin %></td>
+        <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
         <td><%= time.time_length %></td>
         <td>Approved</td>
         <td><%=time.paid_time%></td>
@@ -66,8 +66,10 @@
     <table>
       <thead>
       <tr>
-        <th>Time begin</th>
+        <th>Date</th>
         <!--<th>Created by user</th>-->
+        <th>Begin time</th>
+        <th>Begin time</th>
         <th>Length</th>
         <th>Approve Status</th>
         <th>Paid time</th>
@@ -87,13 +89,16 @@
                       <%= form.text_field :date_time_begin, class:'datepicker' %>
                     </td>
                     <td>
+                      <%= form.text_field :time_begin %>
+                    </td>
+                    <td>
                       <%= form.text_field :time_length %>
                     </td>
                     <td>
-                      <%= form.submit 'Add Time'%>
+                      <%= form.submit 'Change Time'%>
                     </td>
             <%else%>
-                <td><%= time.date_time_begin %></td>
+                <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
                 <td><%= time.time_length %></td>
                 <td>Rejected</td>
                 <td>Not paid</td>
@@ -124,7 +129,7 @@
       <tbody>
       <% @timeslots.find_all{|ts| ts.approve_status == 2}.each  do |time| %>
           <tr>
-            <td><%= time.date_time_begin %></td>
+            <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
             <td><%= time.time_length %></td>
             <td>Rejected</td>
             <td>Not paid</td>
@@ -147,8 +152,12 @@
 <h2>add more time</h2>
 <%= form_for :timeslot, url: add_timeslot_path do |form| %>
     <p>
-      <%= form.label :date_time_begin %>
+      <%= form.label :date%>
       <%= form.text_field :date_time_begin, class:'datepicker' %>
+    </p>
+    <p>
+      <%= form.label :time_begin %>
+      <%= form.text_field :time_begin%>
     </p>
     <p>
       <%= form.label :time_length %>
