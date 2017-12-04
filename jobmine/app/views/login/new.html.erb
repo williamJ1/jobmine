@@ -1,25 +1,50 @@
-<h1>Log in</h1>
+<div class="login-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center m-b-md">
+        <h2>Log in</h2>
+        <small>This is the best app ever!</small>
+      </div>
+      <div class="hpanel">
+        <div class="panel-body">
+          <p class="text-warning">
+            <%=flash[:info] %>
+            <%= flash[:warning] %>
+          </p>
 
-<p>
-  <%=flash[:info] %>
-  <%= flash[:warning] %>
-</p>
+          <div class="form-group">
 
-<%=form_for :login, url: login_path do |t|%>
-  <p>
-    <%= t.label :email%>
-    <%= t.text_field :email %>
-  </p>
+            <%=form_for :login, url: login_path do |t|%>
+                <%= t.label :email%>
+                <%= t.text_field :email, class:"form-control", placeholder:"example@gmail.com" %>
+                <span class="help-block small">Email address is your username!</span>
+                </p>
 
-    <p>
-      <%= t.label :password %>
-      <%= t.password_field :password %>
-    </p>
+                <p class="control-label">
+                  <label class="control-label"><%= t.label :password%></label>
+                  <%= t.password_field :password, class:"form-control", placeholder:"***************"%>
+                  <span class="help-block small">Your strong password!</span>
+                </p>
+                <div class="checkbox">
+                  <input type="checkbox" class="i-checks" checked>
+                  Remember login
+                  <p class="help-block small">(if this is a private computer)</p>
+                </div>
 
-    <p>
-      <%= t.submit value: 'Log in' %>
-    </p>
+                <p>
+                  <%= t.submit value: 'Log in', class:"btn btn-success btn-block"%>
+                </p>
+                <%= link_to "forgot password", new_password_reset_path, class:"btn btn-default btn-block"%>
+            <%end%>
 
-    <%= link_to "(forgot password)", new_password_reset_path %>
-
-<%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <strong>Developed by</strong> - Jobmine group <br/> 2015 Copyright Jobmine
+    </div>
+  </div>
+</div>
