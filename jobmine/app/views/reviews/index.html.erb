@@ -21,67 +21,43 @@
 
 	<div class="content">
 
-		<div class="row">
-			<div class="col-md-12">
-			<div class="hpanel">
-				<div class="v-timeline vertical-container animate-panel" data-child="vertical-timeline-block" data-delay="1">
 
-					<% @reviews.each do |review| %>
 
-						<div class="vertical-timeline-block">
-							<div class="vertical-timeline-icon navy-bg">
-								<i class="fa fa-comment"></i>
-							</div>
-							<div class="vertical-timeline-content">
-								<div class="p-sm">
-									<span class="vertical-date pull-right"> <%= review.updated_at.strftime '%Y-%m-%d' %> <br/>
-										<small><%= review.updated_at.strftime '%H:%M:%S' %></small>
-									</span>
-
-									<h1><%= review.title %></h1>
-									<h2><%= review.rating %></h2>
-									<h3><%= review.body %></h3>
-								</div>
-								<div class="panel-footer">
-									<%= review.reviewer %> | <%= link_to 'Detail', review_path(review) %>
-								</div>
-							</div>
+	<div class="row">
+		<% @reviews.each do |review| %>
+		<div class="col-md-3">
+			<div class="hpanel blog-box">
+				<div class="panel-heading">
+					<div class="media clearfix">
+						<a class="pull-left">
+							<i class="fa fa-comment"></i>
+						</a>
+						<div class="media-body">
+							<small>Created by: <span class="font-bold"><%= review.reviewer %></span> 
+							</small><br/>
+							<small class="text-muted"><%= review.updated_at.strftime '%d.%m.%Y, %H:%M' %></small>
 						</div>
-
-					<% end %>
-				
+					</div>
 				</div>
-				<%= link_to 'Back', profile_path(@profile) %>
-			</div>
+				<div class="panel-body">
+					<a href=<%=review_path(review) %>> <h4><%= review.title %></h4></a>
+					<p>
+						<%= review.body.truncate_words(20) %>
+					</p>
+					<% if review.body.length > 20 %>
+						<a href=<%=review_path(review) %> class="btn btn-info btn-xs">
+							<i class="pe-7s-more"></i>
+							Read more
+						</a>
+					<% end %>
+				</div>
 			</div>
 		</div>
+		<% end %>
 	</div>
-
-
-
-<% if false %>
-<table>
-	<tr>
-		<th>Rating</th>
-		<th>Reviewer</th>
-		<th>Body</th>
-		<th colspan = "2"></th>
-	</tr>
-
-	<% @reviews.each do |review| %>
-		<tr>
-			<td><%= review.rating %></td>
-			<td><%= review.reviewer %></td>
-			<td><%= review.title %></td>
-			<td><%= link_to 'Detail', review_path(review) %></td>
-			<% if @current_profile_id == review.reviewer_id %>
-				<td><%= link_to 'Update', edit_review_path(review) %></td>
-				<td><%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: 'The review will be deleted!'} %></td>
-			<% end %>
-		</tr>
-	<% end %>
-</table>
-
-
-<%= link_to 'Back', profile_path(@profile) %>
-<% end %>
+	<div>
+	<button href= <%= profile_path(@profile) %> type="button" class="btn btn-block btn-outline btn-primary">
+		Back
+	</button>
+	</div>
+	</div>
