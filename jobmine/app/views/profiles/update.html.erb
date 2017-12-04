@@ -1,2 +1,36 @@
-<h1>Profiles#update</h1>
-<p>Find me in app/views/profiles/update.html.erb</p>
+<h1>Modify Profile</h1>
+
+
+<%= form_tag url: update_profile_path, method: "patch" do %>
+
+
+
+    <p>
+      <%= label_tag :address %>
+      <%= text_field_tag :address %>
+    </p>
+
+    <p>
+      <%= label_tag :phone_num %>
+      <%= text_field_tag :phone_num %>
+    </p>
+
+    <p>
+      gender: <%= @profile.gender %>
+    </p>
+
+
+    <p>
+      user type: <%= @profile.user_type %>
+    </p>
+
+
+
+    <p>
+      <%= submit_tag %>
+    </p>
+
+
+
+<% end %>
+

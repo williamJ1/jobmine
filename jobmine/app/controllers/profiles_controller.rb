@@ -48,6 +48,13 @@ class ProfilesController < ApplicationController
     end
     #TODO: add review and rating once review table is implemented
     #redirect_to new_job_path
+    @cur_user_id = session[:current_user_id]
+    if @cur_user_id.to_i == @show_user_id.to_i
+      @can_modify_profile = true
+    else 
+      @can_modify_profile = false
+    end
+
   end
 
   def create
@@ -62,6 +69,18 @@ class ProfilesController < ApplicationController
       redirect_to new_profile_path
     end
 
+  end
+
+  def update
+    @cur_user_id = session[:current_user_id]
+    @profile = Profile.find(@cur_user_id)
+    @profile.address = params[:address]
+    @profile.phone_num = params[:phone_num]
+    if @profile.save
+      redirect_to show_profile_path(:id => @cur_user_id)
+    else
+      flash[:error] = "Not saved correctly" 
+    end
   end
 
   private

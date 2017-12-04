@@ -4,7 +4,7 @@
 <h1>Here is the profile</h1>
 
 <p>
-  <%= flash[:notice] %>
+  <%= flash[:notice] %><br>
   <b>Address:</b><br>
   <%= @show_user_profile.address %><br>
 
@@ -68,5 +68,8 @@
   <p><%= link_to 'More', profile_reviews_path(@show_user_profile.id) %></p>
 <% end %>
 
+<% if @can_modify_profile %>
+   <p><%= button_to "Modify", update_profile_path %></p>
+<% end %>
 
 <!-- TODO: add review and rating later -->
