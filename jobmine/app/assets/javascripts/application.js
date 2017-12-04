@@ -18,12 +18,7 @@
 //= require jquery-ui
 //= require underscore
 //= require gmaps/google
-
-//= require jquery.slimscroll
-//= require bootstrap/dist/js/bootstrap
-//= require /metisMenu/dist/metisMenu
-//= require iCkeck/icheck
-//= require sparkline/index
+//= require bootstrap
 
 //= require_tree .
 
