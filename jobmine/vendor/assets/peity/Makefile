@@ -34,6 +34,6 @@ server:
 test:
 	rm -f test/comparisons/*
 	rm -f test/images/*
-	./node_modules/.bin/mocha -R spec -t 30000 $(ARGS) ./test/index.js
+	./node_modules/.bin/mocha -R spec -t 30000 $(ARGS) ./test/sparkline.js
 
 .PHONY: clean fixtures release server test

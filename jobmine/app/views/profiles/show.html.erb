@@ -3,6 +3,10 @@
 <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
 <h1>Here is the profile</h1>
 
+<% if @can_modify_profile %>
+   <p><%= button_to "Modify", update_profile_path(:id => @show_user_profile.id) %></p>
+<% end %>
+
 <p>
   <%= flash[:notice] %><br>
   <b>Address:</b><br>
@@ -68,8 +72,5 @@
   <p><%= link_to 'More', profile_reviews_path(@show_user_profile.id) %></p>
 <% end %>
 
-<% if @can_modify_profile %>
-   <p><%= button_to "Modify", update_profile_path %></p>
-<% end %>
 
 <!-- TODO: add review and rating later -->

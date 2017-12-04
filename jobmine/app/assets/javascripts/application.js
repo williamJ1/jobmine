@@ -12,13 +12,22 @@
 //
 //
 
-//= require rails-ujs
-//= require turbolinks
-//= require jquery
+//= require jquery3
+//= require popper
+
+
+//= require jquery.slimscroll.min
+//= require dist/metisMenu.min
+//= require icheck.min
+//= require jquery.peity.min
+//= require sparkline
+//= require bootstrap
+
 //= require jquery-ui
 //= require underscore
 //= require gmaps/google
-//= require bootstrap
+
 
 //= require_tree .
+
 
