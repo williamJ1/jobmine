@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'admin/index'
+
   get 'password_reset/new'
 
   get 'password_reset/edit'
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
   post '/close_contract', to: 'contract#close'
 
   resources :jobs
+
+  #resources :admins
   # get 'profiles/create'
   #
   # get 'profiles/save'
@@ -46,6 +50,11 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
 
+  get '/admin', to: 'admin#new'
+  post '/admin', to: 'admin#create'
+  get '/index_admin', to: 'admin#index'
+  put '/suspend_timeslot', to: 'admin#suspend'
+  put '/activate_timeslot', to: 'admin#activate'
 
   resources :profiles do
     resources :reviews, only: [:index, :new, :create]#shallow: true

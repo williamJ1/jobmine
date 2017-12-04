@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center m-b-md">
+        <h2>Log in</h2>
+        <small>Please use admin unsername and passwd to login</small>
+      </div>
+      <div class="hpanel">
+        <div class="panel-body">
+          <p class="text-warning">
+            <%=flash[:info] %>
+            <%= flash[:warning] %>
+          </p>
+
+          <div class="form-group">
+
+            <%=form_for :login, url: admin_path do |t|%>
+                <%= t.label :email%>
+                <%= t.text_field :email, class:"form-control", placeholder:"example@gmail.com" %>
+                <span class="help-block small">Your admin email !</span>
+                </p>
+
+                <p class="control-label">
+                  <label class="control-label"><%= t.label :password%></label>
+                  <%= t.password_field :password, class:"form-control", placeholder:"***************"%>
+                  <span class="help-block small">Your admin password !</span>
+                </p>
+                <div class="checkbox">
+                  <input type="checkbox" checked>
+                  Remember login
+                  <p class="help-block small">(if this is a private computer)</p>
+                </div>
+
+                <p>
+                  <%= t.submit value: 'Log in', class:"btn btn-primary btn-block"%>
+                </p>
+            <%end%>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <strong>Developed by</strong> - Jobmine group <br/> 2015 Copyright Jobmine
+    </div>
+  </div>
+</div>

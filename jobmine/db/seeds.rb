@@ -17,43 +17,46 @@ Timeslot.destroy_all
 ######login for teenager: teen_user
 ######login for employer: emp_user_1
 
+#seed 1 admin
+admin  = User.create(email: 'admin@a.com', password: '123', password_confirmation: '123', account_status: 'activate')
+
 #seed 8 teenager
-teen_user = User.create(email: 'Stephen_Smith@t.com', password: '123', password_confirmation: '123')
+teen_user = User.create(email: 'Stephen_Smith@t.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #teen profile
 teen_profile = Profile.create(address: '500 Kingston Rd Toronto ON M4L 1V3(Toronto ,Ontario)', phone_num: 4166948464,
                             gender: 'male', user_id: teen_user.id, user_type: 'teen')
 
-teen_user_1 = User.create(email: 'John_Smith@t.com', password: '123', password_confirmation: '123')
+teen_user_1 = User.create(email: 'John_Smith@t.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #teen profile
 teen_profile_1 = Profile.create(address: '315 St Germain Ave Toronto ON M5M 1W4(Toronto ,Ontario)', phone_num: 4163227518,
                             gender: 'male', user_id: teen_user_1.id, user_type: 'teen')
 
-teen_user_2 = User.create(email: 'Lila_Jenkins@t.com', password: '123', password_confirmation: '123')
+teen_user_2 = User.create(email: 'Lila_Jenkins@t.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #teen profile
 teen_profile_2 = Profile.create(address: '234 Willow Ave Toronto ON M4E 3K7(Toronto ,Ontario)', phone_num: 4166998444,
                             gender: 'female', user_id: teen_user_2.id, user_type: 'teen')
 
-teen_user_3 = User.create(email: 'Nellie_Ryan@t.com', password: '123', password_confirmation: '123')
+teen_user_3 = User.create(email: 'Nellie_Ryan@t.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #teen profile
 teen_profile_3 = Profile.create(address: '26 Goodwood Park Cres East York ON M4C 2G5(Toronto ,Ontario)' , phone_num: 4166998071,
 																gender: 'female', user_id: teen_user_3.id, user_type: 'teen')
 
-teen_user_4 = User.create(email: 'James_Smith@t.com', password: '123', password_confirmation: '123')
+teen_user_4 = User.create(email: 'James_Smith@t.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #teen profile
 teen_profile_4 = Profile.create(address: '48 St Clair Ave W Toronto ON M4V 2Z2(Toronto ,Ontario)', phone_num: 4163040129,
 																gender: 'male', user_id: teen_user_4.id, user_type: 'teen')
 
-teen_user_5 = User.create(email: 'Donald_Smith@t.com', password: '123', password_confirmation: '123')
+teen_user_5 = User.create(email: 'Donald_Smith@t.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #teen profile
 teen_profile_5 = Profile.create(address: '48 Norwood Rd Toronto ON M4E 2S2(Toronto ,Ontario)', phone_num: 4166981502,
 																gender: 'male', user_id: teen_user_5.id, user_type: 'teen')
 
-teen_user_6 = User.create(email: 'Kate_Hughes@t.com', password: '123', password_confirmation: '123')
+teen_user_6 = User.create(email: 'Kate_Hughes@t.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #teen profile
 teen_profile_6 = Profile.create(address: '717 Broadview Ave Toronto ON M4K 2P5(Toronto ,Ontario)', phone_num: 4166980092,
 																gender: 'female', user_id: teen_user_6.id, user_type: 'teen')
 
-teen_user_7 = User.create(email: 'Lucy_Grant@t.com', password: '123', password_confirmation: '123')
+teen_user_7 = User.create(email: 'Lucy_Grant@t.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #teen profile
 teen_profile_7 = Profile.create(address: '65 Harbour Sq Toronto ON M5J 2L4(Toronto ,Ontario)', phone_num: 4168636627,
 																gender: 'female', user_id: teen_user_7.id, user_type: 'teen')
@@ -62,47 +65,47 @@ teen_profile_7 = Profile.create(address: '65 Harbour Sq Toronto ON M5J 2L4(Toron
 
 #seed 8 employer
 
-emp_user = User.create(email: 'Paula_Gardner_0_1@e.com', password: '123', password_confirmation: '123')
+emp_user = User.create(email: 'Paula_Gardner_0_1@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile = Profile.create(address: '17 Whitaker Ave Toronto ON M6J 1A2(Toronto ,Ontario)	', phone_num: 4163634231,
 															 gender: 'male', user_id: emp_user.id, user_type: 'employer')
 
-emp_user_0 = User.create(email: 'Paula_Gardner@e.com', password: '123', password_confirmation: '123')
+emp_user_0 = User.create(email: 'Paula_Gardner@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile_0 = Profile.create(address: '17 Whitaker Ave Toronto ON M6J 1A2(Toronto ,Ontario)	', phone_num: 4163634231,
                                gender: 'male', user_id: emp_user_0.id, user_type: 'employer')
 
-emp_user_1 = User.create(email: 'Roberto_Murphy@e.com', password: '123', password_confirmation: '123')
+emp_user_1 = User.create(email: 'Roberto_Murphy@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile_1 = Profile.create(address: '127 Scarborough Rd Toronto ON M4E 3M4(Toronto ,Ontario)', phone_num: 4166949887,
                             gender: 'male', user_id: emp_user_1.id, user_type: 'employer')
 
-emp_user_2 = User.create(email: 'Theodore_Green@e.com', password: '123', password_confirmation: '123')
+emp_user_2 = User.create(email: 'Theodore_Green@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile_2 = Profile.create(address: '65 Harbour Sq Toronto ON M5J 2L4(Toronto ,Ontario)', phone_num: 4168636627,
 															 gender: 'male', user_id: emp_user_2.id, user_type: 'employer')
 
-emp_user_3 = User.create(email: 'Yvonne_Boone@e.com', password: '123', password_confirmation: '123')
+emp_user_3 = User.create(email: 'Yvonne_Boone@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile_3 = Profile.create(address: '1210 Don Mills Rd North York ON M3B 3N9(Toronto ,Ontario)', phone_num: 4166965339,
 															 gender: 'female', user_id: emp_user_3.id, user_type: 'employer')
 
-emp_user_4 = User.create(email: 'Janie_Mccoy@e.com', password: '123', password_confirmation: '123')
+emp_user_4 = User.create(email: 'Janie_Mccoy@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile_4 = Profile.create(address: '796 Bloor St W, Toronto, ON M6G 1L7', phone_num: 4166980092,
 															 gender: 'female', user_id: emp_user_4.id, user_type: 'employer')
 
-emp_user_5 = User.create(email: 'Clay_Foster@e.com', password: '123', password_confirmation: '123')
+emp_user_5 = User.create(email: 'Clay_Foster@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile_5 = Profile.create(address: '48 Norwood Rd Toronto ON M4E 2S2(Toronto ,Ontario)', phone_num: 4166981502,
 															 gender: 'female', user_id: emp_user_5.id, user_type: 'employer')
 
-emp_user_6 = User.create(email: 'Freda_Fitzgerald@e.com', password: '123', password_confirmation: '123')
+emp_user_6 = User.create(email: 'Freda_Fitzgerald@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile_6 = Profile.create(address: '300 Silver Birch Ave Toronto ON M4E 3L5(Toronto ,Ontario)', phone_num: 4166980386,
 															 gender: 'male', user_id: emp_user_6.id, user_type: 'employer')
 
-emp_user_7 = User.create(email: 'Howard_Chavez@e.com', password: '123', password_confirmation: '123')
+emp_user_7 = User.create(email: 'Howard_Chavez@e.com', password: '123', password_confirmation: '123', account_status: 'activate')
 #employer profile
 emp_profile_7 = Profile.create(address: '8 Oliver Mews Toronto ON M4L 3E4(Toronto ,Ontario)', phone_num: 4166982765,
 															 gender: 'male', user_id: emp_user_7.id, user_type: 'employer')
