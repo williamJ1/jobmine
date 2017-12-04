@@ -218,15 +218,15 @@ timeslot4 = Timeslot.create(date_time_begin: work_time_5, time_length: 5, approv
 
 
 #reviews
-review1 = Review.create(rating: 4, title:'title1', body: 'review1', profile_id: teen_profile.id, reviewer: 'emp@e.com',reviewer_id: emp_profile.id, contract_id: contract2.id)
-review2 = Review.create(rating: 4.5, title:'title2', body: 'review2', profile_id: teen_profile_1.id, reviewer: 'emp@e.com',reviewer_id: emp_profile.id, contract_id: contract2.id)
-review3 = Review.create(rating: 3.5, title:'title3', body: 'review3', profile_id: teen_profile_2.id, reviewer: 'emp@e.com',reviewer_id: emp_profile.id, contract_id: contract2.id)
-review4 = Review.create(rating: 5, title:'title4', body: 'review4', profile_id: emp_profile.id, reviewer: 'teen@t.com',reviewer_id: teen_profile.id, contract_id: contract2.id)
-review5 = Review.create(rating: 3, title:'title5', body: 'review5', profile_id: emp_profile.id, reviewer: 'teen@t.com',reviewer_id: teen_profile.id, contract_id: contract2.id)
-review6 = Review.create(rating: 2.5, title:'title6', body: 'review6', profile_id: emp_profile_1.id, reviewer: 'teen2@t.com',reviewer_id: teen_profile_2.id, contract_id: contract2.id)
-review7 = Review.create(rating: 2, title:'title7', body: 'review7', profile_id: teen_profile_1.id, reviewer: 'emp1@e.com',reviewer_id: emp_profile_1.id, contract_id: contract2.id)
-review8 = Review.create(rating: 1.5, title:'title8', body: 'review8', profile_id: teen_profile_2.id, reviewer: 'emp1@e.com',reviewer_id: emp_profile_1.id, contract_id: contract2.id)
-review9 = Review.create(rating: 1, title:'title9', body: 'review9', profile_id: emp_profile.id, reviewer: 'teen1@t.com',reviewer_id: teen_profile_1.id, contract_id: contract2.id)
-review10 = Review.create(rating: 4.5, title:'title10', body: 'review10', profile_id: emp_profile.id, reviewer: 'teen1@t.com',reviewer_id: teen_profile_1.id, contract_id: contract2.id)
+review1 = Review.create(rating: 4, title:'Good', body: 'Good proformance!', profile_id: teen_profile.id, reviewer: 'Roberto_Murphy@e.com',reviewer_id: emp_profile_1.id, contract_id: contract7.id)
+review2 = Review.create(rating: 4.5, title:'Excellent', body: 'Excellent work!!', profile_id: teen_profile.id, reviewer: 'Roberto_Murphy@e.com',reviewer_id: emp_profile_1.id, contract_id: contract7.id)
+review3 = Review.create(rating: 3.5, title:'Good', body: 'Good proformance!', profile_id: teen_profile.id, reviewer: 'Roberto_Murphy@e.com',reviewer_id: emp_profile_1.id, contract_id: contract8.id)
+review4 = Review.create(rating: 1, title:'Bad', body: 'Bad work -_-', profile_id: teen_profile.id, reviewer: 'Roberto_Murphy@e.com',reviewer_id: emp_profile_1.id, contract_id: contract7.id)
+review5 = Review.create(rating: 5, title:'Excellent', body: 'Excellent work!!', profile_id: teen_profile.id, reviewer: 'Roberto_Murphy@e.com',reviewer_id: emp_profile_1.id, contract_id: contract8.id)
+review6 = Review.create(rating: 3.5, title:'Good', body: 'Good proformance!', profile_id: emp_profile_1.id, reviewer: 'Stephen_Smith@t.com',reviewer_id: teen_profile.id, contract_id: contract7.id)
+review7 = Review.create(rating: 4, title:'Good', body: 'Good proformance!', profile_id: emp_profile_1.id, reviewer: 'Stephen_Smith@t.com',reviewer_id: teen_profile.id, contract_id: contract8.id)
+review8 = Review.create(rating: 3.5, title:'Good', body: 'Good proformance!', profile_id: emp_profile_1.id, reviewer: 'Stephen_Smith@t.com',reviewer_id: teen_profile.id, contract_id: contract8.id)
+review9 = Review.create(rating: 1.5, title:'Bad', body: 'Bad work -_-', profile_id: emp_profile_1.id, reviewer: 'Stephen_Smith@t.com',reviewer_id: teen_profile.id, contract_id: contract8.id)
+review10 = Review.create(rating: 4.5, title:'Excellent', body: 'Excellent work!!', profile_id: emp_profile_1.id, reviewer: 'Stephen_Smith@t.com',reviewer_id: teen_profile.id, contract_id: contract7.id)
 
 

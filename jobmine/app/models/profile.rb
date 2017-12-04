@@ -4,6 +4,7 @@ class Profile < ApplicationRecord
   has_one :payment
   has_many :jobs
   has_many :reviews
+  has_many :notifications, foreign_key: :recipient_id
   validates :address, presence: { message: "please provide address"}
   validates :phone_num, presence: {message: "please provide phone num"}
 

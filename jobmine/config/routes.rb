@@ -61,6 +61,11 @@ Rails.application.routes.draw do
   # DESTROY path: /reviews/:id(.format)   Named Helper: review_path
   get '/check_profile', to: 'profiles#check_profile'
   get '/show_profile', to: 'profiles#show'
+  get '/update_profile', :to => 'profiles#update'
+  patch '/update_profile', to: 'profiles#update'
+  post '/update_profile', to: 'profiles#update'
+  #get '/update_profile', :to => 'profiles#update'
+                          #:as => :update_profile
 
   resources :teen_job_details
   #get '/show_teen_job_detail', to: 'teen_job_detail#show'
@@ -80,6 +85,6 @@ Rails.application.routes.draw do
   resources :password_reset
 
 
-
+  resources :notifications
 
 end
