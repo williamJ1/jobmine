@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
 		@current_profile_id = get_current_profile_id
 		@profile = get_profile(params[:profile_id])
 		@reviews = @profile.reviews.all
+		@reviews.order(updated_at: :desc)
 	end
 
 	def show
