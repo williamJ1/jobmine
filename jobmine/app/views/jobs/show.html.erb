@@ -1,26 +1,57 @@
-<p id="notice"><%= notice %></p>
+<div class="normalheader transition">
+  <div class="hpanel">
+    <div class="panel-body">
+      <a class="small-header-action" href="">
+        <div class="clip-header">
+          <i class="fa fa-arrow-up"></i>
+        </div>
+      </a>
 
-<p>
-  <strong>Title:</strong>
-  <%= @job.name %>
-</p>
+      <div id="hbreadcrumb" class="pull-right m-t-lg">
+        <ol class="hbreadcrumb breadcrumb">
+          <li><span>JobMine</span></li>
+          <li>
+            <span>Projects</span>
+          </li>
+        </ol>
+      </div>
+      <h2 class="font-light m-b-xs">
+        Project detail:
+      </h2>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @job.description %>
-</p>
+<div class="content">
 
-<p>
-  <strong>Begin date time:</strong>
-   <td><%= @job.begin_date_time.strftime("%Y")+'/'+@job.begin_date_time.strftime("%m")+'/'+@job.begin_date_time.strftime("%d") %></td>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="hpanel">
+					<p>
+  					<strong>Title:</strong>
+  					<%= @job.name %>
+					</p>
 
-</p>
+					<p>
+  					<strong>Description:</strong>
+  					<%= @job.description %>
+					</p>
 
-<p>
-  <strong>End date time:</strong>
-  <td><%= @job.end_date_time.strftime("%Y")+'/'+@job.end_date_time.strftime("%m")+'/'+@job.end_date_time.strftime("%d") %></td>
+					<p>
+  					<strong>Begin date time:</strong>
+   					<td><%= @job.begin_date_time.strftime("%Y")+'/'+@job.begin_date_time.strftime("%m")+'/'+@job.begin_date_time.strftime("%d") %></td>
+   				</p>
 
-</p>
+					<p>
+  					<strong>End date time:</strong>
+  					<td><%= @job.end_date_time.strftime("%Y")+'/'+@job.end_date_time.strftime("%m")+'/'+@job.end_date_time.strftime("%d") %></td>
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
+					</p>
+
+			</div>
+		</div>
+		<%= button_to 'Modify', edit_job_path(@job), Class:"btn btn-success" %>
+		<%= button_to 'Back', jobs_path, Class:"btn btn-default" %>
+	</div>
+</div>
+
