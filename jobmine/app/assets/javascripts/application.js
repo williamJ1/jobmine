@@ -23,12 +23,11 @@
 //= require sparkline
 //= require bootstrap
 
-//= require turbolinks
 //= require jquery-ui
 //= require underscore
 //= require gmaps/google
-//= require bootstrap
 
 
 //= require_tree .
+
 
