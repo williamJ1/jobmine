@@ -22,6 +22,7 @@ class ReviewsController < ApplicationController
 	def edit
 		@cur_user_email = User.find(session[:current_user_id]).email
 		@review = Review.find(params[:id])
+		@profile_obj = get_profile(@review.profile_id)
 		@contract_id = params[:contract_id]
 	end
 
