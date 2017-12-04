@@ -7,6 +7,12 @@ class EmployerJobDetailController < ApplicationController
     @is_empty_contract = true
     @applied_teens = []
 
+    @hcolor = [
+      "hpanel plan-box hyellow", 
+      "hpanel plan-box hblue", 
+      "hpanel plan-box hred"
+    ]
+
     if Contract.where(job_id: @job_id).exists?
       @contracts = Contract.where(job_id: @job_id)
       @contracts.each do |contract_obj|
