@@ -2,6 +2,9 @@ class ContractController < ApplicationController
   def create
     @my_contract = Contract.new(contract_params)
     if @my_contract.save
+      #notify the employer that a teen has applied
+      Notification.create(recipient: @my_contract.job.profile, actor: @my_contract.profile, action: "applied for job")
+
       flash[:notice] = "Apply successful"
       redirect_to jobs_path
     else
