@@ -74,10 +74,11 @@ class ProfilesController < ApplicationController
 
   def update
     @cur_user_id = session[:current_user_id]
-    @profile = Profile.find(@cur_user_id)
+    @profile = Profile.find_by(user_id: @cur_user_id)
     @profile.address = params[:address]
     @profile.phone_num = params[:phone_num]
-    if @profile.save
+    @profile.save()
+    if @profile.save()
       redirect_to show_profile_path(:id => @cur_user_id)
     else
       flash[:error] = "Not saved correctly" 
