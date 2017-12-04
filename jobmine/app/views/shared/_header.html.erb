@@ -56,8 +56,6 @@
                   </ul>
                 </li>
 
-
-
                 <li class="nav-item">
                   <%= link_to "Transactions", transaction_summary_show_path(id: session[:current_user_id]), class:"nav-link"%>
                 </li>
@@ -75,9 +73,25 @@
 
         <% else%>
             <% if flash[:info] %>
-                <div class="navbar-text">You have successfully logged out!</div>
+
+                <li>
+                  <div class="navbar-text">You have successfully logged out!</div>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'login', login_path,  class:"btn btn-default btn-block"%>
+
+                </li>
             <% else%>
-                <div class="navbar-text">You are not logged in yet!</div>
+
+                <li>
+                  <div class="navbar-text">You are not logged in yet!</div>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'login', login_path,  class:"btn btn-default btn-block"%>
+
+                </li>
+
+
             <%end%>
 
         <% end%>
