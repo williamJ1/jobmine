@@ -3,278 +3,450 @@
 <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 <script src='//cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js' type='text/javascript'></script>
 <!-- google map gem -->
-
-
-
 <p id="notice"><%= notice %></p>
-<% if @user_profile.user_type=='teen' %>
-    <h1>Teenage Home Page</h1>
-    <h2>Open Jobs (jobs I can apply)</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Title</th>
-        <!--<th>Created by user</th>-->
-        <th>Description</th>
-        <th>Location</th>
-        <th>Hour Rate</th>
-        <!--<th>End date time</th>-->
-        <th colspan="1"></th>
-      </tr>
-      </thead>
 
-      <tbody>
-      <% @open_and_not_applied_jobs.each do |job| %>
-          <tr>
-            <td><%= job.name %></td>
-            <td><%= job.description %></td>
-            <td><%= job.location %></td>
-            <td><%= job.hour_rate %></td>
-            <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
+<div class="normalheader ">
+  <div class="hpanel">
+    <div class="panel-body">
+      <a class="small-header-action" href="">
+        <div class="clip-header">
+          <i class="fa fa-arrow-up"></i>
+        </div>
+      </a>
 
-    <br>
-
-    <!-- google map gem -->
-    <div style='width: 800px;'>
-      <div id="map" style='width: 800px; height: 400px;'></div>
+      <div id="hbreadcrumb" class="pull-right m-t-lg">
+        <ol class="hbreadcrumb breadcrumb">
+          <li><a href="#">JobMine</a></li>
+          <li class="active">
+            <span>Home Page</span>
+          </li>
+        </ol>
+      </div>
+      <h2 class="font-light m-b-xs">
+        <% if @user_profile.user_type=='teen' %>
+            Teenage Home Page
+        <% else %>
+            Employer Home Page
+        <% end %>
+      </h2>
     </div>
+  </div>
+</div>
+<div class="content">
+  <% if @user_profile.user_type=='teen' %>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="hpanel">
+            <div class="panel-heading">
+              <div class="panel-tools">
+                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                <a class="closebox"><i class="fa fa-times"></i></a>
+              </div>
+              Open Jobs (jobs you can apply)
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Title</th>
+                    <!--<th>Created by user</th>-->
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Hour Rate</th>
+                    <!--<th>End date time</th>-->
+                    <th colspan="1"></th>
+                  </tr>
+                  </thead>
 
-    <script type="text/javascript">
-        document.addEventListener("turbolinks:load", function(){
-            handler = Gmaps.build('Google');
-            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-                markers = handler.addMarkers(<%=raw @hash.to_json %>);
-                handler.bounds.extendWith(markers);
-                handler.fitMapToBounds();
-            });
-        } );
-    </script>
-    <!-- google map gem -->
+                  <tbody>
+                  <% @open_and_not_applied_jobs.each do |job| %>
+                      <tr>
+                        <td><%= job.name %></td>
+                        <td><%= job.description %></td>
+                        <td><%= job.location %></td>
+                        <td><%= job.hour_rate %></td>
+                        <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+              Table - 6 rows
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <!-- google map gem -->
+      <div style='width: 800px;'>
+        <div id="map" style='width: 800px; height: 400px;'></div>
+      </div>
+
+      <script type="text/javascript">
+          document.addEventListener("turbolinks:load", function(){
+              handler = Gmaps.build('Google');
+              handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+                  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+                  handler.bounds.extendWith(markers);
+                  handler.fitMapToBounds();
+              });
+          } );
+      </script>
+      <!-- google map gem -->
+
+      <h2>Waiting for approve</h2>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="hpanel">
+            <div class="panel-heading">
+              <div class="panel-tools">
+                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                <a class="closebox"><i class="fa fa-times"></i></a>
+              </div>
+              Waiting for approve
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Title</th>
+                    <!--<th>Created by user</th>-->
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Hour Rate</th>
+                    <!--<th>End date time</th>-->
+                    <th colspan="1"></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @applied_but_waiting_jobs.each do |job| %>
+                      <tr>
+                        <td><%= job.name %></td>
+                        <td><%= job.description %></td>
+                        <td><%= job.location %></td>
+                        <td><%= job.hour_rate %></td>
+                        <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+              Table - 6 rows
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <h2>My Onging Jobs (my apply(contract) has been approved)</h2>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="hpanel">
+            <div class="panel-heading">
+              <div class="panel-tools">
+                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                <a class="closebox"><i class="fa fa-times"></i></a>
+              </div>
+              My Onging Jobs (my apply(contract) has been approved)
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Title</th>
+                    <!--<th>Created by user</th>-->
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Hour Rate</th>
+                    <!--<th>End date time</th>-->
+                    <th colspan="1"></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @my_on_goging_jobs.each do |job| %>
+                      <tr>
+                        <td><%= job.name %></td>
+                        <td><%= job.description %></td>
+                        <td><%= job.location %></td>
+                        <td><%= job.hour_rate %></td>
+                        <td><%= link_to 'Track my time', show_timeslot_path(:contract_id => find_contract_id_by_job(job.id)) %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+              Table - 6 rows
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <h2>My Finished Jobs </h2>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="hpanel">
+            <div class="panel-heading">
+              <div class="panel-tools">
+                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                <a class="closebox"><i class="fa fa-times"></i></a>
+              </div>
+              My Finished Jobs
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+
+                    <thead>
+                    <tr>
+                      <th>Title</th>
+                      <!--<th>Created by user</th>-->
+                      <th>Description</th>
+                      <th>Location</th>
+                      <th>Hour Rate</th>
+                      <!--<th>End date time</th>-->
+                      <th colspan="1"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <% @my_finished_jobs.each do |job| %>
+                        <tr>
+                          <td><%= job.name %></td>
+                          <td><%= job.description %></td>
+                          <td><%= job.location %></td>
+                          <td><%= job.hour_rate %></td>
+                          <td><%= link_to 'Add review', new_profile_review_path(:profile_id => job.profile_id, :contract_id => find_contract_id_by_job(job.id)) %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+              Table - 6 rows
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+  <% else %>
+
+      <h4><%= link_to 'Post new job', new_job_path %></h4>
+      <br><br>
+
+      <h2>Open Jobs (jobs Created by me and wait for me to approve)</h2>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="hpanel">
+            <div class="panel-heading">
+              <div class="panel-tools">
+                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                <a class="closebox"><i class="fa fa-times"></i></a>
+              </div>
+              This is a bordered striped and responsive table
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                      <th>Title</th>
+                      <!--<th>Created by user</th>-->
+                      <th>Description</th>
+                      <th>Location</th>
+                      <th>Hour Rate</th>
+                      <!--<th>End date time</th>-->
+                      <th>Number of Apply</th>
+                      <th colspan="1"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <% @open_jobs.each do |job| %>
+                        <tr>
+                          <td><%= job.name %></td>
+                          <td><%= job.description %></td>
+                          <td><%= job.location %></td>
+                          <td><%= job.hour_rate %></td>
+                          <td><%= job.contracts.size %></td>
+                          <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                          <td><%= link_to 'Job Detail', employer_job_detail_show_path(:id => job.id) %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+              Table - 6 rows
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <h2>My Onging Jobs (you had approve the apply)</h2>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="hpanel">
+            <div class="panel-heading">
+              <div class="panel-tools">
+                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                <a class="closebox"><i class="fa fa-times"></i></a>
+              </div>
+              This is a bordered striped and responsive table
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                      <th>Title</th>
+                      <!--<th>Created by user</th>-->
+                      <th>Description</th>
+                      <th>Location</th>
+                      <th>Hour Rate</th>
+                      <!--<th>End date time</th>-->
+                      <th colspan="1"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <% @ongoing_jobs.each do |job| %>
+                        <tr>
+                          <td><%= job.name %></td>
+                          <td><%= job.description %></td>
+                          <td><%= job.location %></td>
+                          <td><%= job.hour_rate %></td>
+                          <td><%= link_to 'Check timeslot', update_timeslot_path(:contract_id => find_contract_id_by_ongoing_job(job.id)) %></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                </table>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+              Table - 6 rows
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
 
 
+      <h2>My Finished Jobs (jobs posted by me and finished)</h2>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="hpanel">
+            <div class="panel-heading">
+              <div class="panel-tools">
+                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                <a class="closebox"><i class="fa fa-times"></i></a>
+              </div>
+              This is a bordered striped and responsive table
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="1" cellspacing="1" class="table table-bordered table-striped">
+                  <table>
+                    <thead>
+                    <tr>
+                      <th>Title</th>
+                      <!--<th>Created by user</th>-->
+                      <th>Description</th>
+                      <th>Location</th>
+                      <th>Hour Rate</th>
+                      <!--<th>End date time</th>-->
+                      <th colspan="1"></th>
+                    </tr>
+                    </thead>
 
-    <h2>Waiting for approve</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Title</th>
-        <!--<th>Created by user</th>-->
-        <th>Description</th>
-        <th>Location</th>
-        <th>Hour Rate</th>
-        <!--<th>End date time</th>-->
-        <th colspan="1"></th>
-      </tr>
-      </thead>
+                    <tbody>
+                    <% @finsihed_jobs.each do |job| %>
+                        <tr>
+                          <td><%= job.name %></td>
+                          <td><%= job.description %></td>
+                          <td><%= job.location %></td>
+                          <td><%= job.hour_rate %></td>
+                          <% if Review.where(contract_id: (Contract.find_by(job_id: job.id, accept_status: 3)).id).empty? %>
+                              <td><%= link_to 'Add review', new_profile_review_path(:profile_id => find_teen_profile_id_by_closed_job(job.id), :contract_id => find_contract_id_by_closed_job(job.id)) %></td>
+                          <% else %>
+                              <td>Reviewed</td>
+                          <% end %>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </table>
+              </div>
 
-      <tbody>
-      <% @applied_but_waiting_jobs.each do |job| %>
-          <tr>
-            <td><%= job.name %></td>
-            <td><%= job.description %></td>
-            <td><%= job.location %></td>
-            <td><%= job.hour_rate %></td>
-            <td><%= link_to 'Job Detail', teen_job_detail_show_path(:id => job.id) %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
+            </div>
+            <div class="panel-footer">
+              Table - 6 rows
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <br>
+      <br>
 
-    <h2>My Onging Jobs (my apply(contract) has been approved)</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Title</th>
-        <!--<th>Created by user</th>-->
-        <th>Description</th>
-        <th>Location</th>
-        <th>Hour Rate</th>
-        <!--<th>End date time</th>-->
-        <th colspan="1"></th>
-      </tr>
-      </thead>
+  <% end %>
+  <br>
+  <% if false %>
+      <h1>Jobs</h1>
 
-      <tbody>
-      <% @my_on_goging_jobs.each do |job| %>
-          <tr>
-            <td><%= job.name %></td>
-            <td><%= job.description %></td>
-            <td><%= job.location %></td>
-            <td><%= job.hour_rate %></td>
-            <td><%= link_to 'Track my time', show_timeslot_path(:contract_id => find_contract_id_by_job(job.id)) %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <br>
+      <th><%= link_to 'Post new job', new_job_path %></th>
+      <br><br>
 
-    <h2>My Finished Jobs </h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Title</th>
-        <!--<th>Created by user</th>-->
-        <th>Description</th>
-        <th>Location</th>
-        <th>Hour Rate</th>
-        <!--<th>End date time</th>-->
-        <th colspan="1"></th>
-      </tr>
-      </thead>
+      <table>
+        <thead>
+        <tr>
+          <th>Job title</th>
+          <th>Description</th>
+          <th>Begin </th>
+          <th>End </th>
+          <th colspan="4"></th>
+        </tr>
+        </thead>
 
-      <tbody>
-      <% @my_finished_jobs.each do |job| %>
-          <tr>
-            <td><%= job.name %></td>
-            <td><%= job.description %></td>
-            <td><%= job.location %></td>
-            <td><%= job.hour_rate %></td>
-            <td><%= link_to 'Add review', new_profile_review_path(:profile_id => job.profile_id, :contract_id => find_contract_id_by_job(job.id)) %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <br>
-<% else %>
-    <h1>Employer Home Page</h1>
+        <tbody>
+        <% @jobs.each do |job| %>
+            <tr>
+              <td><%= job.name %></td>
+              <td><%= job.description %></td>
+              <td><%= job.begin_date_time.strftime("%Y")+'/'+job.begin_date_time.strftime("%m")+'/'+job.begin_date_time.strftime("%d") %></td>
+              <td><%= job.end_date_time.strftime("%Y")+'/'+job.end_date_time.strftime("%m")+'/'+job.end_date_time.strftime("%d") %></td>
+              <td><%= link_to 'Show', job %></td>
+              <td><%= link_to 'Edit', edit_job_path(job) %></td>
+              <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-    <h4><%= link_to 'Post new job', new_job_path %></h4>
-    <br><br>
+      <br>
+  <% end %>
+</div>
 
-    <h2>Open Jobs (jobs Created by me and wait for me to approve)</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Title</th>
-        <!--<th>Created by user</th>-->
-        <th>Description</th>
-        <th>Location</th>
-        <th>Hour Rate</th>
-        <!--<th>End date time</th>-->
-        <th>Number of Apply</th>
-        <th colspan="1"></th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @open_jobs.each do |job| %>
-          <tr>
-            <td><%= job.name %></td>
-            <td><%= job.description %></td>
-            <td><%= job.location %></td>
-            <td><%= job.hour_rate %></td>
-            <td><%= job.contracts.size %></td>
-            <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <td><%= link_to 'Job Detail', employer_job_detail_show_path(:id => job.id) %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-
-    <br>
-
-    <h2>My Onging Jobs (you had approve the apply)</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Title</th>
-        <!--<th>Created by user</th>-->
-        <th>Description</th>
-        <th>Location</th>
-        <th>Hour Rate</th>
-        <!--<th>End date time</th>-->
-        <th colspan="1"></th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @ongoing_jobs.each do |job| %>
-          <tr>
-            <td><%= job.name %></td>
-            <td><%= job.description %></td>
-            <td><%= job.location %></td>
-            <td><%= job.hour_rate %></td>
-            <td><%= link_to 'Check timeslot', update_timeslot_path(:contract_id => find_contract_id_by_ongoing_job(job.id)) %></td>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <br>
-
-    <br>
-
-    <h2>My Finished Jobs (jobs posted by me and finished)</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Title</th>
-        <!--<th>Created by user</th>-->
-        <th>Description</th>
-        <th>Location</th>
-        <th>Hour Rate</th>
-        <!--<th>End date time</th>-->
-        <th colspan="1"></th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <% @finsihed_jobs.each do |job| %>
-          <tr>
-            <td><%= job.name %></td>
-            <td><%= job.description %></td>
-            <td><%= job.location %></td>
-            <td><%= job.hour_rate %></td>
-            <% if Review.where(contract_id: (Contract.find_by(job_id: job.id, accept_status: 3)).id).empty? %>
-              <td><%= link_to 'Add review', new_profile_review_path(:profile_id => find_teen_profile_id_by_closed_job(job.id), :contract_id => find_contract_id_by_closed_job(job.id)) %></td>
-            <% else %>
-              <td>Reviewed</td>
-            <% end %>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <br>
-
-<% end %>
-<br>
-<% if false %>
-<h1>Jobs</h1>
-
-<th><%= link_to 'Post new job', new_job_path %></th>
-<br><br>
-
-<table>
-  <thead>
-    <tr>
-      <th>Job title</th>
-      <th>Description</th>
-      <th>Begin </th>
-      <th>End </th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= job.name %></td>
-        <td><%= job.description %></td>
-        <td><%= job.begin_date_time.strftime("%Y")+'/'+job.begin_date_time.strftime("%m")+'/'+job.begin_date_time.strftime("%d") %></td>
-        <td><%= job.end_date_time.strftime("%Y")+'/'+job.end_date_time.strftime("%m")+'/'+job.end_date_time.strftime("%d") %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Delete', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<% end %>
 
