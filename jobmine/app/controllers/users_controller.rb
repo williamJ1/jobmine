@@ -8,8 +8,10 @@ class UsersController < ApplicationController
     #redirect_to '/profiles/new'
     if @user.save
       #flash[:notice] = "username/passwd saved! Please provide more info"
-      flash[:notice] = "Please login in"
-      redirect_to login_path
+      session[:current_user_id] = @user.id
+      redirect_to check_profile_path
+      # flash[:notice] = "Please login in"
+      # redirect_to login_path
     else
       flash[:warning] = @user.errors
       redirect_to new_user_path
