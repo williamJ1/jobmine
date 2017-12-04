@@ -4,9 +4,9 @@
 			<div class="hpanel blog-article-box">
 				<div class="panel-heading">
 					<h4><%= @review.title %></h4>
-					<small>Rating for <%= "#{@profile.user.email}" %> is: <%= @review.rating %></small>
+					<h5>Rating for <%= "#{@profile.user.email}" %> is: <strong><%= @review.rating %></strong></h5>
 					<div class="text-muted small">
-						Created by: <span class="font-bold"><%= @review.reviewer %></span> <%= @review.updated_at.strftime '%B %d, %Y, %H:%M %p' %>
+						Created by: <span class="font-bold"><%= @review.reviewer %></span> on <%= @review.updated_at.strftime '%B %d, %Y, %H:%M %p' %>
 					</div>
 				</div>
 				<div class="panel-body">

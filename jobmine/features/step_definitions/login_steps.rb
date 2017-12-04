@@ -1,4 +1,4 @@
-#load "~/https:/github.com/williamJ1/jobmine/jobmine/jobmine/db/seeds.rb"
+load "~/https:/github.com/williamJ1/jobmine/jobmine/jobmine/db/seeds.rb"
 
 Given("I am on the login page") do
 visit '/login'
@@ -19,6 +19,6 @@ Then("I should be on the teenager home page") do
 end
 
 Then("I should see {string}") do |string|
- expect(page).to have_content("Open Jobs")
+ expect(page).to have_content("Teenage Home Page")
 end
 

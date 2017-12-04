@@ -38,7 +38,7 @@ class ContractController < ApplicationController
     else 
       @contract_need_to_accept.accept_status = 2
       if @contract_need_to_accept.save
-        Notification.create(recipient: cont.profile, actor: cont.job.profile, action: "accepted your application")
+        Notification.create(recipient: @contract_need_to_accept.profile, actor: @contract_need_to_accept.job.profile, action: "accepted your application")
         #find other contracts for the same job_id need to reject(many)
         @contracts_need_to_reject = Contract.where(job_id: params[:job_id], accept_status: 0).all
         @contracts_need_to_reject.each do |cont|

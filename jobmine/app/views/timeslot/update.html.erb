@@ -47,6 +47,8 @@
                   <% if !@pending_timeslots.blank?() %>
                       <%= submit_tag 'Pay', name: 'Approve', class:"btn btn-outline btn-success" %>
                       <%= submit_tag 'Reject', name: 'Reject', class:"btn btn-outline btn-warning2" %>
+		      </br></br><%= check_box_tag 'Visa' %><tr style="text-indent: 5em;">Visa       </tr>
+	              <%= check_box_tag 'Paypal' %><tr>Paypal</tr>
                   <% end%>
               <% end %>
               </tbody>
