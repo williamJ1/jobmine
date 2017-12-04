@@ -45,23 +45,57 @@
     <div class="navbar-right">
       <ul class="nav navbar-nav no-borders">
         <% if @user = User.find_by(id: session[:current_user_id])%>
-                <li class="nav-item">
-                  <%= link_to "Log out", logout_path, method: :get, class:"nav-link"%>
+
+
+
+                <li class="dropdown">
+                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                    <i class="pe-7s-speaker"></i>
+                  </a>
+                  <ul class="dropdown-menu hdropdown notification animated flipInX" id='notification-items'>
+                  </ul>
                 </li>
-                <li class="nav-item">
-                  <%= link_to "Home page", jobs_path, method: :get, class:"nav-link"%>
+                <li class="dropdown">
+                  <%= link_to jobs_path, method: :get do %>
+                      <i class="pe-7s-home"></i>
+                  <% end %>
                 </li>
-                <li class="nav-item">
-                  <%= link_to "Profile", show_profile_path(id: session[:current_user_id]), class:"nav-link"%>
+                <li class="dropdown">
+                  <%= link_to transaction_summary_show_path(id: session[:current_user_id]), method: :get do %>
+                      <i class="pe-7s-cash"></i>
+                  <% end %>
                 </li>
-                <li class="nav-item">
-                  <%= link_to "Transactions", transaction_summary_show_path(id: session[:current_user_id]), class:"nav-link"%>
+                <li class="dropdown">
+                  <%= link_to show_profile_path(id: session[:current_user_id]) do %>
+                      <i class="pe-7s-user"></i>
+                  <% end %>
+                </li>
+                <li class="dropdown">
+                  <%= link_to logout_path, method: :get do%>
+                      <i class="pe-7s-upload pe-rotate-90"></i>
+                  <% end %>
                 </li>
         <% else%>
             <% if flash[:info] %>
-                <div class="navbar-text">You have successfully logged out!</div>
+
+                <li>
+                  <div class="navbar-text">You have successfully logged out!</div>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'login', login_path,  class:"btn btn-default btn-block"%>
+
+                </li>
             <% else%>
-                <div class="navbar-text">You are not logged in yet!</div>
+
+                <li>
+                  <div class="navbar-text">You are not logged in yet!</div>
+                </li>
+                <li class="nav-item">
+                  <%= link_to 'login', login_path,  class:"btn btn-default btn-block"%>
+
+                </li>
+
+
             <%end%>
 
         <% end%>
