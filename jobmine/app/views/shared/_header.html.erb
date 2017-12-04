@@ -65,12 +65,11 @@
                 <li class="nav-item">
                   <%= link_to "Profile", show_profile_path(id: session[:current_user_id]), class:"nav-link"%>
                 </li>
-                <li class="nav-item">
-                  <%= link_to "Log out", logout_path, method: :get, class:"nav-link"%>
-
+                <li class="dropdown">
+                  <%= link_to logout_path, method: :get do%>
+                      <i class="pe-7s-upload pe-rotate-90"></i>
+                  <% end %>
                 </li>
-
-
         <% else%>
             <% if flash[:info] %>
 
