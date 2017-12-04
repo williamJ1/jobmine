@@ -26,8 +26,6 @@
 			<%= form.hidden_field :contract_id, value: @contract_id %>
 
 			<p>
-				<input id="vertbutton" type="text"  name="vertbutton" value="50"><br>
-
 				<%= form.label :rating %><br>
 				<%= form.number_field :rating, in: 0.0..5.0, step: 0.5 %>
 			</p>
@@ -59,31 +57,3 @@
 </div>
 </div>
 
-<script src="vendor/jquery/dist/jquery.min.js"></script>
-<script src="vendor/jquery-ui/jquery-ui.min.js"></script>
-<script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
-<script src="vendor/iCheck/icheck.min.js"></script>
-<script src="vendor/sparkline/index.js"></script>
-<script src="vendor/moment/moment.js"></script>
-<script src="vendor/xeditable/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
-<script src="vendor/select2-3.5.2/select2.min.js"></script>
-<script src="vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
-<script src="vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="vendor/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
-<script src="vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-
-<script src="scripts/homer.js"></script>
-
-<script>
-
-    $(function () {
-        // initialize with defaults
-        $("#input-1").rating();
-        $("#vertbutton").TouchSpin({
-                verticalbuttons: true
-        });
-    });
-
-</script>
