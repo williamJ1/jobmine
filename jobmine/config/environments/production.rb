@@ -88,22 +88,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-
-  #mail preview
-  config.action_mailer.delivery_method = :smtp
-  host = 'vast-shore-86799.herokuapp.com/'
-  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
-
-  config.action_mailer.smtp_settings = {
-      address:              'smtp.gmail.com',
-      port:                 587,
-      domain:               'jobmine.com',
-      user_name:            'jobminetest',
-      password:             '1QazWsxEdc',
-      authentication:       'plain',
-      enable_starttls_auto: true  }
-
-
-
 end

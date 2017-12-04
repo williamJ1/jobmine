@@ -12,15 +12,12 @@
 
 ActiveRecord::Schema.define(version: 20171204163414) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "profile_id"
-    t.bigint "job_id"
+    t.integer "profile_id"
+    t.integer "job_id"
     t.index ["job_id"], name: "index_contracts_on_job_id"
     t.index ["profile_id"], name: "index_contracts_on_profile_id"
   end
@@ -33,10 +30,10 @@ ActiveRecord::Schema.define(version: 20171204163414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
-    t.decimal "hour_rate"
-    t.bigint "profile_id"
-    t.decimal "latitude"
-    t.decimal "longitude"
+    t.float "hour_rate"
+    t.integer "profile_id"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["profile_id"], name: "index_jobs_on_profile_id"
   end
 
@@ -54,7 +51,7 @@ ActiveRecord::Schema.define(version: 20171204163414) do
     t.string "card_holder_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "profile_id"
+    t.integer "profile_id"
     t.index ["profile_id"], name: "index_payments_on_profile_id"
   end
 
@@ -64,10 +61,10 @@ ActiveRecord::Schema.define(version: 20171204163414) do
     t.string "gender"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.string "user_type"
-    t.decimal "latitude"
-    t.decimal "longitude"
+    t.float "latitude"
+    t.float "longitude"
     t.decimal "average_rating", default: "-1.0"
     t.integer "rating_star", default: 0
     t.string "account_status"
@@ -86,9 +83,9 @@ ActiveRecord::Schema.define(version: 20171204163414) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "profile_id"
+    t.integer "profile_id"
     t.string "reviewer"
-    t.bigint "contract_id"
+    t.integer "contract_id"
     t.integer "reviewer_id"
     t.string "title"
     t.index ["contract_id"], name: "index_reviews_on_contract_id"
@@ -100,7 +97,7 @@ ActiveRecord::Schema.define(version: 20171204163414) do
     t.integer "time_length"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "contract_id"
+    t.integer "contract_id"
     t.integer "approve_status"
     t.datetime "paid_time"
     t.index ["contract_id"], name: "index_timeslots_on_contract_id"
@@ -116,12 +113,4 @@ ActiveRecord::Schema.define(version: 20171204163414) do
     t.string "account_status"
   end
 
-  add_foreign_key "contracts", "jobs"
-  add_foreign_key "contracts", "profiles"
-  add_foreign_key "jobs", "profiles"
-  add_foreign_key "payments", "profiles"
-  add_foreign_key "profiles", "users"
-  add_foreign_key "reviews", "contracts"
-  add_foreign_key "reviews", "profiles"
-  add_foreign_key "timeslots", "contracts"
 end
