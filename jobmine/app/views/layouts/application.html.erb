@@ -21,9 +21,7 @@
       <% if @user = User.find_by(id: session[:current_user_id])%>
       <div id="navigation">
         <div class="profile-picture">
-          <a href="index.html">
-            <img src="images/profile.jpg" class="img-circle m-b" alt="logo">
-          </a>
+          <%= image_tag "logo.png", size: "100x100"%>
             <div>
               <h4 class="font-extra-bold m-b-xs">
                 Hi, <%=@user.email.split("_").first%>
@@ -50,6 +48,9 @@
           </li>
           <li>
             <%= link_to "Terms of Service", shared_terms_of_service_path%>
+          </li>
+          <li>
+            <%= link_to "Log out", logout_path, method: :get%>
           </li>
         </ul>
       </div>
