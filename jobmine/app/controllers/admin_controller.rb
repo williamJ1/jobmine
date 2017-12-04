@@ -37,7 +37,7 @@ class AdminController < ApplicationController
   def suspend
     @user = User.find_by(id: params[:teen_id])
     if params[:Suspend]
-      User.where(id: params[:teen_id]).update_all(account_status: "suspened")
+      User.where(id: params[:teen_id]).update_all(account_status: "suspended")
       #redirect_to update_timeslot_path
       redirect_to index_admin_path
     else
