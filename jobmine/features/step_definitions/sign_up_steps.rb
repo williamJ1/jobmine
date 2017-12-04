@@ -31,10 +31,10 @@ select "teenager", :from => "User type"
 end
 
 When("you press on {string}") do |string|
-click_button "Save Profiles"
+click_button "Save profile !"
 end
 
 Then("you should see {string}") do |string|
- expect(page).to have_content("Here is the profile")
+ expect(page).to have_content("User profile:")
 end
 

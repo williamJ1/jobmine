@@ -14,6 +14,6 @@ When you are on the setup profile page
  And you fills in "Phone num" with "6478851988"
  And you select in "Gender" with "male"
  And you select in "User type" with "teengaer"
- And you press on "Save Profileis"
-Then you should see "Here is the profile"
+ And you press on "Save profile !"
+Then you should see "User profile:"
 
