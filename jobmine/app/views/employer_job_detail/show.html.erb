@@ -76,10 +76,10 @@
 											<tr>
 												<td>
 													<% (1..teen.rating_star).each do |i| %>
-														<i class="fa fa-star"></i>
+														<i class="fa fa-star text-warning"></i>
 													<% end %>
 													<% ((teen.rating_star+1)..5).each do |i| %>
-														<i class="fa fa-star-o"></i>
+														<i class="fa fa-star-o text-default"></i>
 													<% end %>
 												</td>
 											</tr>
@@ -103,7 +103,7 @@
 											<%= teen.average_rating.round(2) %> / 5.00
 										</h3>
 									<% end %>
-									<%= button_to "Accept", update_contract_path, :method=> :put, params: {job_id: @job_detail.id, profile_id: teen.id} %>
+									<%= button_to "Accept", update_contract_path, :method=> :put, params: {job_id: @job_detail.id, profile_id: teen.id}, class:"btn btn-success" %>
 								</div>
 							</div>
 						</div>
