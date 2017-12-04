@@ -45,8 +45,21 @@
     <div class="navbar-right">
       <ul class="nav navbar-nav no-borders">
         <% if @user = User.find_by(id: session[:current_user_id])%>
+
+
+
+                <li class="dropdown">
+                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                    <i class="pe-7s-speaker"></i>
+                  </a>
+                  <ul class="dropdown-menu hdropdown notification animated flipInX" id='notification-items'>
+                  </ul>
+                </li>
+
+
+
                 <li class="nav-item">
-                  <%= link_to "Log out", logout_path, method: :get, class:"nav-link"%>
+                  <%= link_to "Transactions", transaction_summary_show_path(id: session[:current_user_id]), class:"nav-link"%>
                 </li>
                 <li class="nav-item">
                   <%= link_to "Home page", jobs_path, method: :get, class:"nav-link"%>
@@ -55,8 +68,11 @@
                   <%= link_to "Profile", show_profile_path(id: session[:current_user_id]), class:"nav-link"%>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "Transactions", transaction_summary_show_path(id: session[:current_user_id]), class:"nav-link"%>
+                  <%= link_to "Log out", logout_path, method: :get, class:"nav-link"%>
+
                 </li>
+
+
         <% else%>
             <% if flash[:info] %>
                 <div class="navbar-text">You have successfully logged out!</div>
