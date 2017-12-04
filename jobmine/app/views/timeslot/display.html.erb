@@ -1,172 +1,253 @@
-<h1>
-  Timesheet for job: <%=@job.name%>
-</h1>
 
-<p>
-  job description:
-  <br>
-  <%=@job.description%>
-</p>
+<div class="content">
+  <span class="text-warning"><h3><%= flash[:notice] %></h3></span>
+  <div class="row">
+    <div class="col-lg-12 text-center welcome-message">
+      <h2>
+        <strong>Timesheet for job: <%=@job.name%></strong>
+      </h2>
 
-<h2 class="alert alert-primary">Pending timeslot(yet to be reviewed by employer)</h2>
-<table>
-  <thead>
-  <tr>
-    <th>Time begin</th>
-    <!--<th>Created by user</th>-->
-    <th>Length</th>
-    <th>Approve Status</th>
-    <th>Paid time</th>
-    <!--<th>End date time</th>-->
-    <th colspan="1"></th>
-  </tr>
-  </thead>
+      <h3>Job Description:</h3>
+      <meduim><strong><%=@job.description%></strong></meduim>
 
-  <tbody>
-  <% @timeslots.find_all{|ts| ts.approve_status == 0}.each  do |time| %>
-      <tr>
-        <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
-        <td><%= time.time_length %></td>
-        <td>Pending</td>
-        <td>Not yet reviewed</td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    </div>
+  </div>
 
-<h2>Approved timeslot</h2>
-<table>
-  <thead>
-  <tr>
-    <th>Time begin</th>
-    <!--<th>Created by user</th>-->
-    <th>Length</th>
-    <th>Approve Status</th>
-    <th>Paid time</th>
-    <!--<th>End date time</th>-->
-    <th colspan="1"></th>
-  </tr>
-  </thead>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="hpanel">
+        <div class="panel-heading">
+          <div class="panel-tools">
+            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+            <a class="closebox"><i class="fa fa-times"></i></a>
+          </div>
+          <h4>Pending time slots:</h4>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table cellpadding="1" cellspacing="1" class="table table-condensed table-striped">
+              <thead>
+              <tr>
+                <th>Time Begin</th>
+                <th>Length</th>
+                <th>Approve Status</th>
+                <th>Paid time</th>
+                <th colspan="1"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <%= form_tag(approve_timeslot_path, method: :put) do%>
+                  <% @timeslots.find_all{|ts| ts.approve_status == 0}.each  do |time| %>
+                      <tr>
+                        <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
+                        <td><%= time.time_length %></td>
+                        <td>Pending</td>
+                        <td>Not yet reviewed</td>
+                      </tr>
+                  <% end %>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
 
-  <tbody>
-  <% @timeslots.find_all{|ts| ts.approve_status == 1}.each  do |time| %>
-      <tr>
-        <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
-        <td><%= time.time_length %></td>
-        <td>Approved</td>
-        <td><%=time.paid_time%></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+        </div>
+        <div class="panel-footer">
+          Yet to be reviewed by employer.
+        </div>
+      </div>
+    </div>
 
-<%if params[:edit_timeslot] != nil%>
-    <h2>Rejected timeslot</h2>
-    <%= form_for :timeslot, url: redo_timeslot_path, method: :put do |form| %>
-    <table>
-      <thead>
-      <tr>
-        <th>Date</th>
-        <!--<th>Created by user</th>-->
-        <th>Begin time</th>
-        <th>Begin time</th>
-        <th>Length</th>
-        <th>Approve Status</th>
-        <th>Paid time</th>
-        <th></th>
-        <!--<th>End date time</th>-->
-        <th colspan="1"></th>
-      </tr>
-      </thead>
 
-      <tbody>
-      <% @timeslots.find_all{|ts| ts.approve_status == 2}.each  do |time| %>
-          <tr>
-            <%if time.id == params[:edit_timeslot].to_i%>
 
-                    <td>
-                      <%=form.hidden_field :timeslot_id, value: time.id%>
-                      <%= form.text_field :date_time_begin, class:'datepicker' %>
-                    </td>
-                    <td>
-                      <%= form.text_field :time_begin %>
-                    </td>
-                    <td>
-                      <%= form.text_field :time_length %>
-                    </td>
-                    <td>
-                      <%= form.submit 'Change Time'%>
-                    </td>
-            <%else%>
-                <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
-                <td><%= time.time_length %></td>
-                <td>Rejected</td>
-                <td>Not paid</td>
-                <td><%=link_to "update", show_timeslot_path(edit_timeslot: time.id)%></td>
+    <div class="col-lg-8">
+      <div class="hpanel">
+        <div class="panel-heading">
+          <div class="panel-tools">
+            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+            <a class="closebox"><i class="fa fa-times"></i></a>
+          </div>
+          <h4>Approved timeslots:</h4>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table cellpadding="1" cellspacing="1" class="table table-condensed table-striped">
+              <thead>
+              <tr>
+                <th>Time begin</th>
+                <th>Length</th>
+                <th>Approve Status</th>
+                <th>Paid time</th>
+                <th colspan="1"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @timeslots.find_all{|ts| ts.approve_status == 1}.each  do |time| %>
+                  <tr>
+                    <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
+                    <td><%= time.time_length %></td>
+                    <td>Approved</td>
+                    <td><%=time.paid_time%></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+        <div class="panel-footer">
+          Employer has already paid you these timeslots!
+        </div>
+      </div>
+    </div>
+
+
+    <%if params[:edit_timeslot] != nil%>
+    <div class="col-lg-8">
+      <div class="hpanel">
+        <div class="panel-heading">
+          <div class="panel-tools">
+            <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+            <a class="closebox"><i class="fa fa-times"></i></a>
+          </div>
+          <h4>Rejected time slots:</h4>
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <%= form_for :timeslot, url: redo_timeslot_path, method: :put do |form| %>
+                <table cellpadding="1" cellspacing="1" class="table table-condensed table-striped">
+                  <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Begin time</th>
+                    <th>Length</th>
+                    <th colspan="1"></th>
+                  </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @timeslots.find_all{|ts| ts.approve_status == 2}.each  do |time| %>
+                      <tr>
+                        <%if time.id == params[:edit_timeslot].to_i%>
+
+                            <td>
+                              <%=form.hidden_field :timeslot_id, value: time.id%>
+                              <%= form.text_field :date_time_begin, class:'datepicker' %>
+                            </td>
+                            <td>
+                              <%= form.text_field :time_begin %>
+                            </td>
+                            <td>
+                              <%= form.text_field :time_length %>
+                            </td>
+                            <td>
+                              <%= form.submit 'Change Time', class:"ladda-button btn btn-warning"%>
+                            </td>
+                        <%else%>
+                            <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
+                            <td><%= time.time_length %></td>
+                            <td>Rejected</td>
+                            <td>Not paid</td>
+                            <td><%=link_to "update", show_timeslot_path(edit_timeslot: time.id)%></td>
+                        <%end%>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
             <%end%>
-          </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <%end%>
+          </div>
 
-<%else%>
-    <h2>Rejected timeslot</h2>
-    <table>
-      <thead>
-      <tr>
-        <th>Time begin</th>
-        <!--<th>Created by user</th>-->
-        <th>Length</th>
-        <th>Approve Status</th>
-        <th>Paid time</th>
-        <th></th>
-        <!--<th>End date time</th>-->
-        <th colspan="1"></th>
-      </tr>
-      </thead>
+        </div>
+        <div class="panel-footer">
+          These timeslots are rejected by employer, please update!
+        </div>
+      </div>
+    </div>
+        <%else%>
+        <div class="col-lg-8">
+          <div class="hpanel">
+            <div class="panel-heading">
+              <div class="panel-tools">
+                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                <a class="closebox"><i class="fa fa-times"></i></a>
+              </div>
+              <h4>Rejected time slots:</h4>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table cellpadding="1" cellspacing="1" class="table table-condensed table-striped">
+                  <thead>
+                  <tr>
+                    <th>Time begin</th>
+                    <th>Length</th>
+                    <th>Approve Status</th>
+                    <th>Paid time</th>
+                    <th></th>
+                    <th colspan="1"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% @timeslots.find_all{|ts| ts.approve_status == 2}.each  do |time| %>
+                      <tr>
+                        <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
+                        <td><%= time.time_length %></td>
+                        <td>Rejected</td>
+                        <td>Not paid</td>
+                        <td><%=link_to "update", show_timeslot_path(edit_timeslot: time.id), class:"ladda-button btn btn-warning"%></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
 
-      <tbody>
-      <% @timeslots.find_all{|ts| ts.approve_status == 2}.each  do |time| %>
-          <tr>
-            <td><%= time.date_time_begin.strftime '%Y-%m-%d %H:%M:%S' %></td>
-            <td><%= time.time_length %></td>
-            <td>Rejected</td>
-            <td>Not paid</td>
-            <td><%=link_to "update", show_timeslot_path(edit_timeslot: time.id)%></td>
-          </tr>
-      <% end %>
-<%end%>
-
-
-  </tbody>
-</table>
+            </div>
+            <div class="panel-footer">
+              These timeslots are rejected by employer, please update!
+            </div>
+          </div>
+        </div>
+        <%end%>
+  </div>
+</div>
 
 
 
+<div class="content">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="text-center m-b-md">
+        <h2>Add more time</h2>
+      </div>
+      <div class="hpanel">
+        <div class="panel-body">
+          <div class="form-group">
+
+            <%= form_for :timeslot, url: add_timeslot_path do |form| %>
+                <p>
+                  <%= form.label :date%>
+                  <%= form.text_field :date_time_begin, class:'datepicker', class:"form-control" %>
+                </p>
+                <p>
+                  <%= form.label :time_begin %>
+                  <%= form.text_field :time_begin, class:"form-control"%>
+                </p>
+                <p>
+                  <%= form.label :time_length %>
+                  <%= form.text_field :time_length, class:"form-control"%>
+                </p>
+                <p>
+                  <%= form.submit 'Add Time',  class:"ladda-button btn btn-info"%>
+                </p>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
-
-
-<h2>add more time</h2>
-<%= form_for :timeslot, url: add_timeslot_path do |form| %>
-    <p>
-      <%= form.label :date%>
-      <%= form.text_field :date_time_begin, class:'datepicker' %>
-    </p>
-    <p>
-      <%= form.label :time_begin %>
-      <%= form.text_field :time_begin%>
-    </p>
-    <p>
-      <%= form.label :time_length %>
-      <%= form.text_field :time_length %>
-    </p>
-    <p>
-      <%= form.submit 'Add Time'%>
-    </p>
-<% end %>
 
 
 
