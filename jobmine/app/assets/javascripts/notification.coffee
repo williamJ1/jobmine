@@ -14,7 +14,7 @@ class Notifications
 
   handleSuccess: (data) =>
     console.log(data)
-    items = data.map (notification) ->  "<a class='dropdown-item' href='#'>#{notification.actor.email} #{notification.action} </a>"
+    items = data.map (notification) ->  "<li class='dropdown-item'> #{notification.actor.email} #{notification.action} </li>"
     console.log(items)
     $("#notification-items").append(items)
 
