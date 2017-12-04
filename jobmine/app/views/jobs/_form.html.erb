@@ -1,47 +1,59 @@
-<%= form_with(model: job, local: true) do |form| %>
-  <% if job.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+<div class="content">
+<div class="form-group">
+   <div class="col-lg-8">
+   <%= form_with(model: job, local: true) do |form| %>
+       <% if job.errors.any? %>
+           <div id="error_explanation">
+             <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
 
-      <ul>
-      <% job.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+             <ul>
+               <% job.errors.full_messages.each do |message| %>
+                   <li><%= message %></li>
+               <% end %>
+             </ul>
+           </div>
+       <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :job_name %>
-  </div>
+       <div class="field">
+         <%= form.label :name %>
+         <%= form.text_field :name, id: :job_name, class:"form-control"%>
+       </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :job_description %>
-  </div>
+       <div class="field">
+         <%= form.label :description %>
+         <%= form.text_field :description, id: :job_description, class:"form-control"%>
+       </div>
 
-  <div class="field">
-    <%= form.label :begin_date_time%>
-    <%= form.text_field :begin_date_time, id: :job_begin_date_time, class:'datepicker'%>
-  </div>
+       <div class="field">
+         <%= form.label :begin_date_time%>
+         <%= form.text_field :begin_date_time, id: :job_begin_date_time, class:'datepicker', class:"form-control datepicker"%>
+       </div>
 
- <div class="field">
-    <%= form.label :end_date_time %>
-    <%= form.text_field :end_date_time, id: :job_end_date_time, class:'datepicker'%>
-  </div>
+       <div class="field">
+         <%= form.label :end_date_time %>
+         <%= form.text_field :end_date_time, id: :job_end_date_time, class:'datepicker', class:"form-control datepicker"%>
+       </div>
 
- <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location, id: :job_location %>
-  </div>
+       <div class="field">
+         <%= form.label :location %>
+         <%= form.text_field :location, id: :job_location, class:"form-control" %>
+       </div>
 
-  <div class="field">
-    <%= form.label :hour_rate %>
-    <%= form.number_field :hour_rate, id: :job_hour_rate %>
-  </div>
+       <div class="field">
+         <%= form.label :hour_rate %>
+         <%= form.number_field :hour_rate, id: :job_hour_rate, class:"form-control"%>
+       </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+       <div class="actions">
+         <%= form.submit 'Create job', class:"btn btn-success btn-info" %>
+       </div>
+   <% end %>
+     <%= link_to 'Back', jobs_path, class:"btn btn-primary"%>
+   </div>
+          </div>
+</div>
+
+
+
+
+

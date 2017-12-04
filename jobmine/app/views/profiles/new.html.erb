@@ -1,20 +1,67 @@
+<div class="login-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center m-b-md">
+        <h2>Please provide more info here!</h2>
+      </div>
+      <div class="hpanel">
+        <div class="panel-body">
+          <p class="text-warning">
+            <%= flash[:warning] %>
+            <%= flash[:alert] %>
+            <%= flash[:error] %>
+          </p>
 
-<h1>Please provide more info here!</h1>
-<p>
-    <%= flash[:warning] %>
-    <%= flash[:alert] %>
-</p>
+          <div class="form-group">
 
+            <%= form_for :profiles, url: profiles_path do |form| %>
+
+                <p>
+                  <%= form.label :address %><br>
+                  <%= form.text_field :address, class:"form-control" %>
+                </p>
+
+                <p>
+                  <%= form.label :phone_num %><br>
+                  <%= form.text_field :phone_num, class:"form-control" %>
+                </p>
+
+                <p>
+                  <%= form.label :gender %><br>
+                  <%= form.select :gender, [['male','male'],['female','female']], class:"form-control" %>
+                </p>
+
+                <p>
+                  <%= form.label :user_type %><br>
+                  <%= form.select :user_type, [['teenager','teen'],['employer','employer']], class:"form-control" %>
+                </p>
+
+                <p>
+                  <%= form.submit 'Save profile !', class:"btn btn-info btn-block" %>
+                </p>
+            <% end %>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<<<<<<< Updated upstream
+=======
 <p>
     <%= flash[:error] %>
 </p>
 
-<%= form_with scope: :profiles, url: profiles_path do |form| %>
+<%= form_for :profiles, url: profiles_path do |form| %>
 
 
 
     <p>
-      <%= form.label :address %><br>
+      <%= form.label :address %>
       <%= form.text_field :address %>
     </p>
 
@@ -37,4 +84,5 @@
       <%= form.submit %>
     </p>
 <% end %>
+>>>>>>> Stashed changes
 
