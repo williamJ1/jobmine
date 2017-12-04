@@ -1,27 +1,70 @@
-<h1>Here is detail related to the job</h1>
+<div class="normalheader transition">
+  <div class="hpanel">
+    <div class="panel-body">
+      <a class="small-header-action" href="">
+        <div class="clip-header">
+          <i class="fa fa-arrow-up"></i>
+        </div>
+      </a>
 
-<div>
-  <b>click employer email to see profile:</b><br>
-  <%= link_to "#{@employer_user.email}", show_profile_path(:id => @job_detail.profile.id) %><br>
-
-  <b> Job name:</b><br>
-  <%= @job_detail.name %><br>
-
-  <b>Job description:</b><br>
-  <%= @job_detail.description %><br>
-
-  <b>begin time:</b><br>
-  <%= @job_detail.begin_date_time %><br>
-
-  <b>end time:</b><br>
-  <%= @job_detail.end_date_time %><br>
-
-  <% if @can_apply %>
-    <p>You can apply</p>
-      <%= button_to "Apply", create_contract_path, params: {job_id: @job_detail.id, profile_id: @teen_profile.id, accept_status: 0} %>
-<% else%>
-      <p>You have already applied for this job</p>
-  <% end%>
+      <div id="hbreadcrumb" class="pull-right m-t-lg">
+        <ol class="hbreadcrumb breadcrumb">
+          <li><span>JobMine</span></li>
+          <li>
+            <span>Project List</span>
+          </li>
+          <li class="active">
+            <span>Project detail</span>
+          </li>
+        </ol>
+      </div>
+      <h2 class="font-light m-b-xs">
+        Project detail
+      </h2>
+    </div>
+  </div>
 </div>
+<div class="content">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="hpanel">
+        <div class="panel-body">
+
+          <div class="pull-right">
+            <% if @can_apply %>
+                <%= button_to "Apply", create_contract_path, params: {job_id: @job_detail.id, profile_id: @teen_profile.id, accept_status: 0},class:"btn btn-success btn" %>
+            <% else%>
+                <p>You have already applied for this job</p>
+            <% end%>
+          </div>
+          <h2 class="m-t-none">  Name: <%= @job_detail.name %> </h2>
+          <strong>Description: </strong><br>
+          <%= @job_detail.description %><br><br>
+          <strong>Created Py: </strong><br>
+          <%= link_to "#{@employer_user.email}", show_profile_path(:id => @job_detail.profile.id) %><br><br>
+          <b>begin time:</b><br>
+          <%= @job_detail.begin_date_time %><br><br>
+
+          <b>end time:</b><br>
+          <%= @job_detail.end_date_time %><br><br>
+
+
+          <div class="m-t-md">
+            <canvas id="lineOptions" height="60"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
 
 
