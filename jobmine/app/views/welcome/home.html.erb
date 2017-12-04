@@ -2,6 +2,7 @@
 
 <p>Current signed employers: <%= Profile.where(user_type: 'employer').size %></p>
 <p>Current signed teenagers: <%= Profile.where(user_type: 'teen').size %></p>
+<p>Number of jobs posted: <%= Job.all.size%></p>
 
 <p>
   <%= link_to 'sign up', signup_path %>
@@ -15,13 +16,13 @@
 <%# if false %>
 
 
-    <%# Testing review %>
-    <p>
-        <%= link_to 'Give Review', new_profile_review_path(:profile_id => 1, :contract_id => 2) %>
-    </p>
+<%# Testing review %>
+<p>
+  <%= link_to 'Give Review', new_profile_review_path(:profile_id => 1, :contract_id => 2) %>
+</p>
 
-    <p>
-        <%= link_to 'Review index', profile_reviews_path(:profile_id => 1) %>
-    </p>
+<p>
+  <%= link_to 'Review index', profile_reviews_path(:profile_id => 1) %>
+</p>
 
 <%# end %>

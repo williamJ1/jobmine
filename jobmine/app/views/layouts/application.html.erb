@@ -6,7 +6,6 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
     <script>
         document.addEventListener("turbolinks:load", function(){
             $( ".datepicker" ).datepicker({ dateFormat: 'yy/mm/dd' });
@@ -14,11 +13,55 @@
     </script>
   </head>
 
-  <body>
-  <div class="container">
+  <body class="fixed-navbar sidebar-scroll">
     <%= render "shared/header" %>
-    <%= yield %>
-    <%= render "shared/footer" %>
-  </div>
+    <!-- Navigation -->
+
+    <aside id="menu">
+      <% if @user = User.find_by(id: session[:current_user_id])%>
+      <div id="navigation">
+        <div class="profile-picture">
+          <a href="index.html">
+            <img src="images/profile.jpg" class="img-circle m-b" alt="logo">
+          </a>
+            <div id="sparkline1" class="small-chart m-t-sm"></div>
+            <div>
+              <h4 class="font-extra-bold m-b-xs">
+                Hello <%= @email = @user.email%> !
+              </h4>
+            </div>
+          </div>
+        </div>
+      <%end%>
+        <ul class="nav" id="side-menu">
+          <li>
+            <%= link_to "About", shared_about_path%>
+          </li>
+          <li>
+            <%= link_to "Contact Us", shared_contact_us_path%>
+          </li>
+          <li>
+            <%= link_to "FAQ", shared_faq_path%>
+          </li>
+          <li>
+            <%= link_to "Privacy Policy", shared_privacy_policy_path%>
+          </li>
+          <li>
+            <%= link_to "Site Map", shared_site_map_path%>
+          </li>
+          <li>
+            <%= link_to "Terms of Service", shared_terms_of_service_path%>
+          </li>
+          <li>
+            <%= link_to "Log out", logout_path, method: :get%>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div id="wrapper">
+      <%= yield %>
+      <%= render "shared/footer" %>
+    </div>
+
   </body>
 </html>

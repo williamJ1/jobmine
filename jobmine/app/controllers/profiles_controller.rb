@@ -36,17 +36,18 @@ class ProfilesController < ApplicationController
     else
       @more_review = true
     end
+
     #check if user has full access to profile
     if @show_user_type == @cur_user_type
       @full_access = true
     else
       @full_access = false
     end
+
     @hash = Gmaps4rails.build_markers(@show_user_profile) do |user, marker|
         marker.lat user.latitude
         marker.lng user.longitude
     end
-    #TODO: add review and rating once review table is implemented
     #redirect_to new_job_path
     @cur_user_id = session[:current_user_id]
     if @cur_user_id.to_i == @show_user_id.to_i

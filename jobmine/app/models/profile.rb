@@ -17,8 +17,19 @@ class Profile < ApplicationRecord
       @value = @value + review.rating
     end
     @total = profile.reviews.size
+    @average_rating = (@value.to_f) / (@total.to_f)
 
-    profile.update_attributes(average_rating: (@value.to_f) / (@total.to_f))
+    if @average_rating >= 4.0
+      if (@total/10) > profile.rating_star
+        @stars = profile.rating_star + 1
+        profile.update_attributes(rating_star: @stars)
+      elsif (@total/10) < profile.rating_star
+        @stars = profile.rating_star - 1
+        profile.update_attributes(rating_star: @stars)
+      end
+    end
+
+    profile.update_attributes(average_rating: @average_rating)
   end
 
 end
