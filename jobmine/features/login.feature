@@ -9,4 +9,4 @@ Scenario: login with valid credentials
   And I fill in "Password" with "123"
   When I click on "Log in"
 Then I should be on the teenager home page
-And I should see "Open Jobs"
+And I should see "Teenage Home Page"
