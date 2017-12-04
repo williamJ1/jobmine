@@ -1,5 +1,65 @@
-<h1>Listing Reviews</h1>
 
+
+	<div class="normalheader">
+		<div class="hpanel">
+			<div class="panel-body">
+				<a class="small-header-action" href="">
+					<div class="clip-header">
+						<i class="fa fa-arrow-up"></i>
+					</div>
+				</a>
+
+				<h2 class="font-light m-b-xs">
+					<%= "All Reviews for #{@profile.user.email}" %>
+				</h2>
+				<small>
+					<%= "Average rating is: #{@profile.average_rating}" %>
+				</small>
+			</div>
+		</div>
+	</div>
+
+	<div class="content">
+
+		<div class="row">
+			<div class="col-md-12">
+			<div class="hpanel">
+				<div class="v-timeline vertical-container animate-panel" data-child="vertical-timeline-block" data-delay="1">
+
+					<% @reviews.each do |review| %>
+
+						<div class="vertical-timeline-block">
+							<div class="vertical-timeline-icon navy-bg">
+								<i class="fa fa-comment"></i>
+							</div>
+							<div class="vertical-timeline-content">
+								<div class="p-sm">
+									<span class="vertical-date pull-right"> <%= review.updated_at.strftime '%Y-%m-%d' %> <br/>
+										<small><%= review.updated_at.strftime '%H:%M:%S' %></small>
+									</span>
+
+									<h1><%= review.title %></h1>
+									<h2><%= review.rating %></h2>
+									<h3><%= review.body %></h3>
+								</div>
+								<div class="panel-footer">
+									<%= review.reviewer %> | <%= link_to 'Detail', review_path(review) %>
+								</div>
+							</div>
+						</div>
+
+					<% end %>
+				
+				</div>
+				<%= link_to 'Back', profile_path(@profile) %>
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<% if false %>
 <table>
 	<tr>
 		<th>Rating</th>
@@ -22,4 +82,6 @@
 	<% end %>
 </table>
 
+
 <%= link_to 'Back', profile_path(@profile) %>
+<% end %>

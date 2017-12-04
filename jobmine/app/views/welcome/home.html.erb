@@ -1,28 +1,99 @@
-<h1>Home</h1>
+<div class="login-container">
+  <div class="heading">
+    <div class="text-center m-b-md">
+      <h1 class="font-extra-bold m-t-xl m-b-xs">Welcome to Jobmine</h1>
+      <h2>This is the most used teenager employer matching service ever!</h2>
+    </div>
+    <div class="panel-body">
+        <%= link_to 'sign up', signup_path,  class:"btn btn-success btn-block"%>
+        <%= link_to 'login', login_path,  class:"btn btn-default btn-block"%>
+    </div>
+  </div>
+</div>
 
-<p>Current signed employers: <%= Profile.where(user_type: 'employer').size %></p>
-<p>Current signed teenagers: <%= Profile.where(user_type: 'teen').size %></p>
-<p>Number of jobs posted: <%= Job.all.size%></p>
+<section>
+  <div id="wrapper">
+    <div class="content animate-panel">
+      <div class="row">
 
-<p>
-  <%= link_to 'sign up', signup_path %>
-</p>
+        <div class="col-lg-3">
+          <div class="hpanel stats">
+            <div class="panel-body h-200">
+              <div class="stats-title pull-left">
+                <h3>Current signed employers:</h3>
+              </div>
+              <div class="stats-icon pull-right">
+                <i class="pe-7s-share fa-4x"></i>
+              </div>
+              <div class="m-t-xl">
+                <h1 class="text-success"><%= Profile.where(user_type: 'employer').size %></h1>
+                <br/>
+              </div>
+            </div>
+            <div class="panel-footer">
+              More employers coming!
+            </div>
+          </div>
+        </div>
 
-<p>
-  <%= link_to 'log in', login_path %>
-</p>
+        <div class="col-lg-3">
+          <div class="hpanel stats">
+            <div class="panel-body h-200">
+              <div class="stats-title pull-left">
+                <h3>Current signed teenagers:</h3>
+              </div>
+              <div class="stats-icon pull-right">
+                <i class="pe-7s-science fa-4x"></i>
+              </div>
+              <div class="m-t-xl">
+                <h1 class="text-success"><%= Profile.where(user_type: 'teen').size %></h1>
+                <br/>
+              </div>
+            </div>
+            <div class="panel-footer">
+              Join today!
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="hpanel stats">
+            <div class="panel-body h-200">
+              <div class="stats-title pull-left">
+                <h3>Number of jobs posted:</h3>
+              </div>
+              <div class="stats-icon pull-right">
+                <i class="pe-7s-display2 fa-4x"></i>
+              </div>
+              <div class="m-t-xl">
+                <h1 class="text-success"><%= Job.all.size%></h1>
+                <br/>
+              </div>
+            </div>
+            <div class="panel-footer">
+              More jobs psting everyday!
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+</section>
 
 
-<%# if false %>
+
+<!--<div class="heading-image animate-panel" data-child="img-animate" data-effect="fadeInRight">-->
+  <!--<p class="small">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>-->
+  <!--<img class="img-animate" src="images/landing/c1.jpg">-->
+  <!--<img class="img-animate" src="images/landing/c2.jpg">-->
+  <!--<img class="img-animate" src="images/landing/c3.jpg">-->
+  <!--<img class="img-animate" src="images/landing/c4.jpg">-->
+  <!--<br/>-->
+  <!--<img class="img-animate" src="images/landing/c5.jpg">-->
+  <!--<img class="img-animate" src="images/landing/c6.jpg">-->
+  <!--<img class="img-animate" src="images/landing/c7.jpg">-->
+  <!--<img class="img-animate" src="images/landing/c8.jpg">-->
+<!--</div>-->
 
 
-<%# Testing review %>
-<p>
-  <%= link_to 'Give Review', new_profile_review_path(:profile_id => 1, :contract_id => 2) %>
-</p>
 
-<p>
-  <%= link_to 'Review index', profile_reviews_path(:profile_id => 1) %>
-</p>
-
-<%# end %>
