@@ -13,7 +13,7 @@
 					<%= "All Reviews for #{@profile.user.email}" %>
 				</h2>
 				<small>
-					<%= "Average rating is: #{@profile.average_rating}" %>
+					<%= "Average rating is: #{@profile.average_rating.round(2)}" %>
 				</small>
 			</div>
 		</div>
