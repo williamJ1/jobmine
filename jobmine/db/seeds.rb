@@ -217,7 +217,10 @@ timeslot1 = Timeslot.create(date_time_begin: work_time_1, time_length: 2, approv
 timeslot2 = Timeslot.create(date_time_begin: work_time_2, time_length: 1, approve_status: 0, paid_time: paid_time1, contract_id: contract2.id)
 timeslot3 = Timeslot.create(date_time_begin: work_time_3, time_length: 3, approve_status: 0, paid_time: paid_time2, contract_id: contract2.id)
 timeslot4 = Timeslot.create(date_time_begin: work_time_4, time_length: 2, approve_status: 1, paid_time: paid_time3, contract_id: contract2.id)
-timeslot4 = Timeslot.create(date_time_begin: work_time_5, time_length: 5, approve_status: 2, paid_time: paid_time4, contract_id: contract2.id)
+timeslot5 = Timeslot.create(date_time_begin: work_time_5, time_length: 5, approve_status: 2, paid_time: paid_time4, contract_id: contract2.id)
+timeslot5 = Timeslot.create(date_time_begin: work_time_5, time_length: 5, approve_status: 2, paid_time: paid_time4, contract_id: contract7.id)
+timeslot6 = Timeslot.create(date_time_begin: work_time_5, time_length: 5, approve_status: 2, paid_time: paid_time4, contract_id: contract8.id)
+
 
 
 #reviews
