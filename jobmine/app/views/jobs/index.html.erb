@@ -5,7 +5,7 @@
 <!-- google map gem -->
 <p id="notice"><%= notice %></p>
 
-<div class="normalheader ">
+<div class="normalheader hpanel hblue ">
   <div class="hpanel">
     <div class="panel-body">
       <a class="small-header-action" href="">
@@ -32,6 +32,7 @@
     </div>
   </div>
 </div>
+
 <div class="content">
   <% if @user_profile.user_type=='teen' %>
       <div class="row">
@@ -42,7 +43,8 @@
                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                 <a class="closebox"><i class="fa fa-times"></i></a>
               </div>
-              Open Jobs (jobs you can apply)
+              <h2 class="text-info">Open Jobs </h2>
+              (jobs you can apply)
             </div>
             <div class="panel-body">
               <div class="table-responsive">
@@ -74,9 +76,6 @@
               </div>
 
             </div>
-            <div class="panel-footer">
-              Table - 6 rows
-            </div>
           </div>
         </div>
       </div>
@@ -98,7 +97,7 @@
       </script>
       <!-- google map gem -->
 
-      <h2>Waiting for approve</h2>
+      <h2 class="text-warning">Waiting for approval</h2>
       <div class="row">
         <div class="col-lg-12">
           <div class="hpanel">
@@ -107,7 +106,7 @@
                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                 <a class="closebox"><i class="fa fa-times"></i></a>
               </div>
-              Waiting for approve
+              (You have already applied, wait for empolyer to respond)
             </div>
             <div class="panel-body">
               <div class="table-responsive">
@@ -139,15 +138,12 @@
               </div>
 
             </div>
-            <div class="panel-footer">
-              Table - 6 rows
-            </div>
           </div>
         </div>
       </div>
       <br>
 
-      <h2>My Onging Jobs (my apply(contract) has been approved)</h2>
+      <h2 class="text-success">My Onging Jobs </h2>
       <div class="row">
         <div class="col-lg-12">
           <div class="hpanel">
@@ -156,7 +152,7 @@
                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                 <a class="closebox"><i class="fa fa-times"></i></a>
               </div>
-              My Onging Jobs (my apply(contract) has been approved)
+              (my apply(contract) has been approved)
             </div>
             <div class="panel-body">
               <div class="table-responsive">
@@ -188,16 +184,13 @@
               </div>
 
             </div>
-            <div class="panel-footer">
-              Table - 6 rows
-            </div>
           </div>
         </div>
       </div>
 
       <br>
 
-      <h2>My Finished Jobs </h2>
+      <h2 class="text-primary">My Finished Jobs </h2>
       <div class="row">
         <div class="col-lg-12">
           <div class="hpanel">
@@ -206,7 +199,7 @@
                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                 <a class="closebox"><i class="fa fa-times"></i></a>
               </div>
-              My Finished Jobs
+              (These jobs had been closed by employer)
             </div>
             <div class="panel-body">
               <div class="table-responsive">
@@ -239,9 +232,6 @@
               </div>
 
             </div>
-            <div class="panel-footer">
-              Table - 6 rows
-            </div>
           </div>
         </div>
       </div>
@@ -251,7 +241,7 @@
 
       <h4><%= link_to 'Post new job', new_job_path, class:"btn btn-success"%></h4>
 
-      <h2>Open Jobs (jobs Created by me and wait for me to approve)</h2>
+      <h2 class="text-info">Open Jobs </h2>
       <div class="row">
         <div class="col-lg-12">
           <div class="hpanel">
@@ -260,6 +250,7 @@
                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                 <a class="closebox"><i class="fa fa-times"></i></a>
               </div>
+              (jobs Created by me and wait for me to approve)
             </div>
             <div class="panel-body">
               <div class="table-responsive">
@@ -294,15 +285,12 @@
               </div>
 
             </div>
-            <div class="panel-footer">
-              Table - 6 rows
-            </div>
           </div>
         </div>
       </div>
       <br>
 
-      <h2>My Onging Jobs (you had approve the apply)</h2>
+      <h2 class="text-warning">My Onging Jobs</h2>
       <div class="row">
         <div class="col-lg-12">
           <div class="hpanel">
@@ -311,6 +299,7 @@
                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                 <a class="closebox"><i class="fa fa-times"></i></a>
               </div>
+              (you had approve the apply)
             </div>
             <div class="panel-body">
               <div class="table-responsive">
@@ -342,9 +331,6 @@
               </div>
 
             </div>
-            <div class="panel-footer">
-              Table - 6 rows
-            </div>
           </div>
         </div>
       </div>
@@ -352,7 +338,7 @@
       <br>
 
 
-      <h2>My Finished Jobs (jobs posted by me and finished)</h2>
+      <h2 class="text-primary">My Finished Jobs</h2>
       <div class="row">
         <div class="col-lg-12">
           <div class="hpanel">
@@ -361,6 +347,7 @@
                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                 <a class="closebox"><i class="fa fa-times"></i></a>
               </div>
+              (jobs posted by me and finished)
             </div>
             <div class="panel-body">
               <div class="table-responsive">
@@ -397,9 +384,6 @@
                 </table>
               </div>
 
-            </div>
-            <div class="panel-footer">
-              Table - 6 rows
             </div>
           </div>
         </div>

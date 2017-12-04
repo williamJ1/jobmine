@@ -1,0 +1,2 @@
+class Reactivate < ApplicationRecord
+end

@@ -17,7 +17,9 @@ class LoginController < ApplicationController
       return
     end
 
-    if @u.try(:authenticate, params[:login][:password])
+    if @u.account_status == "suspended"
+       redirect_to request_path
+    elsif @u.try(:authenticate, params[:login][:password])
       session[:current_user_id] = @u.id
       redirect_to check_profile_path
       return

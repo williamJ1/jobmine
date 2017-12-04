@@ -1,0 +1,42 @@
+<div class="login-container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center m-b-md">
+        <h2>Please filling in the form below for admin to consider reactivate your account:</h2>
+      </div>
+      <div class="hpanel">
+        <div class="panel-body">
+          <p class="text-warning">
+            <%= flash[:warning] %>
+            <%= flash[:alert] %>
+            <%= flash[:error] %>
+          </p>
+
+          <div class="form-group">
+
+            <%= form_for :reactivate, url: reactivate_path do |form| %>
+
+                <p>
+                  <%= form.label :username %><br>
+                  <%= form.text_field :username, class:"form-control" %>
+                </p>
+
+                <p>
+                  <%= form.label :description%><br>
+                  <%= form.text_field :description, class:"form-control" %>
+                </p>
+                <p>
+                  <%= form.submit 'Submit form !', class:"btn btn-info btn-block" %>
+                </p>
+            <% end %>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -53,10 +53,10 @@ class ReviewsController < ApplicationController
 		end
 	end
 
-	def destroy
+	def destory
 		@review = Review.find(params[:id])
 		@profile = get_profile(@review.profile_id)
-		@review.destroy
+		@review.destory
 
 		redirect_to profile_reviews_path(@profile)
 	end

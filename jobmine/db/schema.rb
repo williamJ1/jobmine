@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171204093926) do
+ActiveRecord::Schema.define(version: 20171204163414) do
 
   create_table "contracts", force: :cascade do |t|
     t.integer "accept_status"
@@ -69,6 +69,13 @@ ActiveRecord::Schema.define(version: 20171204093926) do
     t.integer "rating_star", default: 0
     t.string "account_status"
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "reactivates", force: :cascade do |t|
+    t.string "username"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|

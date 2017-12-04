@@ -56,6 +56,11 @@ Rails.application.routes.draw do
   put '/suspend_timeslot', to: 'admin#suspend'
   put '/activate_timeslot', to: 'admin#activate'
 
+  match '/reactivate', to: 'admin#reactivate', via: [:get, :post]
+  get '/request', to: 'admin#request'
+  put '/delete_review', to: 'admin#delete_review'
+
+
   resources :profiles do
     resources :reviews, only: [:index, :new, :create]#shallow: true
     #get '/profiles/:profile_id(/:contract_id)/reviews/new(.format)', to: 'review#new', as: 'new_review'

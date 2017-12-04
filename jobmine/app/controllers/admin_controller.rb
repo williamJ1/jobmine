@@ -2,11 +2,18 @@ class AdminController < ApplicationController
   def index
     @all_teen = Profile.where(user_type: "teen").all
     @all_employer = Profile.where(user_type: "employer").all
+    @all_requests = Reactivate.all
+    @all_review = Review.all
 
   end
 
   def new
 
+  end
+
+  def delete_review
+    Review.where(id: params[:review_id]).destroy_all
+    redirect_to index_admin_path
   end
 
   def create
@@ -39,8 +46,16 @@ class AdminController < ApplicationController
     end
   end
 
-  def activate
 
+  def reactivate
+    @request = Reactivate.new(params.require(:reactivate).permit(:username, :description))
+    if @request.save()
+      flash[:info] = "Submit successful!"
+      redirect_to login_path
+    else
+      flash[:info] = "some thing went wrong"
+      redirect_to login_path
+    end
   end
 
 end
