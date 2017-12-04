@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script>
-        document.addEventListener("turbolinks:load", function(){
+        $( document ).ready(function(){
             $( ".datepicker" ).datepicker({ dateFormat: 'yy/mm/dd' });
         } );
     </script>
